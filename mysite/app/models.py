@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -11,16 +9,28 @@ class User(models.Model):
     address = models.CharField(max_length=100)
     birthdate = models.DateField()
     
+    def __str__(self):
+        return self.name
 
 class Room(models.Model):
     type = models.CharField(max_length=100)
     price = models.FloatField(max_length=100)
     max_guests = models.IntegerField(max_length=100)
         
+    def __str__(self):
+        return self.type
         
 class Booking(models.Model):
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    #check_in = models.DateField()
     check_in = models.DateField()
     check_out = models.DateField()
+
+
+class Review(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    review = models.CharField(max_length=500)
+    date = models.DateField()
+    
+    def __str__(self):
+        return self.review
