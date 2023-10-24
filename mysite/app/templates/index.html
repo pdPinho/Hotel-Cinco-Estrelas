@@ -1,29 +1,22 @@
 {% extends "layout.html" %}
 
-{% block index %}
+{% block content %}
 
-<!doctype html>
-<html lang="en">
+<nav class="navbar">
+    <div class="container"> 
+            Hotel Cinco Estrelas  
+    </div>
+</nav>
 
-    <head>
-        <title>Hotel Cinco Estrelas</title>
-    </head>
+<div class="container">
+    SOMETHINGS
+</div>
 
+{% if user.is_superuser %}
+    <p><a href='/functionalities/admin/users'>view users</a></p>
+    <p><a href='/functionalities/admin/bookings'>view bookings</a></p>
+    <p><a href='/functionalities/admin/rooms'>view rooms</a></p>
+    <p><a href='/functionalities/admin/reviews'>view reviews</a></p>
+{% endif %}
 
-    <body>
-
-        <nav class="navbar">
-            <div class="container"> 
-                    Hotel Cinco Estrelas  
-            </div>
-        </nav>
-
-        <div class="container">
-            SOMETHINGS
-        </div>
-
-    </body>
-
-</html>
-
-{% endblock index %}
+{% endblock %}

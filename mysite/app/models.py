@@ -4,8 +4,8 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    password = models.CharField(max_length=100)
-    phone = models.IntegerField(max_length=100)
+    password = models.CharField(max_length=20)
+    phone = models.IntegerField()
     address = models.CharField(max_length=100)
     birthdate = models.DateField()
     
@@ -15,7 +15,7 @@ class User(models.Model):
 class Room(models.Model):
     type = models.CharField(max_length=100)
     price = models.FloatField(max_length=100)
-    max_guests = models.IntegerField(max_length=100)
+    max_guests = models.IntegerField()
         
     def __str__(self):
         return self.type
