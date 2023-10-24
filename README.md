@@ -1,5 +1,6 @@
 # Project abstract
-
+execute the following command to run
+- run_init.sh
 
 # Project team
 - Pedro Pinho 109986
