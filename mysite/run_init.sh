@@ -5,10 +5,12 @@ python3 manage.py migrate app
 
 # load data
 python3 manage.py loaddata user_data.json
-python3 manage.py loaddata user_auth_data.json
-python3 manage.py loaddata review_data.json
+python3 manage.py migrate
 
-# migrate data
+python3 manage.py loaddata user_auth_data.json
+python3 manage.py migrate
+
+python3 manage.py loaddata review_data.json
 python3 manage.py migrate
 
 # start server

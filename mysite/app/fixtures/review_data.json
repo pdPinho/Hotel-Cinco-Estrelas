@@ -3,7 +3,7 @@
         "model": "app.Review",
         "pk": 1,
         "fields": {
-            "user": "jennifer@gmail.com",
+            "user": 2,
             "review": "I loved every moment in here! Make sure to not miss out on their food, it is simply delicious!",
             "date": "2023-03-20"
         }
@@ -12,7 +12,7 @@
         "model": "app.Review",
         "pk": 2,
         "fields": {
-            "user": "rock@gmail.com",
+            "user": 3,
             "review": "Great breakfast, large servings. Friendly and attentive staff. Beautiful views. Loved the rum coconut!",
             "date": "2023-07-15"
         }
@@ -21,7 +21,7 @@
         "model": "app.Review",
         "pk": 3,
         "fields": {
-            "user": "joaquim@gmail.com",
+            "user": 5,
             "review": "Possibly one of my worst experiences in life. NEVER AGAIN!",
             "date": "2023-10-23"
         }
