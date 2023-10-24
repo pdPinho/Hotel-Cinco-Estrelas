@@ -4,6 +4,8 @@ from app.forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User as user_auth
 
+from datetime import date
+
 ############################# 
 #     Basic renders area
 ############################# 
@@ -19,6 +21,29 @@ def contact(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+
+############################# 
+#      Reviews area
+############################# 
+
+def reviews(request):
+    if request.method == 'POST':
+        user = request.user
+        print(User.objects.get(id=user.pk - 1))
+        u = User.objects.get(id=user.pk - 1)
+        
+        Review(user=u,
+               review=request.POST['review'],
+               date=date.today()).save()
+        
+    params = {
+        'title': 'Reviews',
+        'reviews': Review.objects.all(),
+    }
+    
+    return render(request, 'reviews.html', params)
 
 def error_404(request):
     return render(request, 'error_404.html')

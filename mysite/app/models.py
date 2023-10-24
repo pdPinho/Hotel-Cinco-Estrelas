@@ -28,7 +28,7 @@ class Booking(models.Model):
 
 
 class Review(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.CharField(max_length=500)
     date = models.DateField()
     

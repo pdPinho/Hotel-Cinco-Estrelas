@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
+    path('reviews/', views.reviews, name='reviews'),
     path('error_404/', views.error_404, name='error_404'),
     
     ### login area

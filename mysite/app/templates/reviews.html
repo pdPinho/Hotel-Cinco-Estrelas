@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}:</h2>
+{% for review in reviews %}
+<div class="card">
+    <div class="card-body">
+        <h5>{{ review }}</h5>
+        <p>{{review.user.name}} - {{ review.date }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<form method="POST">
+    {% csrf_token %}
+    <label for="review">Write your own review</label>
+    <textarea class="form-control" name="review" id="review" placeholder="Write here your experience with the hotel..." cols="30" rows="3"></textarea>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endif %}
+
+{% endblock %}
