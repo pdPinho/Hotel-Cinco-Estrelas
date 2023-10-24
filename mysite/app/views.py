@@ -74,7 +74,6 @@ def user_info(request, id):
     
     user = User.objects.get(id=id)
     params = {
-        'id': user.id,
         'name': user.name,
         'email': user.email,
         'password': user.password,
@@ -87,23 +86,41 @@ def user_info(request, id):
 
 # Display current user info and update it
 def user_edit(request, id):
+    if not (request.user.is_authenticated and request.user.is_superuser):
+        return redirect('/error_404')
+    
     form = user_edit_form()
     user = User.objects.get(id=id)
     
     if request.method == 'POST':
         form = user_edit_form(request.POST)
-
+        
         if form.is_valid():
+            username = user.name
+            
             # updating user information
+            user.name=form.cleaned_data['name']
+            user.email=form.cleaned_data['email']
+            user.password=form.cleaned_data['password']
             user.phone=form.cleaned_data['phone']
             user.address=form.cleaned_data['address']
             user.birthdate=form.cleaned_data['birthdate']
             user.save()
+
+            # updating user authentication info
+            u = user_auth.objects.get(username=username)
+            u.username = user.name
+            u.email = user.email
+            u.set_password(user.password)
+            u.save()
             
             messages.success(request, 'User updated successfully')
     else:
         # getting information to be displayed (placeholder)
-        form = user_edit_form(initial={'phone': user.phone,
+        form = user_edit_form(initial={'name': user.name,
+                                        'email': user.email,
+                                        'password': user.password,
+                                        'phone': user.phone,
                                         'address': user.address,
                                         'birthdate': user.birthdate,
                                         'form': form})
