@@ -49,7 +49,7 @@
     },
     {
         "model": "app.User",
-        "pk": 1,
+        "pk": 5,
         "fields": {
             "name": "Joaquim",
             "email": "joaquim@gmail.com",

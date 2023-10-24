@@ -1,16 +1,24 @@
 from django.db import models
 
 
+# natural key
+class UserManager(models.Manager):
+    def get_by_natural_key(self, email):
+            return self.get(email=email)
+
 class User(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=20)
     phone = models.CharField(max_length=9)
     address = models.CharField(max_length=100)
     birthdate = models.DateField()
     
+    objects = UserManager()
+    
     def __str__(self):
         return self.name
+    
 
 class Room(models.Model):
     type = models.CharField(max_length=100)
