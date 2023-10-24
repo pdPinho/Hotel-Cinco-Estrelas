@@ -25,8 +25,7 @@ def about(request):
 def reviews(request):
     if request.method == 'POST':
         user = request.user
-        print(User.objects.get(id=user.pk - 1))
-        u = User.objects.get(id=user.pk - 1)
+        u = User.objects.get(id=user.pk)
         
         Review(user=u,
                review=request.POST['review'],
@@ -94,8 +93,7 @@ def user_info(request, id):
     user = User.objects.get(id=id)
     # delete user
     if request.method == 'POST':
-        # we do + 1 due to always having the admin being our first insert
-        u = user_auth.objects.get(pk=int(id) + 1)
+        u = user_auth.objects.get(pk=int(id))
         user.delete()
         u.delete()
         messages.success(request, 'User deleted successfully')
@@ -136,7 +134,7 @@ def user_edit(request, id):
             user.save()
 
             # updating user authentication info
-            u = user_auth.objects.get(pk=int(id) + 1)
+            u = user_auth.objects.get(pk=int(id))
             u.username = user.name
             u.email = user.email
             u.set_password(user.password)
