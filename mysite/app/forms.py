@@ -1,5 +1,4 @@
 from django import forms
-from app.models import User
 
 ## Queries ##
 class user_query_form(forms.Form):
@@ -9,8 +8,8 @@ class user_query_form(forms.Form):
 class user_insert_form(forms.Form):
     name = forms.CharField(label='Name', max_length=100)
     email = forms.EmailField(label='Email', max_length=100)
-    password = forms.CharField(label='Password', max_length=20)
-    phone = forms.IntegerField(label='Phone Number')
+    password = forms.CharField(widget=forms.PasswordInput(), label='Password', max_length=20)
+    phone = forms.CharField(label='Phone Number')
     address = forms.CharField(label='Address', max_length=100)
     birthdate = forms.DateField(label='Birthdate')
     
