@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User as user_auth
 
 ############################# 
-#      Basic renders
+#     Basic renders area
 ############################# 
 def index(request):
     return render(request, 'index.html')
@@ -25,7 +25,7 @@ def error_404(request):
 
 
 ############################# 
-#      Account related
+#      Account area
 ############################# 
 def register(request):
     if request.method == 'POST':
@@ -52,7 +52,7 @@ def register(request):
 
 
 ############################# 
-#       Admin related
+#       Admin area
 ##############################
 ### USER RELATED
 # Get all users and display them
@@ -73,16 +73,27 @@ def user_info(request, id):
         return redirect('/error_404')
     
     user = User.objects.get(id=id)
-    params = {
-        'name': user.name,
-        'email': user.email,
-        'password': user.password,
-        'phone': user.phone,
-        'address': user.address,
-        'birthdate': user.birthdate,
-    }
+    # delete user
+    if request.method == 'POST':
+        # we do + 1 due to always having the admin being our first insert
+        u = user_auth.objects.get(pk=int(id) + 1)
+        user.delete()
+        u.delete()
+        messages.success(request, 'User deleted successfully')
+        return render(request, 'user_info.html')
     
-    return render(request, 'user_info.html', params)
+    # show user information
+    else:
+        params = {
+            'name': user.name,
+            'email': user.email,
+            'password': user.password,
+            'phone': user.phone,
+            'address': user.address,
+            'birthdate': user.birthdate,
+        }
+        
+        return render(request, 'user_info.html', params)
 
 # Display current user info and update it
 def user_edit(request, id):
@@ -96,8 +107,6 @@ def user_edit(request, id):
         form = user_edit_form(request.POST)
         
         if form.is_valid():
-            username = user.name
-            
             # updating user information
             user.name=form.cleaned_data['name']
             user.email=form.cleaned_data['email']
@@ -108,7 +117,7 @@ def user_edit(request, id):
             user.save()
 
             # updating user authentication info
-            u = user_auth.objects.get(username=username)
+            u = user_auth.objects.get(pk=int(id) + 1)
             u.username = user.name
             u.email = user.email
             u.set_password(user.password)
@@ -127,9 +136,6 @@ def user_edit(request, id):
         
     return render(request, 'user_edit.html', {'form': form, 'user': user.name})
 
-# Delete user
-def user_delete(request, id):
-    pass
 
 ### BOOKING RELATED
 # bookings
@@ -144,6 +150,7 @@ def view_bookings(request):
         
     return render(request, 'view_bookings.html', params)
 
+### ROOMS RELATED
 # rooms
 def view_rooms(request):
     if not (request.user.is_authenticated and request.user.is_superuser):
@@ -156,6 +163,7 @@ def view_rooms(request):
         
     return render(request, 'view_rooms.html', params)
 
+### REVIEWS RELATED
 # reviews
 def view_reviews(request):
     if not (request.user.is_authenticated and request.user.is_superuser):
@@ -167,3 +175,8 @@ def view_reviews(request):
     }
         
     return render(request, 'view_reviews.html', params)
+
+
+############################# 
+#        User area
+##############################
