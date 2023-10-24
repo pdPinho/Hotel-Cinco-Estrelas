@@ -22,12 +22,6 @@ def contact(request):
 def about(request):
     return render(request, 'about.html')
 
-
-
-############################# 
-#      Reviews area
-############################# 
-
 def reviews(request):
     if request.method == 'POST':
         user = request.user
@@ -201,7 +195,25 @@ def view_reviews(request):
         
     return render(request, 'view_reviews.html', params)
 
+# Get information about specific review by user
+def review_info(request, id):
+    if not (request.user.is_authenticated and request.user.is_superuser):
+        return redirect('/error_404')
+    
+    review = Review.objects.get(id=id)
+    # delete review
+    if request.method == 'POST':
+        review.delete()
+        messages.success(request, 'Review deleted successfully')
+        return render(request, 'review_info.html')
+    
+    # show review information
+    else:
+        params = {
+            'name': review.user.name,
+            'date': review.date,
+            'review': review.review,
+        }
+        
+        return render(request, 'review_info.html', params)
 
-############################# 
-#        User area
-##############################

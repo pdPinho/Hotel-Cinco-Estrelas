@@ -4,7 +4,7 @@
 
 <h2>{{ title }}:</h2>
 {% for review in reviews %}
-<h5><a href="reviews/{{review.id}}">- {{ review }}</a></h5>
+<h5><a href="reviews/{{review.id}}">- Review by: {{ review.user.name }}</a></h5>
 {% endfor %}
 
 
