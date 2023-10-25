@@ -1,1 +1,13 @@
+# Ignore local venv
 venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Django stuff:
+mysite/*.log
+mysite/local_settings.py
+mysite/db.sqlite3
+mysite/db.sqlite3-journal
+mysite/app/migrations
+
