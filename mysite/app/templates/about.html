@@ -2,32 +2,64 @@
 
 {% block content %}
 
-<h1>Coisas implementadas:</h1>
-<h3>- Admin </h3>
-<p>Ver toda a informação na base de dados, como também editar e apagar</p>
-<h3>- User </h3>
-<p>Registar user na base de dados, e como utilizador de website</p>
-<p>Ver reviews do hotel</p>
-<p>Deixar reviews</p>
-<h3>- Models </h3>
-<p>Em principio não é necessário mudar mais os models</p>
 
-<hr />
+<div class="all container-fluid row gx-5">
 
-<h1>Por implementar:</h1>
-<h3>- Website </h3>
-<p>Criar um bom template</p>
-<p>Melhorar aspeto das páginas</p>
-<p>Não temos error handling</p>
-<h3>- User </h3>
-<h5>NÃO Logado:</h5>
-<p>* ver quartos vagos para certos dias</p>
-<p>* comparar preços entre datas</p>
-<p>* ver reviews de quartos</p>
-<h5>Logado:</h5>
-<p>* efetuar reservas de um quarto para uma data</p>
-<p>* alterar/cancelar reservas</p>
-<p>* adicionar bonus (p.e. pequenos almoços)</p>
-<h3>- Admin</h3>
-<p>Fazer página para atualizar quartos</p>
+    
+    <section class="feito col p-3 m-3 border bg-light">
+        <h1>Coisas implementadas:</h1>
+
+        <div class="admin">
+            <h3>- Admin </h3>
+            <ul>Ver toda a informação na base de dados, como também editar e aulagar</ul>
+        </div>
+        <div class="user">
+            <h3>- User </h3>
+            <ul>Registar user na base de dados, e como utilizador de website</ul>
+            <ul>Ver reviews do hotel</ul>
+            <ul>Deixar reviews</ul>
+        </div>
+
+        <div class="models">
+            <h3>- Models </h3>
+            <ul>Em principio não é necessário mudar mais os models</ul>
+        </div>
+        
+        
+    </section>
+
+    <section class="falta col p-3 m-3 border bg-light">
+        <h1>Por implementar:</h1>
+
+        <div class="website">
+            <h3>- Website </h3>
+            <ul>Criar um bom template</ul>
+            <ul>Melhorar aspeto das páginas</ul>
+            <ul>Não temos error handling</ul>
+        </div>
+
+        <div class="admin">
+            <h3>- Admin</h3>
+            <ul>Fazer página para atualizar quartos</ul>
+        </div>
+        
+        <div class="user">
+            <h3>- User </h3>
+            <h5>NÃO Logado:</h5>
+            <ul>* ver quartos vagos para certos dias</ul>
+            <ul>* comparar preços entre datas</ul>
+            <ul>* ver reviews de quartos</ul>
+            <h5>Logado:</h5>
+            <ul>* efetuar reservas de um quarto para uma data</ul>
+            <ul>* alterar/cancelar reservas</ul>
+            <ul>* adicionar bonus (p.e. pequenos almoços)</ul>
+        </div>
+        
+    </section>
+
+</div>
+    
+
+
+
 {% endblock %}

@@ -26,16 +26,16 @@
 
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item {% if request.path == '/index/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'index' %}">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'contact' %}">Contact</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/reviews/' %}active{% endif %}">
             <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
           </li>
         </ul>
@@ -50,7 +50,7 @@
         </div> <!-- /container -->
     </main>
 
-    <footer>
+    <footer class="footer mt-auto py-3 bg-light">
         <hr />
         <p>&copy; {{ year }} - My Django Application</p>
     </footer>
