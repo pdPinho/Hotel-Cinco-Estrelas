@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# install requirements
+pip install -r requirements.txt
+
 # create tables
 python3 manage.py makemigrations app
 python3 manage.py migrate app
