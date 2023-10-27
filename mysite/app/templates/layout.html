@@ -1,7 +1,6 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -11,53 +10,65 @@
 
     {% load static %}
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}" />
-  </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}"/>
+    <style>
+        body {
+            height: 100vh;
+            padding-top: 56px;
+            padding-bottom: 105px;
+        }
+        main {
+            height: calc(100vh - 56px - 121px);
+            padding: 0;
+        }
+    </style>
+</head>
 
-  <body>
+<body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="{% url 'index' %}">Hotel Cinco Estrelas</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="{% url 'index' %}">Hotel Cinco Estrelas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault"
+            aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarDefault">
+    <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item {% if request.path == '/index/' %}active{% endif %}">
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
-            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-          </li>
-          <li class="nav-item {% if request.path == '/reviews/' %}active{% endif %}">
-            <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
-          </li>
+            <li class="nav-item {% if request.path == '/index/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item {% if request.path == '/reviews/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
+            </li>
         </ul>
         {% include 'loginpartial.html' %}
-      </div>
-    </nav>
+    </div>
+</nav>
 
-    <main role="main">
-        <div class="container body-content">
-            <p></p>
-            {% block content %} {% endblock %}
-        </div> <!-- /container -->
-    </main>
+<main role="main">
+    <div class="container body-content flex flex-grow-1">
+        <p></p>
+        {% block content %} {% endblock %}
+    </div> <!-- /container -->
+</main>
 
-    <footer class="footer mt-auto py-3 bg-light">
-        <hr />
-        <p>&copy; {{ year }} - My Django Application</p>
-    </footer>
+<footer class="footer mt-auto py-3 bg-light">
+    <hr/>
+    <p>&copy; {{ year }} - My Django Application</p>
+</footer>
 
-    <script src="{% static 'scripts/jquery-3.4.1.min.js' %}"></script>
-    <script src="{% static 'scripts/popper.min.js' %}"></script>
-    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'scripts/popper.min.js' %}"></script>
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
 
-  </body>
+</body>
 </html>
