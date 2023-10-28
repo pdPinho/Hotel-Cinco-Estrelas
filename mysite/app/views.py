@@ -11,6 +11,19 @@ from datetime import date
 #     Basic renders area
 ############################# 
 def index(request):
+    if request.method == 'POST':
+        form = BookingSearchForm(request.POST)
+
+        if form.is_valid():
+            prev_date = form.cleaned_data['data_inicial']
+            next_date = form.cleaned_data['data_final']
+
+            params = {
+                'title': 'Rooms',
+                'rooms': Room.objects.all(),
+            }
+            return render(request, 'view_rooms.html', params)
+
     return render(request, 'index.html')
 
 
