@@ -6,37 +6,28 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Django WebProject</title>
+    <title>Hotel Cinco Estrelas</title>
 
     {% load static %}
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}"/>
-    <style>
-        body {
-            height: 100vh;
-            padding-top: 56px;
-            padding-bottom: 105px;
-        }
-        main {
-            height: calc(100vh - 56px - 121px);
-            padding: 0;
-        }
-    </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="{% url 'index' %}">Hotel Cinco Estrelas</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault"
-            aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary-subtle z-3" data-bs-theme="dark">
+    <div class="ms-4">
+        <a class="navbar-brand" href="{% url 'index' %}">Hotel Cinco Estrelas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault"
+                aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
     <div class="collapse navbar-collapse" id="navbarDefault">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
             <li class="nav-item {% if request.path == '/index/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'index' %}">Home</a>
             </li>
@@ -54,14 +45,14 @@
     </div>
 </nav>
 
-<main role="main">
-    <div class="container body-content flex flex-grow-1">
+<main role="main" class="flex flex-grow-1">
+    <div class="container body-content">
         <p></p>
         {% block content %} {% endblock %}
     </div> <!-- /container -->
 </main>
 
-<footer class="footer mt-auto py-3 bg-light">
+<footer class="footer mt-auto py-3 bg-light z-3">
     <hr/>
     <p>&copy; {{ year }} - My Django Application</p>
 </footer>
