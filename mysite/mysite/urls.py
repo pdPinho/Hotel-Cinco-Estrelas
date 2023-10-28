@@ -12,6 +12,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('reviews/', views.reviews, name='reviews'),
     path('error_404/', views.error_404, name='error_404'),
+    path('rooms/', views.rooms, name='rooms'),
     
     ### login area ###
     path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

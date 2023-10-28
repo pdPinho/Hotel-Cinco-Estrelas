@@ -29,6 +29,7 @@ class Room(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField(max_length=100)
     max_guests = models.IntegerField()
+    bookings = models.ManyToManyField('User', through='Booking')
 
     TYPE_CHOICES = (
         ('d', 'Double'),

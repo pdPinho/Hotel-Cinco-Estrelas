@@ -20,9 +20,9 @@ def index(request):
 
             params = {
                 'title': 'Rooms',
-                'rooms': Room.objects.all(),
+                'rooms': Room.objects.filter(bookings__check_in__range=[prev_date, next_date], bookings__check_out__range=[prev_date, next_date]),
             }
-            return render(request, 'view_rooms.html', params)
+            return redirect('/rooms', params)
 
     return render(request, 'index.html')
 
@@ -58,6 +58,17 @@ def reviews(request):
 
 def error_404(request):
     return render(request, 'error_404.html')
+
+
+def rooms(request, *args, **kwargs):
+    if args:
+        params = args[0]
+    else:
+        params = {
+            'title': 'Rooms',
+            'rooms': Room.objects.all(),
+        }
+    return render(request, 'rooms.html', params)
 
 
 ############################# 
