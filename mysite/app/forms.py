@@ -1,9 +1,11 @@
 from django import forms
 
+
 ## Queries ##
 class user_query_form(forms.Form):
     query = forms.CharField(label='Search:', max_length=100)
-    
+
+
 ## Inserts ##   
 class user_insert_form(forms.Form):
     name = forms.CharField(label='Name', max_length=100)
@@ -12,7 +14,8 @@ class user_insert_form(forms.Form):
     phone = forms.CharField(label='Phone Number')
     address = forms.CharField(label='Address', max_length=100)
     birthdate = forms.DateField(label='Birthdate')
-    
+
+
 ## Edits ##
 class user_edit_form(forms.Form):
     name = forms.CharField(label='Name', max_length=100)
@@ -21,3 +24,8 @@ class user_edit_form(forms.Form):
     phone = forms.IntegerField(label='Phone Number')
     address = forms.CharField(label='Address', max_length=100)
     birthdate = forms.DateField(label='Birthdate')
+
+
+class BookingSearchForm(forms.Form):
+    data_inicial = forms.DateField(label='Data Inicial')
+    data_final = forms.DateField(label='Data Final')
