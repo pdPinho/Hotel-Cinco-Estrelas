@@ -68,3 +68,20 @@ input[type="checkbox"].input-validation-error {
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+
+.rating-list li {
+  float: right;
+  color: #ddd;
+  padding: 10px 5px;
+}
+
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
+.checked {
+    color: orange;
+}
+

@@ -3,9 +3,9 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User as user_auth
+from django.core.paginator import Paginator
 
-from datetime import date
-
+import datetime
 
 #############################
 #     Basic renders area
@@ -40,19 +40,35 @@ def about(request):
 
 
 def reviews(request):
-    if request.method == 'POST':
-        user = request.user
-        u = User.objects.get(id=user.pk)
-
-        Review(user=u,
-               review=request.POST['review'],
-               date=date.today()).save()
-
+    reviews_list = Review.objects.all().order_by('-date')  
+    paginator = Paginator(reviews_list, 3)
+    
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     params = {
         'title': 'Reviews',
-        'reviews': Review.objects.all(),
+        'reviews': reviews_list,
+        'form': review_insert_form(),
+        "page_obj": page_obj
     }
+    
+    if request.method == 'POST':
+        form = review_insert_form(request.POST)
+        
+        if form.is_valid():
+            user = request.user
+            u = User.objects.get(id=user.pk)
+            review = form.cleaned_data['review']
+            rating = form.cleaned_data['rating']
 
+            Review(user=u,
+                review=review,
+                date=datetime.datetime.now(),
+                rating=rating).save()
+        else:   
+            params['error'] = 'Invalid review. No rating selected.'
+            return render(request, 'reviews.html', params)
+        
     return render(request, 'reviews.html', params)
 
 

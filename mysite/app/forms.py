@@ -15,6 +15,20 @@ class user_insert_form(forms.Form):
     address = forms.CharField(label='Address', max_length=100)
     birthdate = forms.DateField(label='Birthdate')
 
+class review_insert_form(forms.Form):
+    review = forms.CharField(widget=forms.Textarea(attrs={"rows":"3", "placeholder":"Share your experience with us..."}), label='Write your own review', max_length=500)
+    rating = forms.IntegerField(widget=forms.HiddenInput())
+
+    # THE FOLLLOWING DOES NOT WORK FOR SOME REASON????
+    def clean_rating(self):
+        rating = self.cleaned_data.get('rating')
+        print("=====================================================")
+        print(rating)
+        if rating is None or rating < 1 or rating > 5:
+            raise forms.ValidationError("Invalid rating. Please select a rating between 1 and 5.")
+        return rating
+
+
 
 ## Edits ##
 class user_edit_form(forms.Form):
@@ -29,3 +43,4 @@ class user_edit_form(forms.Form):
 class BookingSearchForm(forms.Form):
     data_inicial = forms.DateField(label='Data Inicial')
     data_final = forms.DateField(label='Data Final')
+
