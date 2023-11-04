@@ -4,6 +4,7 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User as user_auth
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 import datetime
 
@@ -119,10 +120,13 @@ def register(request):
 ##############################
 ### USER RELATED
 # Get all users and display them
-def view_users(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
 
+def superuser_check(user):
+    return user.is_superuser
+
+@login_required()
+@user_passes_test(superuser_check)
+def view_users(request):
     params = {
         'title': 'Users',
         'users': User.objects.all(),
@@ -131,11 +135,10 @@ def view_users(request):
     return render(request, 'view_users.html', params)
 
 
+@login_required()
+@user_passes_test(superuser_check)
 # Get information about specific user
 def user_info(request, id):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     user = User.objects.get(id=id)
     # delete user
     if request.method == 'POST':
@@ -159,11 +162,10 @@ def user_info(request, id):
         return render(request, 'user_info.html', params)
 
 
+@login_required()
+@user_passes_test(superuser_check)
 # Display current user info and update it
 def user_edit(request, id):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     form = user_edit_form()
     user = User.objects.get(id=id)
 
@@ -203,10 +205,9 @@ def user_edit(request, id):
 
 ### BOOKING RELATED
 # bookings
+@login_required()
+@user_passes_test(superuser_check)
 def view_bookings(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     params = {
         'title': 'Bookings',
         'bookings': Booking.objects.all(),
@@ -217,10 +218,9 @@ def view_bookings(request):
 
 ### ROOMS RELATED
 # rooms
+@login_required()
+@user_passes_test(superuser_check)
 def view_rooms(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     params = {
         'title': 'Rooms',
         'rooms': Room.objects.all(),
@@ -231,10 +231,9 @@ def view_rooms(request):
 
 ### REVIEWS RELATED
 # reviews
+@login_required()
+@user_passes_test(superuser_check)
 def view_reviews(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     params = {
         'title': 'Reviews',
         'reviews': Review.objects.all(),
@@ -244,10 +243,9 @@ def view_reviews(request):
 
 
 # Get information about specific review by user
+@login_required()
+@user_passes_test(superuser_check)
 def review_info(request, id):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     review = Review.objects.get(id=id)
     # delete review
     if request.method == 'POST':

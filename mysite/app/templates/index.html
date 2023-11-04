@@ -4,12 +4,12 @@
 
 {% block content %}
 
-    {#    {% if user.is_superuser %}#}
-    {#        <p><a href='/functionalities/admin/users'>view users</a></p>#}
-    {#        <p><a href='/functionalities/admin/bookings'>view bookings</a></p>#}
-    {#        <p><a href='/functionalities/admin/rooms'>view rooms</a></p>#}
-    {#        <p><a href='/functionalities/admin/reviews'>view reviews</a></p>#}
-    {#    {% endif %}#}
+   {% if user.is_superuser %}
+        <p><a href='/functionalities/admin/users'>view users</a></p>
+        <p><a href='/functionalities/admin/bookings'>view bookings</a></p>
+        <p><a href='/functionalities/admin/rooms'>view rooms</a></p>
+        <p><a href='/functionalities/admin/reviews'>view reviews</a></p>
+    {% endif %}
 
     <div class="mb-4">
         <img src="{% static 'images/HotelCincoEstrelas.png' %}" alt="Hotel Cinco Estrelas"
