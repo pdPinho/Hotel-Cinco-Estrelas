@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # natural key
@@ -56,8 +57,10 @@ class Booking(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    review = models.CharField(max_length=500)
-    date = models.DateField()
+    review = models.CharField(max_length=500, null=False)
+    date = models.DateTimeField(null=False)
+    
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0, blank=False, null=False)
 
     def __str__(self):
         return self.review

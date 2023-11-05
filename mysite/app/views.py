@@ -3,9 +3,10 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User as user_auth
+from django.core.paginator import Paginator
+from django.contrib.auth.decorators import user_passes_test, login_required
 
-from datetime import date
-
+import datetime
 
 #############################
 #     Basic renders area
@@ -40,19 +41,35 @@ def about(request):
 
 
 def reviews(request):
-    if request.method == 'POST':
-        user = request.user
-        u = User.objects.get(id=user.pk)
-
-        Review(user=u,
-               review=request.POST['review'],
-               date=date.today()).save()
-
+    reviews_list = Review.objects.all().order_by('-date')  
+    paginator = Paginator(reviews_list, 3)
+    
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     params = {
         'title': 'Reviews',
-        'reviews': Review.objects.all(),
+        'reviews': reviews_list,
+        'form': review_insert_form(),
+        "page_obj": page_obj
     }
+    
+    if request.method == 'POST':
+        form = review_insert_form(request.POST)
+        
+        if form.is_valid():
+            user = request.user
+            u = User.objects.get(id=user.pk)
+            review = form.cleaned_data['review']
+            rating = form.cleaned_data['rating']
 
+            Review(user=u,
+                review=review,
+                date=datetime.datetime.now(),
+                rating=rating).save()
+        else:   
+            params['error'] = 'Invalid review. No rating selected.'
+            return render(request, 'reviews.html', params)
+        
     return render(request, 'reviews.html', params)
 
 
@@ -103,10 +120,13 @@ def register(request):
 ##############################
 ### USER RELATED
 # Get all users and display them
-def view_users(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
 
+def superuser_check(user):
+    return user.is_superuser
+
+@login_required()
+@user_passes_test(superuser_check)
+def view_users(request):
     params = {
         'title': 'Users',
         'users': User.objects.all(),
@@ -115,11 +135,10 @@ def view_users(request):
     return render(request, 'view_users.html', params)
 
 
+@login_required()
+@user_passes_test(superuser_check)
 # Get information about specific user
 def user_info(request, id):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     user = User.objects.get(id=id)
     # delete user
     if request.method == 'POST':
@@ -143,11 +162,10 @@ def user_info(request, id):
         return render(request, 'user_info.html', params)
 
 
+@login_required()
+@user_passes_test(superuser_check)
 # Display current user info and update it
 def user_edit(request, id):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     form = user_edit_form()
     user = User.objects.get(id=id)
 
@@ -187,10 +205,9 @@ def user_edit(request, id):
 
 ### BOOKING RELATED
 # bookings
+@login_required()
+@user_passes_test(superuser_check)
 def view_bookings(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     params = {
         'title': 'Bookings',
         'bookings': Booking.objects.all(),
@@ -201,10 +218,9 @@ def view_bookings(request):
 
 ### ROOMS RELATED
 # rooms
+@login_required()
+@user_passes_test(superuser_check)
 def view_rooms(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     params = {
         'title': 'Rooms',
         'rooms': Room.objects.all(),
@@ -215,10 +231,9 @@ def view_rooms(request):
 
 ### REVIEWS RELATED
 # reviews
+@login_required()
+@user_passes_test(superuser_check)
 def view_reviews(request):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     params = {
         'title': 'Reviews',
         'reviews': Review.objects.all(),
@@ -228,10 +243,9 @@ def view_reviews(request):
 
 
 # Get information about specific review by user
+@login_required()
+@user_passes_test(superuser_check)
 def review_info(request, id):
-    if not (request.user.is_authenticated and request.user.is_superuser):
-        return redirect('/error_404')
-
     review = Review.objects.get(id=id)
     # delete review
     if request.method == 'POST':
