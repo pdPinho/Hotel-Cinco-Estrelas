@@ -87,6 +87,15 @@ def rooms(request, *args, **kwargs):
         }
     return render(request, 'rooms.html', params)
 
+def booking(request):
+    
+    if request.method == 'Post':
+        return
+    else:
+        return render(request, 'booking.html')
+    
+        
+
 
 ############################# 
 #      Account area

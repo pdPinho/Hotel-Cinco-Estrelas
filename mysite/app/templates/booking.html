@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+
+{% block content %}
+    <section id="description">
+        This room is a great choice
+    </section>
+
+    <section id="Payment">
+        <div id="context" class="" role="status">
+            Click here to finalize the process: <button class="btn btn-primary" onclick="payment()">Payment</button>
+        </div>
+        <div id="waiting" class="visually-hidden" role="status">
+            <span>Awaiting payment...</span><span class="spinner-border text-primary"></span> 
+        </div>
+        <div id="complete" class="visually-hidden" role="status">
+            <span>Transaction Completed!</span>
+            <span>Thanks for choosing our service. Your receipt will be available soon.</span>
+        </div>
+    </section>
+
+    <script>
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    
+        async function payment() {
+            console.log("Payment started");
+            document.getElementById("context").classList.add("visually-hidden");
+            document.getElementById("waiting").classList.remove("visually-hidden");
+            await sleep(3000);
+            console.log("Payment completed");
+            document.getElementById("waiting").classList.add("visually-hidden");
+            document.getElementById("complete").classList.remove("visually-hidden");
+        }
+    </script>
+
+
+{% endblock content %}

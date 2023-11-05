@@ -14,6 +14,8 @@ urlpatterns = [
     path('error_404/', views.error_404, name='error_404'),
     path('rooms/', views.rooms, name='rooms'),
     
+    path('booking/', views.booking, name='booking'),
+    
     ### account area ###
     path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('accounts/logout', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
