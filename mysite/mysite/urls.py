@@ -26,6 +26,9 @@ urlpatterns = [
     path("accounts/password_reset/complete", auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
     
     
+    ### profile area ###
+    path('profile/', views.profile, name='profile'),
+    
     ### admin area ###
     # users
     path('functionalities/admin/users', views.view_users, name='view_users'),

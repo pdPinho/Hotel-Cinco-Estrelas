@@ -116,6 +116,24 @@ def register(request):
 
 
 ############################# 
+#      Profile area
+############################# 
+
+@login_required()
+def profile(request):
+    user = User.objects.get(id=request.user.id)
+    params = {
+        'name': user.name,
+        'email': user.email,
+        'password': user.password,
+        'phone': user.phone,
+        'address': user.address,
+        'birthdate': user.birthdate,
+    }
+    return render(request, 'profile.html', params)
+
+
+############################# 
 #       Admin area
 ##############################
 ### USER RELATED
