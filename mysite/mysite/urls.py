@@ -1,6 +1,6 @@
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from app import views
 
@@ -46,4 +46,6 @@ urlpatterns = [
     path('functionalities/admin/reviews', views.view_reviews, name='view_reviews'),
     path('functionalities/admin/reviews/<str:id>/', views.review_info, name='review_info'),
     
+    # languages
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
