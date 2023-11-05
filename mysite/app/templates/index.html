@@ -4,12 +4,12 @@
 {% load i18n %}
 {% block content %}
 
-   {% if user.is_superuser %}
+    {% comment %} {% if user.is_superuser %}
         <p><a href='/functionalities/admin/users'>view users</a></p>
         <p><a href='/functionalities/admin/bookings'>view bookings</a></p>
         <p><a href='/functionalities/admin/rooms'>view rooms</a></p>
         <p><a href='/functionalities/admin/reviews'>view reviews</a></p>
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     <div class="mb-4">
         <img src="{% static 'images/HotelCincoEstrelas.png' %}" alt="Hotel Cinco Estrelas"
@@ -24,7 +24,7 @@
                 {% csrf_token %}
                 <input type="text" class="form-control" placeholder="Data Inicial">
                 <input type="text" class="form-control" placeholder="Data Final">
-                <button type="submit" class="btn btn-primary">{% translate 'search_text' %}</button>
+                <a href="{% url 'profile' %}"><button type="submit" class="btn btn-primary" >{% translate 'search_text' %}</button></a>
             </form>
         </div>
 

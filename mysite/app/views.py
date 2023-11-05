@@ -133,6 +133,55 @@ def profile(request):
     return render(request, 'profile.html', params)
 
 
+@login_required()
+# Display current user info and update it
+def profile_edit(request):
+    form = user_edit_form()
+    user = User.objects.get(id=request.user.id)
+
+    if request.method == 'POST':
+        form = user_edit_form(request.POST)
+
+        if form.is_valid():
+            # updating user information
+            user.name = form.cleaned_data['name']
+            user.email = form.cleaned_data['email']
+            user.password = form.cleaned_data['password']
+            user.phone = form.cleaned_data['phone']
+            user.address = form.cleaned_data['address']
+            user.birthdate = form.cleaned_data['birthdate']
+            user.save()
+
+            # updating user authentication info
+            u = user_auth.objects.get(pk=int(user.id))
+            u.username = user.name
+            u.email = user.email
+            u.set_password(user.password)
+            u.save()
+            
+            params = {
+                'name': user.name,
+                'email': user.email,
+                'password': user.password,
+                'phone': user.phone,
+                'address': user.address,
+                'birthdate': user.birthdate,
+            }
+            
+            return render(request, 'profile.html', {'alert': "Profile updated successfully", 'params': params})
+    else:
+        # getting information to be displayed (placeholder)
+        form = user_edit_form(initial={'name': user.name,
+                                       'email': user.email,
+                                       'password': user.password,
+                                       'phone': user.phone,
+                                       'address': user.address,
+                                       'birthdate': user.birthdate,
+                                       'form': form})
+
+    return render(request, 'user_edit.html', {'form': form, 'user': user.name})
+
+
 ############################# 
 #       Admin area
 ##############################

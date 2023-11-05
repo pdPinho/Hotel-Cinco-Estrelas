@@ -2,7 +2,8 @@
 <form id="logoutForm" action="/accounts/logout" method="post" class="navbar-right">
     {% csrf_token %}
     <ul class="nav navbar-nav navbar-right flex flex-row align-items-center me-4">
-        <li><span class="navbar-brand">Welcome back {{ user.username }}!</span></li>
+        {% comment %} <li><span class="navbar-brand">Welcome back {{ user.username }}!</span></li> {% endcomment %}
+        <li><a href="{% url 'profile' %}">Profile</a></li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
 </form>
