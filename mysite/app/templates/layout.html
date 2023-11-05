@@ -1,3 +1,4 @@
+{% load i18n %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -43,8 +44,24 @@
             </li>
             <li class="nav-item {% if request.path == '/reviews/' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
-            </li>
+            </li>            
         </ul>
+
+        <form action="{% url 'set_language' %}" method="post" style="margin-right: 30px;">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go">
+        </form>
+
         {% include 'loginpartial.html' %}
     </div>
 </nav>
@@ -58,7 +75,7 @@
 
 <footer class="footer mt-auto py-3 bg-light z-3">
     <hr/>
-    <p>&copy; {{ year }} - My Django Application</p>
+    <p>Layout template by TPW professor</p>
 </footer>
 
 <script src="{% static 'scripts/jquery-3.4.1.min.js' %}"></script>

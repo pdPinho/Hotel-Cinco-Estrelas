@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-05 14:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/templates/index.html:19
+msgid "index_welcome_heading"
+msgstr "Welcome to the Five Star Hotel"
+
+#: app/templates/index.html:22
+msgid "index_welcome_text"
+msgstr "Book your stay"
+
+#: app/templates/index.html:27
+msgid "search_text"
+msgstr "Search"
+
+#: app/templates/index.html:33
+msgid "index_about_us"
+msgstr "About us"
+
+#: app/templates/index.html:34
+msgid "index_about_us_text"
+msgstr ""
+"Welcome to our oasis of luxury in the heart of Portugal. Our hotel "
+"5 stars is a haven of elegance and sophistication, created to satisfy"
+"the most demanding tastes. With a privileged location, we offer "
+"our guests a unique experience, combining the beauty of architecture"
+"classic with the finest modern amenities."
+
+#: app/templates/index.html:42
+msgid "index_our_location"
+msgstr "Our location"
+
+#: app/templates/index.html:43
+msgid "index_our_location_text"
+msgstr ""
+"Enjoy a truly privileged location. Our 5* hotel"
+"Stars is perfectly situated to provide you with quick and easy access"
+"easy access to the region's treasures. Imagine waking up to stunning views"
+"of the surrounding countryside, where the sea meets the land, or the green hills"
+"extend as far as the eye can see. Our guests have at their disposal"
+"A multitude of local activities to explore, from tours"
+"horseback riding in the mountains, wine tastings in renowned wineries, until "
+"Vibrant nights in the city. We want your stay to be an experience"
+"complete, making the most of everything our privileged location has"
+"has to offer."
+
+#: app/templates/index.html:49
+msgid "index_our_commitment"
+msgstr "Our Commitment"
+
+#: app/templates/index.html:50
+msgid "index_our_commitment_text"
+msgstr ""
+"In our 5-star hotel, your comfort and satisfaction are our priority"
+"priority. We offer world-class facilities, gourmet restaurants, "
+"Relaxing spas and world-class service. This is where the "
+"dreams come true, and we are committed to providing every "
+"Guest an experience that transcends all expectations. Come "
+"enjoy our world-class hospitality and immerse yourself in luxury"
+"Unrivaled from our hotel in Portugal."
+
+#: mysite/settings.py:113
+msgid "Portuguese"
+msgstr "Portuguese"
+
+#: mysite/settings.py:114
+msgid "American"
+msgstr "American"
+
+#: mysite/settings.py:115
+msgid "French"
+msgstr "French"

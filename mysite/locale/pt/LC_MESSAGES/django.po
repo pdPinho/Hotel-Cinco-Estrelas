@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-05 14:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/templates/index.html:19
+msgid "index_welcome_heading"
+msgstr "Bem-vindo ao Hotel Cinco Estrelas"
+
+#: app/templates/index.html:22
+msgid "index_welcome_text"
+msgstr "Faça uma reserva"
+
+#: app/templates/index.html:27
+msgid "search_text"
+msgstr "Pesquisar"
+
+#: app/templates/index.html:33
+msgid "index_about_us"
+msgstr "Acerca de Nós"
+
+#: app/templates/index.html:34
+msgid "index_about_us_text"
+msgstr ""
+"Bem-vindo ao nosso oásis de luxo em pleno coração de Portugal. O nosso hotel "
+"5 estrelas é um refúgio de elegância e sofisticação, criado para satisfazer "
+"os gostos mais exigentes. Com uma localização privilegiada, oferecemos aos "
+"nossos hóspedes uma experiência única, combinando a beleza da arquitetura "
+"clássica com as comodidades modernas mais requintadas."
+
+#: app/templates/index.html:42
+msgid "index_our_location"
+msgstr "A Nossa Localização"
+
+#: app/templates/index.html:43
+msgid "index_our_location_text"
+msgstr ""
+"Desfrute de uma localização verdadeiramente privilegiada. O nosso hotel 5 "
+"estrelas está perfeitamente situado para lhe proporcionar acesso rápido e "
+"fácil aos tesouros da região. Imagine-se a acordar com vistas deslumbrantes "
+"da paisagem circundante, onde o mar encontra a terra, ou as colinas verdes "
+"se estendem até onde a vista alcança. Os nossos hóspedes têm à sua "
+"disposição uma infinidade de atividades locais para explorar, desde passeios "
+"a cavalo nas montanhas, degustações de vinhos em adegas de renome, até "
+"noites vibrantes na cidade. Queremos que a sua estadia seja uma experiência "
+"completa, aproveitando ao máximo tudo o que a nossa localização privilegiada "
+"tem para oferecer."
+
+#: app/templates/index.html:49
+msgid "index_our_commitment"
+msgstr "O Nosso Compromisso"
+
+#: app/templates/index.html:50
+msgid "index_our_commitment_text"
+msgstr ""
+"No nosso hotel de 5 estrelas, o seu conforto e satisfação são a nossa "
+"prioridade. Oferecemos instalações de classe mundial, restaurantes gourmet, "
+"spas relaxantes e um serviço de classe internacional. Este é o lugar onde os "
+"sonhos se tornam realidade, e estamos empenhados em proporcionar a cada "
+"hóspede uma experiência que transcende todas as expectativas. Venha "
+"desfrutar da nossa hospitalidade de classe mundial e mergulhe no luxo "
+"inigualável do nosso hotel em Portugal."
+
+#: mysite/settings.py:113
+msgid "Portuguese"
+msgstr "Português"
+
+#: mysite/settings.py:114
+msgid "American"
+msgstr "Americano"
+
+#: mysite/settings.py:115
+msgid "French"
+msgstr "Francês"
