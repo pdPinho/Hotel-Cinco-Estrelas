@@ -171,13 +171,17 @@ def profile_edit(request):
             return render(request, 'profile.html', {'alert': "Profile updated successfully", 'params': params})
     else:
         # getting information to be displayed (placeholder)
-        form = user_edit_form(initial={'name': user.name,
-                                       'email': user.email,
-                                       'password': user.password,
-                                       'phone': user.phone,
-                                       'address': user.address,
-                                       'birthdate': user.birthdate,
-                                       'form': form})
+        form = user_edit_form(
+            initial={
+                'name': user.name,
+                'email': user.email,
+                'password': user.password,
+                'phone': user.phone,
+                'address': user.address,
+                'birthdate': user.birthdate,
+                'form': form
+            }
+        )
 
     return render(request, 'user_edit.html', {'form': form, 'user': user.name})
 

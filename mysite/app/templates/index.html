@@ -19,12 +19,12 @@
             <h1 class="text-left">{% translate 'index_welcome_heading' %}</h1>
             
 
-            <p class="lead">{% translate 'index_welcome_text' %}</p>
-            <form method="POST" class="input-group shadow-lg">
+            <p class="lead">{% translate 'index_welcome_text' %}, {% now "m/d/Y" %}</p>
+            <form method="POST" class="input-group shadow-lg" href={% url 'rooms' %}>
                 {% csrf_token %}
-                <input type="text" class="form-control" placeholder="Data Inicial">
-                <input type="text" class="form-control" placeholder="Data Final">
-                <a href="{% url 'profile' %}"><button type="submit" class="btn btn-primary" >{% translate 'search_text' %}</button></a>
+                <input type="date" class="form-control">
+                <input type="date" class="form-control">
+                <button type="submit" class="btn btn-primary" >{% translate 'search_text' %}</button>
             </form>
         </div>
 
