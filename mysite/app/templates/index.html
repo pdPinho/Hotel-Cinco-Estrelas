@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% load static %}
-{% load i18n %}
+
 {% block content %}
 
     {% comment %} {% if user.is_superuser %}
@@ -14,17 +14,18 @@
     <div class="mb-4">
         <img src="{% static 'images/HotelCincoEstrelas.png' %}" alt="Hotel Cinco Estrelas"
              class="object-fit-cover rounded-4 home-img">
-        <div class="d-block awful">
-            
-            <h1 class="text-left">{% translate 'index_welcome_heading' %}</h1>
-            
 
+        <div class="d-block awful">
+            <h1 class="text-left">{% translate 'index_welcome_heading' %}</h1>
             <p class="lead">{% translate 'index_welcome_text' %}, {% now "m/d/Y" %}</p>
-            <form method="POST" class="input-group shadow-lg" href={% url 'rooms' %}>
+            <form action="/rooms/" method="POST" class="input-group shadow-lg">
                 {% csrf_token %}
-                <input type="date" class="form-control">
-                <input type="date" class="form-control">
-                <button type="submit" class="btn btn-primary" >{% translate 'search_text' %}</button>
+                <label for="data_inicial" title="data_inicial"></label>
+                <input id="data_inicial" name="data_inicial" type="date" class="form-control"
+                       placeholder="Data Inicial">
+                <label for="data_final" title="data_final"></label>
+                <input id="data_final" name="data_final" type="date" class="form-control" placeholder="Data Final">
+                <button type="submit" class="btn btn-primary">{% translate 'search_text' %}</button>
             </form>
         </div>
 

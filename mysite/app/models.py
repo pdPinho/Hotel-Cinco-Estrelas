@@ -42,7 +42,7 @@ class Room(models.Model):
     type = models.CharField(max_length=1, choices=TYPE_CHOICES, default='d', blank=False, null=False)
 
     def __str__(self):
-        return self.type
+        return self.name
 
 
 class Booking(models.Model):

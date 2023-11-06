@@ -5,26 +5,15 @@ from django.contrib import messages
 from django.contrib.auth.models import User as user_auth
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import user_passes_test, login_required
+from django.db.models import Q
 
 import datetime
+
 
 #############################
 #     Basic renders area
 ############################# 
 def index(request):
-    if request.method == 'POST':
-        form = BookingSearchForm(request.POST)
-
-        if form.is_valid():
-            prev_date = form.cleaned_data['data_inicial']
-            next_date = form.cleaned_data['data_final']
-
-            params = {
-                'title': 'Rooms',
-                'rooms': Room.objects.filter(bookings__check_in__range=[prev_date, next_date], bookings__check_out__range=[prev_date, next_date]),
-            }
-            return redirect('/rooms', params)
-
     return render(request, 'index.html')
 
 
@@ -41,9 +30,9 @@ def about(request):
 
 
 def reviews(request):
-    reviews_list = Review.objects.all().order_by('-date')  
+    reviews_list = Review.objects.all().order_by('-date')
     paginator = Paginator(reviews_list, 3)
-    
+
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     params = {
@@ -52,10 +41,10 @@ def reviews(request):
         'form': review_insert_form(),
         "page_obj": page_obj
     }
-    
+
     if request.method == 'POST':
         form = review_insert_form(request.POST)
-        
+
         if form.is_valid():
             user = request.user
             u = User.objects.get(id=user.pk)
@@ -63,13 +52,13 @@ def reviews(request):
             rating = form.cleaned_data['rating']
 
             Review(user=u,
-                review=review,
-                date=datetime.datetime.now(),
-                rating=rating).save()
-        else:   
+                   review=review,
+                   date=datetime.datetime.now(),
+                   rating=rating).save()
+        else:
             params['error'] = 'Invalid review. No rating selected.'
             return render(request, 'reviews.html', params)
-        
+
     return render(request, 'reviews.html', params)
 
 
@@ -78,13 +67,70 @@ def error_404(request):
 
 
 def rooms(request, *args, **kwargs):
-    if args:
-        params = args[0]
-    else:
-        params = {
-            'title': 'Rooms',
-            'rooms': Room.objects.all(),
-        }
+    params = {
+        'title': 'Rooms',
+    }
+
+    if request.method == 'POST':
+        form = BookingSearchForm(request.POST)
+
+        if form.is_valid():
+            prev_date = form.cleaned_data['data_inicial']
+            next_date = form.cleaned_data['data_final']
+
+            params['prev_date'] = prev_date
+            params['next_date'] = next_date
+
+            conflicting_bookings = Booking.objects.filter(
+                Q(check_in__lte=prev_date) | Q(check_in__lte=next_date) | Q(check_out__gte=prev_date) | Q(
+                    check_out__gte=next_date)
+            )
+            conflicting_room_ids = conflicting_bookings.values_list('room_id', flat=True)
+
+            if Room.objects.filter(type__exact='d').exists():
+                double_rooms = Room.objects.filter(type='d')
+                available_rooms = double_rooms.exclude(id__in=conflicting_room_ids)
+
+                if len(available_rooms) > 0:
+                    params['double_room'] = True
+                    params['d_room'] = available_rooms[0]
+                else:
+                    params['double_room'] = False
+
+            if Room.objects.filter(type__exact='t').exists():
+                triple_rooms = Room.objects.filter(type='t')
+                available_rooms = triple_rooms.exclude(id__in=conflicting_room_ids)
+
+                if len(available_rooms) > 0:
+                    params['triple_room'] = True
+                    params['t_room'] = available_rooms[0]
+                else:
+                    params['triple_room'] = False
+
+            if Room.objects.filter(type__exact='q').exists():
+                quad_rooms = Room.objects.filter(type='q')
+                available_rooms = quad_rooms.exclude(id__in=conflicting_room_ids)
+
+                if len(available_rooms) > 0:
+                    params['quad_room'] = True
+                    params['q_room'] = available_rooms[0]
+                else:
+                    params['quad_room'] = False
+
+            if Room.objects.filter(type__exact='s').exists():
+                suite_rooms = Room.objects.filter(type='s')
+                available_rooms = suite_rooms.exclude(id__in=conflicting_room_ids)
+
+                if len(available_rooms) > 0:
+                    params['suite_room'] = True
+                    params['s_room'] = available_rooms[0]
+                else:
+                    params['suite_room'] = False
+        else:
+            params['error'] = 'Invalid date.'
+
+    print(params)
+
     return render(request, 'rooms.html', params)
 
 def booking(request):
@@ -203,6 +249,7 @@ def profile_edit(request):
 
 def superuser_check(user):
     return user.is_superuser
+
 
 @login_required()
 @user_passes_test(superuser_check)
