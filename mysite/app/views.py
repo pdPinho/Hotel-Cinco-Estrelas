@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
@@ -133,14 +134,35 @@ def rooms(request, *args, **kwargs):
 
     return render(request, 'rooms.html', params)
 
+
+def reservar(request):
+    params = {}
+
+    if request.method == 'GET':
+        if r_id := request.GET.get('id', None):
+            params['id'] = r_id
+
+        if next_date := request.GET.get('n', None):
+            params['next_date'] = next_date
+
+        if prev_date := request.GET.get('p', None):
+            params['prev_date'] = prev_date
+
+        if not (params['id'] or params['prev_date'] or params['next_date']):
+            params['error'] = 'Missing params'
+    elif request.method == 'POST':
+        pass
+    else:
+        return HttpResponse(content='No such method. I can not make coffee as I am a teapot', status=418)
+
+    return render(request, 'reservar.html', params)
+
+
 def booking(request):
-    
     if request.method == 'Post':
         return
     else:
         return render(request, 'booking.html')
-    
-        
 
 
 ############################# 
@@ -213,7 +235,7 @@ def profile_edit(request):
             u.email = user.email
             u.set_password(user.password)
             u.save()
-            
+
             params = {
                 'name': user.name,
                 'email': user.email,
@@ -222,7 +244,7 @@ def profile_edit(request):
                 'address': user.address,
                 'birthdate': user.birthdate,
             }
-            
+
             return render(request, 'profile.html', {'alert': "Profile updated successfully", 'params': params})
     else:
         # getting information to be displayed (placeholder)

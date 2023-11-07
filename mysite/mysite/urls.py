@@ -13,6 +13,7 @@ urlpatterns = [
     path('reviews/', views.reviews, name='reviews'),
     path('error_404/', views.error_404, name='error_404'),
     path('rooms/', views.rooms, name='rooms'),
+    path('reservar/', views.reservar, name='reservar'),
     
     path('booking/', views.booking, name='booking'),
     
