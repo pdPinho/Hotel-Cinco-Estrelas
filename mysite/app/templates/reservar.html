@@ -1,3 +1,67 @@
 {% extends "layout.html" %}
 
 {% load static %}
+
+{% block content %}
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <h4 class="mt-4">A sua reserva de {{ prev_date }} até {{ next_date }}</h4>
+            <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+                {# Style classes where not working for some reason #}
+                <img src="{{ img }}" alt="double room"
+                    style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+                <div class="ms-3">
+                    <h3 class="">{{ room.name }}</h3>
+                    <h5 class="">{{ room.price }}€</h5>
+                    <p class="">Nº máximo de ocupantes: {{ room.max_guests }}</p>
+                </div>
+            </div>
+            <div class="form-group my-4">
+                <label for="room_id" class="d-none">room_id</label>
+                <input type="text" class="form-control d-none" id="room_id" name="room_id" value="{{ id }}"
+                       readonly>
+            </div>
+            <div class="form-group">
+                <label for="check_in" class="d-none">Check in Date</label>
+                <input type="text" class="form-control d-none" id="check_in" name="check_in"
+                       value="{{ prev_date }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="check_out" class="d-none">Check out Date</label>
+                <input type="date" class="form-control d-none" id="check_out" name="check_out"
+                       value="{{ next_date }}" readonly>
+            </div>
+            <div class="form-group mb-2">
+                <label for="breakfast">Breakfast (10€/day)</label>
+                <select class="form-control" id="breakfast" name="breakfast">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group mb-2">
+                <label for="lunch">Lunch (20€/day)</label>
+                <select class="form-control" id="lunch" name="lunch">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group mb-4">
+                <label for="extra_bed">Extra Bed (15€/day)</label>
+                <select class="form-control" id="extra_bed" name="extra_bed">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    {% endif %}
+
+{% endblock %}

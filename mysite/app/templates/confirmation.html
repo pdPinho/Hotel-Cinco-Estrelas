@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="w-auto mx-auto">
+        <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+            {# Style classes where not working for some reason #}
+            <img src="{{ img }}" alt="double room"
+                 style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+            <div class="ms-3">
+                <h3 class="">{{ room.name }}</h3>
+                <h5 class="">Total price {{ booking.total_price }}€</h5>
+                <p class="">Nº máximo de ocupantes: {{ room.max_guests }}</p>
+                <p>Breakfast: {{ booking.breakfast }}</p>
+                <p>Lunch: {{ booking.lunch }}</p>
+                <p>Extra Bed: {{ booking.extra_bed }}</p>
+            </div>
+        </div>
+        <div class="d-flex mx-auto gap-4">
+            <a href="/receipt?b_id={{ booking.id }}" class="btn btn-primary">Print Receipt</a>
+            <a href="/" class="btn btn-primary">Confirm and Pay</a>
+        </div>
+    </div>
+{% endblock %}

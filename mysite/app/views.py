@@ -7,6 +7,9 @@ from django.contrib.auth.models import User as user_auth
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.db.models import Q
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 
 import datetime
 
@@ -67,6 +70,7 @@ def error_404(request):
     return render(request, 'error_404.html')
 
 
+@login_required()
 def rooms(request, *args, **kwargs):
     params = {
         'title': 'Rooms',
@@ -83,8 +87,12 @@ def rooms(request, *args, **kwargs):
             params['next_date'] = next_date
 
             conflicting_bookings = Booking.objects.filter(
-                Q(check_in__lte=prev_date) | Q(check_in__lte=next_date) | Q(check_out__gte=prev_date) | Q(
-                    check_out__gte=next_date)
+                # Could probably be simplified, but it works
+                Q(check_in__gte=prev_date, check_out__lte=prev_date) |
+                Q(check_in__gte=next_date, check_out__lte=next_date) |
+                Q(check_in__gte=prev_date, check_in__lte=next_date) |
+                Q(check_out__gte=prev_date, check_out__lte=next_date) |
+                Q(check_in__lte=prev_date, check_out__gte=next_date)
             )
             conflicting_room_ids = conflicting_bookings.values_list('room_id', flat=True)
 
@@ -135,12 +143,25 @@ def rooms(request, *args, **kwargs):
     return render(request, 'rooms.html', params)
 
 
+@login_required()
 def reservar(request):
     params = {}
 
     if request.method == 'GET':
         if r_id := request.GET.get('id', None):
+            room = Room.objects.get(id=r_id)
+
             params['id'] = r_id
+            params['room'] = room
+            match room.type:
+                case 'd':
+                    params['img'] = '/static/images/double.jpg'
+                case 't':
+                    params['img'] = '/static/images/triple.jpg'
+                case 'q':
+                    params['img'] = '/static/images/quadruple.jpg'
+                case 's':
+                    params['img'] = '/static/images/suite.jpg'
 
         if next_date := request.GET.get('n', None):
             params['next_date'] = next_date
@@ -151,11 +172,89 @@ def reservar(request):
         if not (params['id'] or params['prev_date'] or params['next_date']):
             params['error'] = 'Missing params'
     elif request.method == 'POST':
-        pass
+        form = ReservationForm(request.POST)
+
+        if form.is_valid():
+            user = request.user
+            u = User.objects.get(id=user.pk)
+            room = Room.objects.get(id=form.cleaned_data['room_id'])
+            check_in = form.cleaned_data['check_in']
+            check_out = form.cleaned_data['check_out']
+            breakfast = form.cleaned_data['breakfast']
+            lunch = form.cleaned_data['lunch']
+            extra_bed = form.cleaned_data['extra_bed']
+
+            n_days = (check_out - check_in).days
+            total_price = room.price * n_days
+
+            if breakfast:
+                total_price += 10 * n_days
+
+            if lunch:
+                total_price += 20 * n_days
+
+            if extra_bed:
+                total_price += 15 * n_days
+
+            b = Booking(room_id=room,
+                        user_id=u,
+                        check_in=check_in,
+                        check_out=check_out,
+                        breakfast=breakfast,
+                        lunch=lunch,
+                        total_price=total_price,
+                        extra_bed=extra_bed)
+            b.save()
+
+            return redirect('/confirmation?b_id=' + str(b.id))
     else:
         return HttpResponse(content='No such method. I can not make coffee as I am a teapot', status=418)
 
     return render(request, 'reservar.html', params)
+
+
+@login_required()
+def receipt(request):
+    b, r = None, None
+    if request.method == 'GET':
+        if b_id := request.GET.get('b_id', None):
+            b = Booking.objects.get(id=b_id)
+            r = Room.objects.get(id=b.room_id.id)
+
+            if request.user.id != b.user_id.id:
+                return HttpResponse('Not Autorized', status=403)
+    else:
+        return HttpResponse(content='No such booking', status=404)
+
+    if b is None or r is None:
+        return HttpResponse("Error", status=500)
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    p.drawString(90, 790, "HOTEL CINCO ESTRELAS")
+    p.drawString(90, 760, b.user_id.name)
+    p.drawString(90, 745, b.user_id.address)
+    p.drawString(90, 730, b.user_id.phone)
+    p.drawString(170, 730, b.user_id.email)
+
+    p.drawString(90, 700, "DETALHES DA RESERVA")
+    p.drawString(90, 675, "De " + b.check_in.__str__() + " até " + b.check_out.__str__())
+    p.drawString(90, 660, r.name)
+    p.drawString(90, 645, "Preço total: " + b.total_price.__str__())
+    p.drawString(90, 630, "Máximo de ocupantes (mais um em caso de cama extra): " + r.max_guests.__str__())
+    p.drawString(90, 615, "Pequeno Almoço: " + b.breakfast.__str__())
+    p.drawString(90, 600, "Almoço: " + b.lunch.__str__())
+    p.drawString(90, 585, "Cama Extra: " + b.extra_bed.__str__())
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    # FileResponse sets the Content-Disposition header so that browsers
+    # present the option to save the file.
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename=f"Reservation_{b.user_id.name}_{b.id}.pdf")
 
 
 def booking(request):
@@ -163,6 +262,37 @@ def booking(request):
         return
     else:
         return render(request, 'booking.html')
+
+
+def confirmation(request):
+    if request.method == "GET":
+        if b_id := request.GET.get('b_id', None):
+            b = Booking.objects.get(id=b_id)
+            r = Room.objects.get(id=b.room_id.id)
+
+            if request.user.id != b.user_id.id:
+                return HttpResponse('Not Autorized', status=403)
+
+            params = {
+                'booking': b,
+                'room': r,
+            }
+
+            match r.type:
+                case 'd':
+                    params['img'] = '/static/images/double.jpg'
+                case 't':
+                    params['img'] = '/static/images/triple.jpg'
+                case 'q':
+                    params['img'] = '/static/images/quadruple.jpg'
+                case 's':
+                    params['img'] = '/static/images/suite.jpg'
+
+            return render(request, 'confirmation.html', params)
+        else:
+            return HttpResponse(content='No such booking', status=404)
+    else:
+        return HttpResponse(content='How did you get here', status=418)
 
 
 ############################# 

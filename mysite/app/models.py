@@ -48,6 +48,7 @@ class Room(models.Model):
 class Booking(models.Model):
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_price = models.DecimalField(max_digits=100, decimal_places=2)
     check_in = models.DateField()
     check_out = models.DateField()
     breakfast = models.BooleanField(default=False)

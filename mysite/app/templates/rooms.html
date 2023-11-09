@@ -8,65 +8,67 @@
             {{ error }}
         </div>
     {% else %}
-        <h4 class="mt-4">Escolha um tipo de quarto para a sua reserva de {{ prev_date }} até {{ next_date }}</h4>
-        {% if double_room %}
-            <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-                {# Style classes where not working for some reason #}
-                <img src="{% static 'images/double.jpg' %}" alt="double room"
-                     style="height: 200px; width: 300px; object-fit: cover"/>
-                <div class="ms-3">
-                    <h3 class="">{{ d_room.name }}</h3>
-                    <h5 class="">{{ d_room.price }}€</h5>
-                    <p class="">Nº máximo de ocupantes: {{ d_room.max_guests }}</p>
-                    <a class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                       href="/reservar?id={{ d_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}/">Reservar</a>
+        <div class="mb-5">
+            <h4 class="mt-4">Escolha um tipo de quarto para a sua reserva de {{ prev_date }} até {{ next_date }}</h4>
+            {% if double_room %}
+                <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+                    {# Style classes where not working for some reason #}
+                    <img src="{% static 'images/double.jpg' %}" alt="double room"
+                         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+                    <div class="ms-3">
+                        <h3 class="">{{ d_room.name }}</h3>
+                        <h5 class="">{{ d_room.price }}€ / por noite</h5>
+                        <p class="">Nº máximo de ocupantes: {{ d_room.max_guests }}</p>
+                        <a class="btn btn-primary" type="button"
+                           href="/reservar?id={{ d_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}">Reservar</a>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-        {% endif %}
-        {% if triple_room %}
-            <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-                {# Style classes where not working for some reason #}
-                <img src="{% static 'images/triple.jpg' %}" alt="triple room"
-                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-                <div class="ms-3">
-                    <h3 class="">{{ t_room.name }}</h3>
-                    <h5 class="">{{ t_room.price }}€</h5>
-                    <p class="">Nº máximo de ocupantes: {{ t_room.max_guests }}</p>
-                    <a class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                       href="/reservar?id={{ t_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}/">Reservar</a>
+                <hr/>
+            {% endif %}
+            {% if triple_room %}
+                <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+                    {# Style classes where not working for some reason #}
+                    <img src="{% static 'images/triple.jpg' %}" alt="triple room"
+                         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+                    <div class="ms-3">
+                        <h3 class="">{{ t_room.name }}</h3>
+                        <h5 class="">{{ t_room.price }}€ / por noite</h5>
+                        <p class="">Nº máximo de ocupantes: {{ t_room.max_guests }}</p>
+                        <a class="btn btn-primary" type="button"
+                           href="/reservar?id={{ t_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}">Reservar</a>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-        {% endif %}
-        {% if quad_room %}
-            <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-                {# Style classes where not working for some reason #}
-                <img src="{% static 'images/quadruple.jpg' %}" alt="double room"
-                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-                <div class="ms-3">
-                    <h3 class="">{{ q_room.name }}</h3>
-                    <h5 class="">{{ q_room.price }}€</h5>
-                    <p class="">Nº máximo de ocupantes: {{ q_room.max_guests }}</p>
-                    <a class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                       href="/reservar?id={{ q_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}/">Reservar</a>
+                <hr/>
+            {% endif %}
+            {% if quad_room %}
+                <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+                    {# Style classes where not working for some reason #}
+                    <img src="{% static 'images/quadruple.jpg' %}" alt="double room"
+                         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+                    <div class="ms-3">
+                        <h3 class="">{{ q_room.name }}</h3>
+                        <h5 class="">{{ q_room.price }}€ / por noite</h5>
+                        <p class="">Nº máximo de ocupantes: {{ q_room.max_guests }}</p>
+                        <a class="btn btn-primary" type="button"
+                           href="/reservar?id={{ q_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}">Reservar</a>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-        {% endif %}
-        {% if suite_room %}
-            <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-                {# Style classes where not working for some reason #}
-                <img src="{% static 'images/suite.jpg' %}" alt="suite room"
-                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-                <div class="ms-3">
-                    <h3 class="">{{ s_room.name }}</h3>
-                    <h5 class="">{{ s_room.price }}€</h5>
-                    <p class="">Nº máximo de ocupantes: {{ s_room.max_guests }}</p>
-                    <a class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                       href="/reservar?id={{ s_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}/">Reservar</a>
+                <hr/>
+            {% endif %}
+            {% if suite_room %}
+                <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+                    {# Style classes where not working for some reason #}
+                    <img src="{% static 'images/suite.jpg' %}" alt="suite room"
+                         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+                    <div class="ms-3">
+                        <h3 class="">{{ s_room.name }}</h3>
+                        <h5 class="">{{ s_room.price }}€ / por noite</h5>
+                        <p class="">Nº máximo de ocupantes: {{ s_room.max_guests }}</p>
+                        <a class="btn btn-primary" type="button"
+                           href="/reservar?id={{ s_room.id }}&p={{ prev_date.isoformat }}&n={{ next_date.isoformat }}">Reservar</a>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     {% endif %}
 {% endblock %}

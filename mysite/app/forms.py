@@ -59,3 +59,46 @@ class BookingSearchForm(forms.Form):
         if data_final < datetime.date.today():
             raise forms.ValidationError("Invalid date. Please select a date after the initial date.")
         return data_final
+
+    def clean(self):
+        cleaned_data = super(BookingSearchForm, self).clean()
+        data_inicial = cleaned_data.get("data_inicial")
+        data_final = cleaned_data.get("data_final")
+
+        if data_inicial and data_final:
+            if data_inicial > data_final:
+                raise forms.ValidationError("Invalid date. Please select a date after the initial date.")
+
+        return cleaned_data
+
+
+class ReservationForm(forms.Form):
+    room_id = forms.IntegerField(label='Room ID')
+    check_in = forms.DateField(label='Check In')
+    check_out = forms.DateField(label='Check Out')
+    breakfast = forms.BooleanField(label='Breakfast', required=False)
+    lunch = forms.BooleanField(label='Lunch', required=False)
+    extra_bed = forms.BooleanField(label='Extra Bed', required=False)
+
+    def clean_check_in(self):
+        check_in = self.cleaned_data.get('check_in')
+        if check_in < datetime.date.today():
+            raise forms.ValidationError("Invalid date. Please select a date after today.")
+        return check_in
+
+    def clean_check_out(self):
+        check_out = self.cleaned_data.get('check_out')
+        if check_out < datetime.date.today():
+            raise forms.ValidationError("Invalid date. Please select a date after the initial date.")
+        return check_out
+
+    def clean(self):
+        cleaned_data = super(ReservationForm, self).clean()
+        check_in = cleaned_data.get("check_in")
+        check_out = cleaned_data.get("check_out")
+
+        if check_in and check_out:
+            if check_in > check_out:
+                raise forms.ValidationError("Invalid date. Please select a date after the initial date.")
+
+        return cleaned_data
