@@ -25,7 +25,8 @@
             </div>
             <div id="complete" class="visually-hidden" role="status">
                 <span>Transaction Completed!</span>
-                <a id="receipt" href="/receipt?b_id={{ booking.id }}" class="btn btn-primary">Print Receipt</a>
+                <a href="/receipt?b_id={{ booking.id }}" class="btn btn-primary">Print Receipt</a>
+                <a href="/" class="btn btn-primary">Return to Main Page</a>
             </div>
         </div>
     </div>
@@ -40,7 +41,7 @@
             console.log("Payment started");
             document.getElementById("payment").classList.add("visually-hidden");
             document.getElementById("waiting").classList.remove("visually-hidden");
-            await sleep(3000);
+            await sleep(2500);
             console.log("Payment completed");
             document.getElementById("waiting").classList.add("visually-hidden");
             document.getElementById("complete").classList.remove("visually-hidden");
