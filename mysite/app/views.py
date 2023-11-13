@@ -494,6 +494,73 @@ def view_bookings(request):
 
     return render(request, 'view_bookings.html', params)
 
+@login_required()
+@user_passes_test(superuser_check)
+# Get information about specific user
+def booking_info(request, id):
+    booking = Booking.objects.get(id=id)
+    # delete user
+    if request.method == 'POST':
+        u = user_auth.objects.get(pk=int(id))
+        booking.delete()
+        u.delete()
+        messages.success(request, 'Booking deleted successfully')
+        return render(request, 'booking_info.html')
+
+    # show user information
+    else:
+        params = {
+            'room_id': booking.room_id,
+            'user_id': booking.user_id,
+            'total_price': booking.total_price,
+            'check_in': booking.check_in,
+            'check_out': booking.check_out,
+            'breakfast': booking.breakfast,
+            'lunch': booking.lunch,
+            'extra_bed': booking.extra_bed,
+        }
+
+        return render(request, 'booking_info.html', params)
+    
+
+@login_required()
+@user_passes_test(superuser_check)
+# Display current user info and update it
+def booking_edit(request, id):
+    form = booking_edit_form()
+    booking = Booking.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = booking_edit_form(request.POST)
+
+        if form.is_valid():
+            # updating booking information
+            #booking.room_id = form.cleaned_data['room_id']
+            #booking.user_id = form.cleaned_data['user_id']
+            booking.total_price = form.cleaned_data['total_price']
+            booking.check_in = form.cleaned_data['check_in']
+            booking.check_out = form.cleaned_data['check_out']
+            booking.breakfast = form.cleaned_data['breakfast']
+            booking.lunch = form.cleaned_data['lunch']
+            booking.extra_bed = form.cleaned_data['extra_bed']
+            booking.save()
+
+            messages.success(request, 'Booking updated successfully')
+    else:
+        # getting information to be displayed (placeholder)
+        form = booking_edit_form(initial={'room_id': booking.room_id,
+                                       'user_id': booking.user_id,
+                                       'total_price': booking.total_price,
+                                       'check_in': booking.check_in,
+                                       'check_out': booking.check_out,
+                                       'breakfast': booking.breakfast,
+                                       'lunch': booking.lunch,
+                                       'extra_bed': booking.extra_bed,
+                                       'form': form})
+
+    return render(request, 'booking_edit.html', {'form': form, 'booking': booking.id})
+
+
 
 ### ROOMS RELATED
 # rooms
@@ -506,6 +573,64 @@ def view_rooms(request):
     }
 
     return render(request, 'view_rooms.html', params)
+
+
+@login_required()
+@user_passes_test(superuser_check)
+# Get information about specific user
+def room_info(request, id):
+    room = Room.objects.get(id=id)
+    # delete user
+    if request.method == 'POST':
+        u = user_auth.objects.get(pk=int(id))
+        room.delete()
+        u.delete()
+        messages.success(request, 'Room deleted successfully')
+        return render(request, 'room_info.html')
+
+    # show user information
+    else:
+        params = {
+            'name': room.name,
+            'price': room.price,
+            'max_guests': room.max_guests,
+            'bookings': room.bookings,
+            'type': room.type,
+        }
+
+        return render(request, 'room_info.html', params)
+    
+
+@login_required()
+@user_passes_test(superuser_check)
+# Display current room info and update it
+def room_edit(request, id):
+    form = room_edit_form()
+    room = Room.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = room_edit_form(request.POST)
+
+        if form.is_valid():
+            # updating room information
+            room.name = form.cleaned_data['name']
+            room.price = form.cleaned_data['price']
+            room.max_guests = form.cleaned_data['max_guests']
+            #room.bookings = form.cleaned_data['bookings']
+            room.type = form.cleaned_data['type']
+            room.save()
+
+            messages.success(request, 'Room updated successfully')
+    else:
+        # getting information to be displayed (placeholder)
+        form = room_edit_form(initial={'name': room.name,
+                                       'price': room.price,
+                                       'max_guests': room.max_guests,
+                                       'type': room.type,
+                                       'form': form})
+
+    return render(request, 'room_edit.html', {'form': form, 'room': room.name})
+
 
 
 ### REVIEWS RELATED

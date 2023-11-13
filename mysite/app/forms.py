@@ -42,6 +42,33 @@ class user_edit_form(forms.Form):
     phone = forms.IntegerField(label='Phone Number')
     address = forms.CharField(label='Address', max_length=100)
     birthdate = forms.DateField(label='Birthdate')
+    
+class room_edit_form(forms.Form):
+    name = forms.CharField(label='Name', max_length=100)
+    price = forms.FloatField(label='Price')
+    max_guests = forms.IntegerField(label='Max guests allowed')
+    type = forms.CharField(label='Type', max_length=100)
+    
+    # TYPE_CHOICES= (
+    #     ('Double', 'd'),
+    #     ('Triple', 't'),
+    #     ('Quad', 'q'),
+    #     ('Suite', 's'),
+    # )
+    # type = forms.ChoiceField(choices=TYPE_CHOICES)
+
+
+class booking_edit_form(forms.Form):
+    # room_id = forms.ForeignKey(label='Room ID', max_length=100)
+    # user_id = forms.ForeignKey(label='User ID', max_length=100)
+    total_price = forms.DecimalField(label='Total Price')
+    check_in = forms.DateField(label='Check In')
+    check_out = forms.DateField(label='Check Out')
+    breakfast = forms.BooleanField(label='Breakfast', required=False)
+    lunch = forms.BooleanField(label='Lunch', required=False)
+    extra_bed = forms.BooleanField(label='Extra Bed', required=False)
+    
+    
 
 
 class BookingSearchForm(forms.Form):

@@ -40,13 +40,13 @@ urlpatterns = [
     
     # bookings
     path('functionalities/admin/bookings', views.view_bookings, name='view_bookings'),
-    #path('functionalities/admin/bookings/<str:id>/', views.booking_info, name='booking_info'),
-    #path('functionalities/admin/bookings/<str:id>/edit/', views.booking_edit, name='booking_edit'),
+    path('functionalities/admin/bookings/<str:id>/', views.booking_info, name='booking_info'),
+    path('functionalities/admin/bookings/<str:id>/edit/', views.booking_edit, name='booking_edit'),
     
     # rooms
     path('functionalities/admin/rooms', views.view_rooms, name='view_rooms'),
-    #path('functionalities/admin/rooms/<str:id>/', views.room_info, name='room_info'),
-    #path('functionalities/admin/rooms/<str:id>/edit/', views.room_edit, name='room_edit'),
+    path('functionalities/admin/rooms/<str:id>/', views.room_info, name='room_info'),
+    path('functionalities/admin/rooms/<str:id>/edit/', views.room_edit, name='room_edit'),
     
     # reviews
     path('functionalities/admin/reviews', views.view_reviews, name='view_reviews'),
