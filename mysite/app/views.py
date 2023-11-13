@@ -70,10 +70,13 @@ def error_404(request):
     return render(request, 'error_404.html')
 
 
-@login_required()
 def rooms(request, *args, **kwargs):
     params = {
         'title': 'Rooms',
+        'double_room': False,
+        'triple_room': False,
+        'quad_room': False,
+        'suite_room': False,
     }
 
     if request.method == 'POST':
@@ -103,8 +106,6 @@ def rooms(request, *args, **kwargs):
                 if len(available_rooms) > 0:
                     params['double_room'] = True
                     params['d_room'] = available_rooms[0]
-                else:
-                    params['double_room'] = False
 
             if Room.objects.filter(type__exact='t').exists():
                 triple_rooms = Room.objects.filter(type='t')
@@ -113,8 +114,6 @@ def rooms(request, *args, **kwargs):
                 if len(available_rooms) > 0:
                     params['triple_room'] = True
                     params['t_room'] = available_rooms[0]
-                else:
-                    params['triple_room'] = False
 
             if Room.objects.filter(type__exact='q').exists():
                 quad_rooms = Room.objects.filter(type='q')
@@ -123,8 +122,6 @@ def rooms(request, *args, **kwargs):
                 if len(available_rooms) > 0:
                     params['quad_room'] = True
                     params['q_room'] = available_rooms[0]
-                else:
-                    params['quad_room'] = False
 
             if Room.objects.filter(type__exact='s').exists():
                 suite_rooms = Room.objects.filter(type='s')
@@ -133,8 +130,6 @@ def rooms(request, *args, **kwargs):
                 if len(available_rooms) > 0:
                     params['suite_room'] = True
                     params['s_room'] = available_rooms[0]
-                else:
-                    params['suite_room'] = False
         else:
             params['error'] = 'Invalid date.'
 

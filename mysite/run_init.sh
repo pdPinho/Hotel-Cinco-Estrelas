@@ -17,5 +17,8 @@ python3 manage.py migrate
 python3 manage.py loaddata review_data.json
 python3 manage.py migrate
 
+python3 manage.py loaddata room_data.json
+python3 manage.py migrate
+
 # start server
 python3 manage.py runserver
