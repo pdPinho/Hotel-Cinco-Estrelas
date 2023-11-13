@@ -28,6 +28,16 @@
         width: 100px; 
     }
 
+    .special {
+        position: relative;
+        left: 80px;
+        font-size: 3em;
+        font-weight: bold;
+        color: red;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
+
 </style>
 
 <section id="profile" style="margin-bottom: 100px;">
@@ -90,11 +100,44 @@
         </tr>
     </table>
 </section>
-{% else %}
+{% elif bookings %}
 <section>
+    <h2 style="border: 5px black;">All Bookings</h2>
+
+    
+
+    <div class="container">
+        <div class="row row-cols-2 row-cols-lg-3" style="border: 10px solid black;border-radius: 40px;">
+
+            {% for booking in bookings %}
+                <div class="col">
+                    <h3>{{ booking.room_id }}</h3>
+                    {% if booking.room_id.type == "d" %}
+                        <img src="{% static 'images/double.jpg' %}" alt="double room" style="height:250px;ratio:1;">
+                    {% elif booking.room_id.type == "t" %}
+                        <img src="{% static 'images/triple.jpg' %}" alt="triple room" style="height:250px;ratio:1;">
+                    {% elif booking.room_id.type == "q" %}
+                        <img src="{% static 'images/quadruple.jpg' %}" alt="quadruple room" style="height:250px;ratio:1;">
+                    {% elif booking.room_id.type == "s" %}
+                        <img src="{% static 'images/suite.jpg' %}" alt="suite" style="height:250px;ratio:1;">
+                    {% else %}
+                        <img src="{% static 'images/Untitled.png' %}" alt="room" style="height:250px;ratio:1;">
+                    {% endif %}
+                    <p>From {{ booking.check_in }} to {{ booking.check_out }}</p>
+                    <p class="special">${{ booking.total_price }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 </section>
-{% endif %}
+{% else %}
 
+<section>
+    <h2>Bookings:</h2>
+    <p>No bookings yet.</p>
+</section>
+
+{% endif %}
 
 {% endblock %}

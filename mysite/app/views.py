@@ -324,6 +324,7 @@ def register(request):
 @login_required()
 def profile(request):
     user = User.objects.get(id=request.user.id)
+    bookings = Booking.objects.filter(user_id=user.id)
     params = {
         'name': user.name,
         'email': user.email,
@@ -331,6 +332,7 @@ def profile(request):
         'phone': user.phone,
         'address': user.address,
         'birthdate': user.birthdate,
+        'bookings': bookings,
     }
     return render(request, 'profile.html', params)
 
