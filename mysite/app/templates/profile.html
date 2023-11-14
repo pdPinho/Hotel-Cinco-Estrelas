@@ -4,140 +4,148 @@
 
 {% block content %}
 
-<style>
-   
-    .float-child {
-        width: 35%;
-        float: left;
-        padding: 20px;
-    }  
+    <style>
 
-    .child1 {
-        position: absolute;
-        top: 410px;
-        left: 15%;
-    }
+        .float-child {
+            width: 35%;
+            float: left;
+            padding: 20px;
+        }
 
-    .child2 {
-        position: absolute;
-        top: 330px;
-        right: 15%;
-    }
+        .child1 {
+            position: absolute;
+            top: 410px;
+            left: 15%;
+        }
 
-    .contact {
-        width: 100px; 
-    }
+        .child2 {
+            position: absolute;
+            top: 330px;
+            right: 15%;
+        }
 
-    .special {
-        position: relative;
-        left: 80px;
-        font-size: 3em;
-        font-weight: bold;
-        color: red;
-        font-family: 'Times New Roman', Times, serif;
-        font-style: italic;
-    }
+        .contact {
+            width: 100px;
+        }
 
-</style>
+        .special {
+            position: relative;
+            left: 80px;
+            font-size: 3em;
+            font-weight: bold;
+            color: red;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+        }
 
-<section id="profile" style="margin-bottom: 100px;">
-    <div id="banner">
-        {% if user.is_superuser %}
-            <img src="{% static 'images/RedWhite.png' %}" alt="banner" style="width: 100%; height: 16em;">
-        {% else %}
-            <img src="{% static 'images/GreenWhite.png' %}" alt="banner" style="width: 100%; height: 16em;">
-        {% endif %}
-    </div>
-    <div style="position:relative; left: 60px; top: -80px;">
-        <img src="{% static 'images/Untitled.png' %}" alt="profile picture" style="height: 160px; aspect-ratio: 1;">
-    </div>
-    <div class="float-child child1">
-        <button><a href={% url 'profile_edit' %} style="margin:auto;">Edit Profile</a></button>
-    </div>
+    </style>
 
-    <div class="float-child child2">
-        <h1>{{ name }}</h1>
-        
-        <table>
-            <tr>
-                <td class="contact">Address:</td>
-                <td>{{ address }}</td>
-            </tr>
-            <tr>
-                <td class="contact">Phone:</td>
-                <td>{{ phone }}</td>
-            </tr>
-            <tr>
-                <td class="contact">Email:</td>
-                <td>{{ email }}</td>
-            </tr>
-            <tr>
-                <td class="contact">Birthdate:</td>
-                <td>{{ birthdate }}</td>
-            </tr>
-        </table>
-    </div>
-
-
-    {% if alert %}
-        <h1>{{ alert }}</h1>
-    {% endif %}
-
-
-</section>
-
-{% if user.is_superuser %}
-<section id="admin">
-    <h2>Administration Panel</h2>
-    <table style="width: 16em;">
-        <tr>
-            <td><a href='/functionalities/admin/users'>view users</a></td>
-            <td><a href='/functionalities/admin/bookings'>view bookings</a></td>
-        </tr>
-        <tr>
-            <td><a href='/functionalities/admin/rooms'>view rooms</a></td>
-            <td><a href='/functionalities/admin/reviews'>view reviews</a></td>
-        </tr>
-    </table>
-</section>
-{% elif bookings %}
-<section>
-    <h2 style="border: 5px black;">All Bookings</h2>
-
-    
-
-    <div class="container">
-        <div class="row row-cols-2 row-cols-lg-3" style="border: 10px solid black;border-radius: 40px;">
-
-            {% for booking in bookings %}
-                <div class="col">
-                    <h3>{{ booking.room_id }}</h3>
-                    {% if booking.room_id.type == "d" %}
-                        <img src="{% static 'images/double.jpg' %}" alt="double room" style="height:250px;ratio:1;">
-                    {% elif booking.room_id.type == "t" %}
-                        <img src="{% static 'images/triple.jpg' %}" alt="triple room" style="height:250px;ratio:1;">
-                    {% elif booking.room_id.type == "q" %}
-                        <img src="{% static 'images/quadruple.jpg' %}" alt="quadruple room" style="height:250px;ratio:1;">
-                    {% elif booking.room_id.type == "s" %}
-                        <img src="{% static 'images/suite.jpg' %}" alt="suite" style="height:250px;ratio:1;">
-                    {% else %}
-                        <img src="{% static 'images/Untitled.png' %}" alt="room" style="height:250px;ratio:1;">
-                    {% endif %}
-                    <p>From {{ booking.check_in }} to {{ booking.check_out }}</p>
-                    <p class="special">${{ booking.total_price }}</p>
-                </div>
-            {% endfor %}
+    <section id="profile" style="margin-bottom: 100px;">
+        <div id="banner">
+            {% if user.is_superuser %}
+                <img src="{% static 'images/RedWhite.png' %}" alt="banner" style="width: 100%; height: 16em;">
+            {% else %}
+                <img src="{% static 'images/GreenWhite.png' %}" alt="banner" style="width: 100%; height: 16em;">
+            {% endif %}
         </div>
-    </div>
+        <div style="position:relative; left: 60px; top: -80px;">
+            {% if image %}
+                <img src="{{ image }}" alt="profile" style="width: 100%; height: 16em;">
+            {% else %}
+                <img src="{% static 'images/Untitled.png' %}" alt="profile picture"
+                     style="height: 160px; aspect-ratio: 1;">
+            {% endif %}
+        </div>
+        <div class="float-child child1">
+            <button><a href={% url 'profile_edit' %} style="margin:auto;">Edit Profile</a></button>
+            <button><a href={% url 'upload_file' %} style="margin:auto;">Upload Profile Picture</a></button>
+        </div>
 
-</section>
-{% else %}
+        <div class="float-child child2">
+            <h1>{{ name }}</h1>
 
-<section>
-    <h2>Bookings:</h2>
-    <p>No bookings yet.</p>
-</section>
+            <table>
+                <tr>
+                    <td class="contact">Address:</td>
+                    <td>{{ address }}</td>
+                </tr>
+                <tr>
+                    <td class="contact">Phone:</td>
+                    <td>{{ phone }}</td>
+                </tr>
+                <tr>
+                    <td class="contact">Email:</td>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <td class="contact">Birthdate:</td>
+                    <td>{{ birthdate }}</td>
+                </tr>
+            </table>
+        </div>
 
-{% endif %}
+
+        {% if alert %}
+            <h1>{{ alert }}</h1>
+        {% endif %}
+
+
+    </section>
+
+    {% if user.is_superuser %}
+        <section id="admin">
+            <h2>Administration Panel</h2>
+            <table style="width: 16em;">
+                <tr>
+                    <td><a href='/functionalities/admin/users'>view users</a></td>
+                    <td><a href='/functionalities/admin/bookings'>view bookings</a></td>
+                </tr>
+                <tr>
+                    <td><a href='/functionalities/admin/rooms'>view rooms</a></td>
+                    <td><a href='/functionalities/admin/reviews'>view reviews</a></td>
+                </tr>
+            </table>
+        </section>
+    {% elif bookings %}
+        <section>
+            <h2 style="border: 5px black;">All Bookings</h2>
+
+
+            <div class="container">
+                <div class="row row-cols-2 row-cols-lg-3" style="border: 10px solid black;border-radius: 40px;">
+
+                    {% for booking in bookings %}
+                        <div class="col">
+                            <h3>{{ booking.room_id }}</h3>
+                            {% if booking.room_id.type == "d" %}
+                                <img src="{% static 'images/double.jpg' %}" alt="double room"
+                                     style="height:250px;ratio:1;">
+                            {% elif booking.room_id.type == "t" %}
+                                <img src="{% static 'images/triple.jpg' %}" alt="triple room"
+                                     style="height:250px;ratio:1;">
+                            {% elif booking.room_id.type == "q" %}
+                                <img src="{% static 'images/quadruple.jpg' %}" alt="quadruple room"
+                                     style="height:250px;ratio:1;">
+                            {% elif booking.room_id.type == "s" %}
+                                <img src="{% static 'images/suite.jpg' %}" alt="suite" style="height:250px;ratio:1;">
+                            {% else %}
+                                <img src="{% static 'images/Untitled.png' %}" alt="room" style="height:250px;ratio:1;">
+                            {% endif %}
+                            <p>From {{ booking.check_in }} to {{ booking.check_out }}</p>
+                            <p class="special">${{ booking.total_price }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </section>
+    {% else %}
+
+        <section>
+            <h2>Bookings:</h2>
+            <p>No bookings yet.</p>
+        </section>
+
+    {% endif %}
 
 {% endblock %}

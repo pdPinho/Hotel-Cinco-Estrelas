@@ -1,4 +1,6 @@
-from django.http import HttpResponse
+import os
+
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
@@ -290,7 +292,28 @@ def confirmation(request):
         return HttpResponse(content='How did you get here', status=418)
 
 
-############################# 
+def handle_uploaded_file(f, p):
+    with open(p, "wb+") as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
+@login_required()
+def upload_file(request):
+    if request.method == "POST":
+        form = ProfilePhotoUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES["file"], "media/images/" + request.FILES["file"].name)
+            user = User.objects.get(id=request.user.id)
+            user.image = "media/images/" + request.FILES["file"].name
+            user.save()
+            return HttpResponseRedirect("/profile/")
+    else:
+        form = ProfilePhotoUploadForm()
+    return render(request, "upload.html", {"form": form})
+
+
+#############################
 #      Account area
 ############################# 
 def register(request):
@@ -304,7 +327,8 @@ def register(request):
                  password=form.cleaned_data['password'],
                  phone=form.cleaned_data['phone'],
                  address=form.cleaned_data['address'],
-                 birthdate=form.cleaned_data['birthdate']).save()
+                 birthdate=form.cleaned_data['birthdate'],
+                 image=None).save()
 
             # creating authentication user for given registration
             user_auth.objects.create_user(username=form.cleaned_data['name'],
@@ -329,6 +353,7 @@ def profile(request):
         'name': user.name,
         'email': user.email,
         'password': user.password,
+        'image': user.image,
         'phone': user.phone,
         'address': user.address,
         'birthdate': user.birthdate,
@@ -491,6 +516,7 @@ def view_bookings(request):
 
     return render(request, 'view_bookings.html', params)
 
+
 @login_required()
 @user_passes_test(superuser_check)
 # Get information about specific user
@@ -518,7 +544,7 @@ def booking_info(request, id):
         }
 
         return render(request, 'booking_info.html', params)
-    
+
 
 @login_required()
 @user_passes_test(superuser_check)
@@ -532,8 +558,8 @@ def booking_edit(request, id):
 
         if form.is_valid():
             # updating booking information
-            #booking.room_id = form.cleaned_data['room_id']
-            #booking.user_id = form.cleaned_data['user_id']
+            # booking.room_id = form.cleaned_data['room_id']
+            # booking.user_id = form.cleaned_data['user_id']
             booking.total_price = form.cleaned_data['total_price']
             booking.check_in = form.cleaned_data['check_in']
             booking.check_out = form.cleaned_data['check_out']
@@ -546,17 +572,16 @@ def booking_edit(request, id):
     else:
         # getting information to be displayed (placeholder)
         form = booking_edit_form(initial={'room_id': booking.room_id,
-                                       'user_id': booking.user_id,
-                                       'total_price': booking.total_price,
-                                       'check_in': booking.check_in,
-                                       'check_out': booking.check_out,
-                                       'breakfast': booking.breakfast,
-                                       'lunch': booking.lunch,
-                                       'extra_bed': booking.extra_bed,
-                                       'form': form})
+                                          'user_id': booking.user_id,
+                                          'total_price': booking.total_price,
+                                          'check_in': booking.check_in,
+                                          'check_out': booking.check_out,
+                                          'breakfast': booking.breakfast,
+                                          'lunch': booking.lunch,
+                                          'extra_bed': booking.extra_bed,
+                                          'form': form})
 
     return render(request, 'booking_edit.html', {'form': form, 'booking': booking.id})
-
 
 
 ### ROOMS RELATED
@@ -596,7 +621,7 @@ def room_info(request, id):
         }
 
         return render(request, 'room_info.html', params)
-    
+
 
 @login_required()
 @user_passes_test(superuser_check)
@@ -613,7 +638,7 @@ def room_edit(request, id):
             room.name = form.cleaned_data['name']
             room.price = form.cleaned_data['price']
             room.max_guests = form.cleaned_data['max_guests']
-            #room.bookings = form.cleaned_data['bookings']
+            # room.bookings = form.cleaned_data['bookings']
             room.type = form.cleaned_data['type']
             room.save()
 
@@ -627,7 +652,6 @@ def room_edit(request, id):
                                        'form': form})
 
     return render(request, 'room_edit.html', {'form': form, 'room': room.name})
-
 
 
 ### REVIEWS RELATED
