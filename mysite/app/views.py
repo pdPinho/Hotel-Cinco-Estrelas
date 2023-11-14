@@ -305,7 +305,7 @@ def upload_file(request):
         if form.is_valid():
             handle_uploaded_file(request.FILES["file"], "media/images/" + request.FILES["file"].name)
             user = User.objects.get(id=request.user.id)
-            user.image = "images/" + request.FILES["file"].name
+            user.image = "media/images/" + request.FILES["file"].name
             user.save()
             return HttpResponseRedirect("/profile/")
     else:
@@ -353,6 +353,7 @@ def profile(request):
         'name': user.name,
         'email': user.email,
         'password': user.password,
+        'image': user.image,
         'phone': user.phone,
         'address': user.address,
         'birthdate': user.birthdate,
