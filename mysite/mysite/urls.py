@@ -8,7 +8,7 @@ from django.views.static import serve
 from .settings import MEDIA_ROOT
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
 
     path('', views.index, name='index'),
     path('contact/', views.contact, name='contact'),
