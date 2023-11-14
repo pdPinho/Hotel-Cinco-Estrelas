@@ -17,6 +17,7 @@ urlpatterns = [
     path('booking/', views.booking, name='booking'),
     path('confirmation/', views.confirmation, name='confirmation'),
     path('receipt/', views.receipt, name='receipt'),
+    path('upload_file/', views.upload_file, name='upload_file'),
 
     ### account area ###
     path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),

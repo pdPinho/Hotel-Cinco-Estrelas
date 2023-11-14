@@ -16,6 +16,7 @@ class User(models.Model):
     address = models.CharField(max_length=100)
     birthdate = models.DateField()
     rooms = models.ManyToManyField('Room', through='Booking')
+    image = models.ImageField(upload_to='images/', null=True, blank=True, default=None)
 
     objects = UserManager()
 
