@@ -28,8 +28,12 @@
                     {{ form.email }}
                 </div>
             </div>
-
-            
+            <div class="form-group d-none">
+                {{ form.password.label_tag }}
+                <div class="col-md-10">
+                    {{ form.password }}
+                </div>
+            </div>
             <div class="form-group">
                 {{ form.phone.label_tag }}
                 <div class="col-md-10">
