@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <h1>{{ message }}</h1>
+    {% endfor %}
+    <a href="{% url 'view_rooms' %}">Return to room list</a>
+{% else %}
+    <h4>Editing room: {{ room }} </h4>
+    <h2>Name: 
+        <h4>{{ name }}</h4>
+    </h2><br>
+    <h2>Price:
+        <h4>{{ price }}</h4>
+    </h2><br>
+    <h2>Max_guests:
+        <h4>{{ max_guests }}</h4>
+    </h2><br>
+    <h2>Booking:
+        <h4>{{ booking }}</h4>
+    </h2><br>
+    <h2>Type:
+        <h4>{{ type }}</h4>
+    </h2><br>
+    
+    
+    <a href="edit"><h2>Edit room</h2></a>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" name="delete_button" value="delete">Delete room</button>
+    </form>
+{% endif %}
+
+{% endblock %}
