@@ -21,6 +21,7 @@ class Room(models.Model):
     price = models.FloatField(max_length=100)
     max_guests = models.IntegerField()
     bookings = models.ManyToManyField('User', through='Booking')
+    image = models.ImageField(upload_to='images/', null=True, blank=True, default=None)
 
     TYPE_CHOICES = (
         ('d', 'Double'),
@@ -29,7 +30,8 @@ class Room(models.Model):
         ('s', 'Suite'),
     )
 
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES, default='d', blank=False, null=False)
+    type = models.CharField(max_length=1, choices=TYPE_CHOICES,
+                            default='d', blank=False, null=False)
 
     def __str__(self):
         return self.name
@@ -50,8 +52,9 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.CharField(max_length=500, null=False)
     date = models.DateTimeField(null=False)
-    
-    rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], default=0, blank=False, null=False)
+
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(
+        1), MaxValueValidator(5)], default=0, blank=False, null=False)
 
     def __str__(self):
         return self.review

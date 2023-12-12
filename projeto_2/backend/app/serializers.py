@@ -7,18 +7,22 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'name', 'email', 'password', 'phone', 'address', 'birthdate', 'rooms', 'image')
-        
+        fields = '__all__'
+        depth = 1
+
+
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = ('id', 'name', 'price', 'max_guests', 'booking')
-        
+
+
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields = ('id', 'room_id', 'user_id', 'total_price', 'check_in', 'check_out', 'breakfast', 'lunch', 'extra_bed')
-        
+        fields = '__all__'
+
+
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
