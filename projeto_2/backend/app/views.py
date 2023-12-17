@@ -54,11 +54,10 @@ def users_view(request, id=None):
 
 
 class RoomView(APIView):
-    def get(self, request):
-        if 'id' in request.GET:
-            num = int(request.GET['id'])
+    def get(self, request, id):
+        if id:
             try:
-                rooms = Room.objects.get(id=num)
+                rooms = Room.objects.get(id=id)
                 return Response(RoomSerializer(rooms).data)
             except Room.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
@@ -76,8 +75,7 @@ class RoomView(APIView):
             return Response(RoomSerializer(serializer.data).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request):
-        id = request.data['id']
+    def patch(self, request, id):
         try:
             room = Room.objects.get(id=id)
         except Room.DoesNotExist:
@@ -99,11 +97,10 @@ class RoomView(APIView):
 
 
 class BookingView(APIView):
-    def get(self, request):
-        if 'id' in request.GET:
-            num = int(request.GET['id'])
+    def get(self, request, id):
+        if id:
             try:
-                bookings = Booking.objects.get(id=num)
+                bookings = Booking.objects.get(id=id)
                 return Response(BookingSerializer(bookings).data)
             except Booking.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
@@ -118,8 +115,7 @@ class BookingView(APIView):
             return Response(BookingSerializer(serializer.data).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request):
-        id = request.data['id']
+    def patch(self, request, id):
         try:
             booking = Booking.objects.get(id=id)
         except Booking.DoesNotExist:
@@ -140,11 +136,10 @@ class BookingView(APIView):
 
 
 class ReviewView(APIView):
-    def get(self, request):
-        if 'id' in request.GET:
-            num = int(request.GET['id'])
+    def get(self, request, id):
+        if id:
             try:
-                reviews = Review.objects.get(id=num)
+                reviews = Review.objects.get(id=id)
                 return Response(ReviewSerializer(reviews).data)
             except Review.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
@@ -162,8 +157,7 @@ class ReviewView(APIView):
             return Response(ReviewSerializer(serializer.data).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request):
-        id = request.data['id']
+    def patch(self, request, id):
         try:
             review = Review.objects.get(id=id)
         except Review.DoesNotExist:
@@ -181,4 +175,3 @@ class ReviewView(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
