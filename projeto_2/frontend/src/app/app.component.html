@@ -1,42 +1,43 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary-subtle z-3" data-bs-theme="dark">
-  <div class="ms-4">
-      <a class="navbar-brand" routerLink="">Hotel Cinco Estrelas</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault"
-              aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-  </div>
+    <div class="ms-4">
+        <a class="navbar-brand" routerLink="">Hotel Cinco Estrelas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault"
+                aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
-  <div class="collapse navbar-collapse" id="navbarDefault">
-      <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-              <a class="nav-link" routerLink="">Home</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" routerLink="/contact">Contact</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" routerLink="/reviews">Reviews</a>
-          </li>            
-      </ul>
+    <div class="collapse navbar-collapse" id="navbarDefault">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/reviews">Reviews</a>
+            </li>            
+        </ul>
 
-      <!-- <form action="{% url 'set_language' %}" method="post" style="margin-right: 30px;">{% csrf_token %}
-          <input name="next" type="hidden" value="{{ redirect_to }}">
-          <select name="language">
-              {% get_current_language as LANGUAGE_CODE %}
-              {% get_available_languages as LANGUAGES %}
-              {% get_language_info_list for LANGUAGES as languages %}
-              {% for language in languages %}
-                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                      {{ language.name_local }} ({{ language.code }})
-                  </option>
-              {% endfor %}
-          </select>
-          <input type="submit" value="Go">
-      </form> -->
+        <!-- <form action="{% url 'set_language' %}" method="post" style="margin-right: 30px;">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go">
+        </form> -->
 
-      <!-- {% include 'loginpartial.html' %} -->
-  </div>
+      <login-partial></login-partial>
+
+    </div>
 </nav>
 
 <main role="main" class="flex flex-grow-1">
