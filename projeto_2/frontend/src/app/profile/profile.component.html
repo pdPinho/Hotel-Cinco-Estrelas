@@ -1,0 +1,54 @@
+<section id="profile" style="margin-bottom: 100px;">
+    <div id="banner">
+        <div *ngIf="true; then ifBlock else elseBlock"></div> <!-- isSuperUser -->
+        <ng-template #ifBlock>
+            <img src="frontend/src/assets/images/RedWhite.png" alt="banner" style="width: 100%; height: 16em;">
+        </ng-template>
+        <ng-template #elseBlock>
+            <img src="frontend/src/assets/images/GreenWhite.png" alt="banner" style="width: 100%; height: 16em;">
+        </ng-template>
+    </div>
+    <div style="position:relative; left: 60px; top: -80px;">
+        <div *ngIf="false; then ifBlock else elseBlock"></div> <!-- image -->
+        <ng-template #ifBlock>
+            <img src="frontend/src/assets/images/Untitled.png" alt="profile" style="height: 160px; aspect-ratio: 1;">
+        </ng-template>
+        <ng-template #elseBlock>
+            <img src="frontend/src/assets/images/Untitled.png" alt="profile picture"
+                style="height: 160px; aspect-ratio: 1;">
+        </ng-template>
+    </div>
+    <div class="float-child child1">
+        <button><a routerLink="./profile_edit" style="margin:auto;">Edit Profile</a></button>
+        <button><a routerLink="./upload_file" style="margin:auto;">Upload Profile Picture</a></button>
+    </div>
+
+    <div class="float-child child2">
+        <h1>{{ name }}</h1>
+
+        <table>
+            <tr>
+                <td class="contact">Address:</td>
+                <td>{{ address }}</td>
+            </tr>
+            <tr>
+                <td class="contact">Phone:</td>
+                <td>{{ phone }}</td>
+            </tr>
+            <tr>
+                <td class="contact">Email:</td>
+                <td>{{ email }}</td>
+            </tr>
+            <tr>
+                <td class="contact">Birthdate:</td>
+                <td>{{ birthdate }}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div *ngIf="alert"> <!-- alert -->
+        <h1>{{ alert }}</h1>
+    </div>
+
+</section>
