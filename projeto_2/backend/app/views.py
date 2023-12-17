@@ -6,11 +6,7 @@ from rest_framework.views import APIView
 from app.models import User, Room, Booking, Review
 from .serializers import *
 
-# only user is "done"
-
-
 ### WEB SERVICES ###
-
 
 @api_view(['GET', 'PUT', 'PATCH', 'DELETE'])
 def users_view(request, id=None):
