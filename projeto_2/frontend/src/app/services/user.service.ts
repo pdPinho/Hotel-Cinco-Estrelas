@@ -15,7 +15,7 @@ export class UserService{
   }
 
   async getUsers(): Promise<User[]> {
-    const url = this.baseURL + "users";
+    const url = this.baseURL + "user";
     const data = await fetch(url);
     return await data.json() ?? [];
   }

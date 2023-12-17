@@ -21,6 +21,8 @@ class BookingSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
         model = Review
-        fields = ('id', 'user', 'review', 'date')
+        fields = '__all__'

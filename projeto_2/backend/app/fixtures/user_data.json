@@ -58,5 +58,125 @@
             "address": "Avenida dos Aliados",
             "birthdate": "2001-09-09"
         }
+    },
+    {
+        "model": "app.User",
+        "pk": 6,
+        "fields": {
+            "name": "Laura",
+            "email": "laura@gmail.com",
+            "password": "password",
+            "phone": "987654321",
+            "address": "Sunset Boulevard",
+            "birthdate": "1995-03-25"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 7,
+        "fields": {
+            "name": "Robert",
+            "email": "robert@gmail.com",
+            "password": "password",
+            "phone": "876543210",
+            "address": "Oak Street",
+            "birthdate": "1988-11-18"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 8,
+        "fields": {
+            "name": "Megan",
+            "email": "megan@gmail.com",
+            "password": "password",
+            "phone": "765432109",
+            "address": "Pine Lane",
+            "birthdate": "1990-07-02"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 9,
+        "fields": {
+            "name": "Carlos",
+            "email": "carlos@gmail.com",
+            "password": "password",
+            "phone": "654321098",
+            "address": "Maple Avenue",
+            "birthdate": "1994-05-14"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 10,
+        "fields": {
+            "name": "Sophie",
+            "email": "sophie@gmail.com",
+            "password": "password",
+            "phone": "543210987",
+            "address": "Cedar Street",
+            "birthdate": "1986-09-30"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 11,
+        "fields": {
+            "name": "Alex",
+            "email": "alex@gmail.com",
+            "password": "password",
+            "phone": "876543210",
+            "address": "Birch Lane",
+            "birthdate": "1991-04-07"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 12,
+        "fields": {
+            "name": "Olivia",
+            "email": "olivia@gmail.com",
+            "password": "password",
+            "phone": "765432109",
+            "address": "Chestnut Street",
+            "birthdate": "1993-12-22"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 13,
+        "fields": {
+            "name": "Luke",
+            "email": "luke@gmail.com",
+            "password": "password",
+            "phone": "654321098",
+            "address": "Sycamore Lane",
+            "birthdate": "1989-08-14"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 14,
+        "fields": {
+            "name": "Emily",
+            "email": "emily@gmail.com",
+            "password": "password",
+            "phone": "543210987",
+            "address": "Willow Avenue",
+            "birthdate": "1995-01-29"
+        }
+    },
+    {
+        "model": "app.User",
+        "pk": 15,
+        "fields": {
+            "name": "David",
+            "email": "david@gmail.com",
+            "password": "password",
+            "phone": "432109876",
+            "address": "Magnolia Street",
+            "birthdate": "1987-06-10"
+        }
     }
 ]
