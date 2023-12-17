@@ -12,44 +12,61 @@ import {CommonModule} from "@angular/common";
 })
 export class ReviewComponent {
   reviews: Review[] = [];
-  paginatedReviews: Review[] = [];
+  currentReviews: Review[] = this.reviews;
   reviewService: ReviewService = inject(ReviewService);
   averageRating: number = 0;
   currentPage: number = 1;
   itemsPerPage: number = 4;
+  stars: number[] = [1, 2, 3, 4, 5];
 
 
   constructor() {
     this.reviewService.getReviews().then((revs: Review[]) => {
       this.reviews = revs.reverse();
-      this.calculateAverageRating();
+      this.averageRating = this.getAverage();
       this.updatePaginatedReviews();
     })
   }
 
-  private calculateAverageRating(): void {
-    if (this.reviews.length === 0) {
-      this.averageRating = 0;
-      return;
+  private getAverage(): number {
+    if (this.reviews.length === 0)
+      return 0;
+
+    let total = 0;
+    for (let i = 0; i < this.reviews.length; i++) {
+      total += this.reviews[i].rating;
     }
 
-    const totalRating = this.reviews.reduce((sum, review) => sum + review.rating, 0);
-    this.averageRating = totalRating / this.reviews.length;
+    return total / this.reviews.length;
   }
 
+  /*  IMPORTANT
+      In terms of pagination for our reviews I initially thought it best to use ng-bootstrap's component
+      but after some trial and error I couldn't get it to work on and the solution that I found was to reinstall
+      my IDE once again.
+
+      To avoid that, I decided to create my own pagination system.
+      (Note: Could have also used 'ngx-pagination' or 'Paginator' by Angular Material - and in my opinion Angular Material
+      would've been quite a good choice since it could provide with the option to use animations)
+   */
   private updatePaginatedReviews(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedReviews = this.reviews.slice(startIndex, endIndex);
+    this.currentReviews = this.reviews.slice(startIndex, endIndex);
   }
 
-  onPageChange(page: number): void {
+  changePage(page: number): void {
     this.currentPage = page;
     this.updatePaginatedReviews();
   }
 
   getPages(): number[] {
-    const totalPages = Math.ceil(this.reviews.length / this.itemsPerPage);
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
+    const totalPages = (this.reviews.length + this.itemsPerPage - 1) / this.itemsPerPage;
+    const pages: number[] = [];
+
+    for (let i = 0; i < totalPages; i++) {
+      pages.push(i + 1);
+    }
+    return pages;
   }
 }
