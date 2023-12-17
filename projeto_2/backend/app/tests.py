@@ -4,8 +4,6 @@ from django.urls import reverse
 from .models import *
 
 
-# Create your tests here.
-
 class TestRooms(TestCase):
     uri = reverse('rooms')
 

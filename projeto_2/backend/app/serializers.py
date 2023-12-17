@@ -1,9 +1,6 @@
 from app.models import User, Room, Booking, Review
 from rest_framework import serializers
 
-
-### THIS IS NOT DONE! CURRENTLY EACH MODEL CONTAINS BUT THEIR BARE BONES ###
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -14,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ('id', 'name', 'price', 'max_guests', 'booking')
+        fields = ('id', 'name', 'price', 'max_guests')
 
 
 class BookingSerializer(serializers.ModelSerializer):
