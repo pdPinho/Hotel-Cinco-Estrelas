@@ -3,13 +3,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-
 from rest_framework import generics, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
-from app.models import User, Room, Booking, Review
+from .models import User, Room, Booking, Review
 from .serializers import *
+
 
 ### WEB SERVICES ###
 
@@ -58,15 +58,16 @@ def users_view(request, id=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
 class LoginView(ObtainAuthToken):
-    def post(self, request):
+    def post(self, request, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key,
-                        'user': UserSerializer(user).data})
+        user = User.objects.get(id=user.id)  # This is needed or somehow the user loses its name
+        serializer = UserSerializer(user)
+        return Response({'token': token.key, 'user': serializer.data})
+
 
 class LogoutView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
@@ -74,6 +75,7 @@ class LogoutView(APIView):
     def post(self, request):
         request.auth.delete()
         return Response({'detail': 'Successfully logged out'})
+
 
 class RegisterView(APIView):
     serializer_class = UserSerializer
@@ -84,7 +86,6 @@ class RegisterView(APIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED, headers=headers)
-
 
 
 class RoomView(APIView):
