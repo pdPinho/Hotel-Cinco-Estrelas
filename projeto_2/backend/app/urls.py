@@ -10,6 +10,11 @@ urlpatterns = [
     path('user/', users_view, {'id': None}, name='users'),
     path('user/<int:id>/', users_view, name='user'),
 
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+
+    path('register/', RegisterView.as_view(), name='register'),
+
     path('room/', RoomView.as_view(), {'id': None}, name='rooms'),
     path('room/<int:id>/', RoomView.as_view(), name='room'),
 
