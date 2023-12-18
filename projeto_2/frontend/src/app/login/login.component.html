@@ -1,18 +1,18 @@
 <div class="row justify-content-center">
   <div class="col-md-6">
     <section id="loginForm" class="mt-5">
-      <form>
+      <form (ngSubmit)="login()">
         <div class="mb-4">
           <label class="col-md-4 text-start">Email</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" id="email" autocomplete="off" required>
+            <input type="text" class="form-control" id="email" autocomplete="off" required [(ngModel)]="email">
             <div class="invalid-feedback">Please enter an email.</div>
           </div>
         </div>
         <div class="mb-4">
           <label class="col-md-4 text-start">Password</label>
           <div class="col-md-8">
-            <input type="password" class="form-control" id="password" required>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="password">
             <div class="invalid-feedback">Please enter a password.</div>
           </div>
         </div>
@@ -30,5 +30,3 @@
     </section>
   </div>
 </div>
-
-
