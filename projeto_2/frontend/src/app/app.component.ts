@@ -16,5 +16,5 @@ import { LoginPartialComponent } from './login-partial/login-partial.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  loggedIn: boolean = false;
 }

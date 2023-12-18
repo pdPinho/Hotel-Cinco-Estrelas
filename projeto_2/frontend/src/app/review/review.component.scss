@@ -1,0 +1,30 @@
+.checked {
+  color: orange;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.page-link {
+  color: #3498db;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.page-link:hover {
+  color: #fff;
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.page-item {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+

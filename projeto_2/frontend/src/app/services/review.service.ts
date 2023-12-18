@@ -9,13 +9,13 @@ export class ReviewService{
   private baseURL = "http://localhost:8000/api/"
 
   async getReview(id: number): Promise<Review> {
-    const url = this.baseURL + "review?id=" + id;
+    const url = this.baseURL + "review/" + id;
     const data = await fetch(url);
     return await data.json() ?? undefined;
   }
 
   async getReviews(): Promise<Review[]> {
-    const url = this.baseURL + "reviews";
+    const url = this.baseURL + "review";
     const data = await fetch(url);
     return await data.json() ?? [];
   }

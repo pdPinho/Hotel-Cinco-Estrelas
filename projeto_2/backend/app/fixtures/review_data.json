@@ -28,5 +28,105 @@
             "date": "2023-10-23 11:06",
             "rating": 1
         }
+    },
+    {
+        "model": "app.Review",
+        "pk": 4,
+        "fields": {
+            "user": 6,
+            "review": "Outstanding service and atmosphere! The staff was very friendly, and the food was top-notch.",
+            "date": "2023-12-01 20:12",
+            "rating": 5
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 5,
+        "fields": {
+            "user": 7,
+            "review": "I enjoyed the live music and the cozy ambiance. The cocktails were excellent!",
+            "date": "2023-12-05 18:30",
+            "rating": 4
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 6,
+        "fields": {
+            "user": 8,
+            "review": "The place is overrated. Mediocre food and slow service.",
+            "date": "2023-12-06 14:45",
+            "rating": 2
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 7,
+        "fields": {
+            "user": 9,
+            "review": "Cozy and intimate setting. The staff was knowledgeable about the menu, and the wine selection was impressive.",
+            "date": "2023-12-06 19:22",
+            "rating": 4
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 8,
+        "fields": {
+            "user": 10,
+            "review": "Disappointing experience. The food was bland, and the prices were too high for the quality.",
+            "date": "2023-12-07 12:10",
+            "rating": 2
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 9,
+        "fields": {
+            "user": 11,
+            "review": "A hidden gem! The flavors in each dish were unique and delicious. Will definitely be back.",
+            "date": "2023-12-07 17:45",
+            "rating": 5
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 10,
+        "fields": {
+            "user": 12,
+            "review": "Terrible service. Waited for ages to be served, and the staff seemed indifferent to our presence.",
+            "date": "2023-12-09 21:03",
+            "rating": 1
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 11,
+        "fields": {
+            "user": 13,
+            "review": "Excellent food and prompt service. The chef's specials were a delight!",
+            "date": "2023-12-12 14:30",
+            "rating": 5
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 12,
+        "fields": {
+            "user": 14,
+            "review": "Average experience. The ambiance was okay, but the food lacked flavor.",
+            "date": "2023-12-15 19:18",
+            "rating": 3
+        }
+    },
+    {
+        "model": "app.Review",
+        "pk": 13,
+        "fields": {
+            "user": 15,
+            "review": "Fantastic place! The staff was attentive, and the view from the terrace was breathtaking.",
+            "date": "2023-12-15 16:50",
+            "rating": 5
+        }
     }
 ]
