@@ -1,12 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Review } from "../review";
 import {ReviewService} from "../services/review.service";
-import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-review',
-  standalone: true,
-  imports: [ CommonModule ],
   templateUrl: './review.component.html',
   styleUrl: './review.component.scss'
 })
