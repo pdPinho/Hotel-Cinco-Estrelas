@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from '../services/register.service';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {RegisterService} from '../services/register.service';
+import {CommonModule} from "@angular/common";
 
 
 @Component({
+  standalone: true,
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
 })
 export class RegisterComponent {
   registrationForm: FormGroup;
@@ -21,7 +28,11 @@ export class RegisterComponent {
 
   register(): void {
     if (this.registrationForm.valid) {
-      const { username, email, password } = this.registrationForm.value;
+      const {
+        username,
+        email,
+        password
+      } = this.registrationForm.value;
 
       this.registrationService.register(username, email, password).subscribe(
         (response) => {

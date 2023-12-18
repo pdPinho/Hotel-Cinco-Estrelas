@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../services/authentication.service';
+import {Component} from '@angular/core';
+import {AuthService} from '../services/authentication.service';
+import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
+  standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
 })
 export class LoginComponent {
   email: string = '';
