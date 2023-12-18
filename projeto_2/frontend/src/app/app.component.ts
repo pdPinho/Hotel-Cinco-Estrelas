@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterModule} from "@angular/router";
+import {RouterLink, RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {LoginPartialComponent} from "./login-partial/login-partial.component";
 
@@ -11,7 +11,9 @@ import {LoginPartialComponent} from "./login-partial/login-partial.component";
   imports: [
     CommonModule,
     RouterModule,
-    LoginPartialComponent
+    LoginPartialComponent,
+    RouterModule,
+    RouterLink
   ],
 })
 export class AppComponent {
