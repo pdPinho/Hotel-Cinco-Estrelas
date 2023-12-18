@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="navbarContactText" datatype="html">
+        <source>Contact</source>
+        <target>Contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10,13</context>
+        </context-group>
+        <note priority="1" from="description">Contact Text</note>
+        <note priority="1" from="meaning">navbar contact</note>
+      </trans-unit>
+      <trans-unit id="navbarReviewText" datatype="html">
+        <source>Reviews</source>
+        <target>Commentaires</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13,18</context>
+        </context-group>
+        <note priority="1" from="description">Reviews Text</note>
+        <note priority="1" from="meaning">navbar reviews</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
