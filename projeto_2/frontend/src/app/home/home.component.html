@@ -10,7 +10,16 @@
         <h1 i18n="welcome header|welcome header@@homeWelcomeHeader" class="text-left">Welcome to the Five Star Hotel</h1>
         <p i18n="welcome text|welcome text@@homeWelcomeText" class="lead">Book your stay, {{ currentDate }}</p>
 
-        <!-- Search-Form Component -->
+    <!-- Search-Form Component -->
+    <form (ngSubmit)="search()" class="input-group shadow-lg">
+      <label for="data_inicial" title="data_inicial"></label>
+      <input id="data_inicial" name="data_inicial" type="date" class="form-control"
+             placeholder="Data Inicial" [(ngModel)]="data_init">
+      <label for="data_final" title="data_final"></label>
+      <input id="data_final" name="data_final" type="date" class="form-control" placeholder="Data Final"
+             [(ngModel)]="data_end">
+      <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
 
     </div>
 
@@ -85,3 +94,4 @@
 
 
 </div>
+
