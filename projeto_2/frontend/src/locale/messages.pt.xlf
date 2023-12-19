@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="pt" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="navbarContactText" datatype="html">
         <source>Contact</source>
+        <target>Contacto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">10,13</context>
@@ -13,6 +14,7 @@
       </trans-unit>
       <trans-unit id="navbarReviewText" datatype="html">
         <source>Reviews</source>
+        <source>Avaliações</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">13,18</context>
