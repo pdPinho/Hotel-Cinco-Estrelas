@@ -21,8 +21,10 @@
           },
           "fr": {
             "translation": "src/locale/messages.fr.xlf"
+          },
+          "ar": {
+            "translation": "src/locale/messages.ar.xlf"
           }
-
         }
       },
       "architect": {
@@ -58,6 +60,9 @@
             "pt": {
               "localize": ["pt"]
             },
+            "ar": {
+              "localize": ["ar"]
+            },
             "production": {
               "budgets": [
                 {
@@ -89,6 +94,9 @@
             },
             "pt": {
               "buildTarget": "frontend:build:development,pt"
+            },
+            "ar": {
+              "buildTarget": "frontend:build:development,ar"
             },
             "production": {
               "buildTarget": "frontend:build:production"

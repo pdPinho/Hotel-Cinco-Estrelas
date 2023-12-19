@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="pt-PT" datatype="plaintext" original="ng2.template">
+  <file source-language="ar-sa" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="appBrandName" datatype="html">
         <source>Hotel Cinco Estrelas</source>
@@ -14,7 +14,7 @@
       </trans-unit>
       <trans-unit id="navbarContactText" datatype="html">
         <source>Contact</source>
-        <target>Contacto</target>
+        <target>اتصال</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">10,13</context>
@@ -24,7 +24,7 @@
       </trans-unit>
       <trans-unit id="navbarReviewText" datatype="html">
           <source>Reviews</source>
-        <target>Avaliações</target>
+        <target>التعليقات</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">13,18</context>
@@ -34,7 +34,7 @@
       </trans-unit>
       <trans-unit id="appFooterText" datatype="html">
         <source>© 2023 Hotel Cinco Estrelas. All rights reserved.</source>
-        <target>© 2023 Hotel Cinco Estrelas. Todos os direitos reservados.</target>
+        <target>© 2023 Hotel Cinco Estrelas كل الحقوق محفوظة</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">33,36</context>
@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit id="homeWelcomeHeader" datatype="html">
         <source>Welcome to the Five Star Hotel</source>
-        <target>Bem-vindo ao Hotel Cinco Estrelas</target>
+        <target>مرحبًا بكم في فندق الخمس نجوم</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
           <context context-type="linenumber">10,11</context>
@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="homeWelcomeText" datatype="html">
         <source>Book your stay, <x id="INTERPOLATION" equiv-text="{{ currentDate }}"/></source>
-        <target>Faça uma reserva, <x id="INTERPOLATION" equiv-text="{{ currentDate }}"/></target>
+        <target><x id="INTERPOLATION" equiv-text="{{ currentDate }}"/> احجز إقامتك, </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
           <context context-type="linenumber">11,13</context>
@@ -64,7 +64,7 @@
       </trans-unit>
       <trans-unit id="homeAboutTextHeader" datatype="html">
         <source>About us</source>
-        <target>Acerca de Nós</target>
+        <target>معلومات عنا</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
           <context context-type="linenumber">20,21</context>
@@ -75,11 +75,7 @@
       <trans-unit id="homeAboutText" datatype="html">
         <source> Welcome to our oasis of luxury in the heart of Portugal. Our hotel 5 stars is a haven of elegance and sophistication, created to satisfy the most demanding tastes. With a privileged location, we offer our guests a unique experience, combining the beauty of architecture classic with the finest modern amenities. </source>
         <target>
-          Bem-vindo ao nosso oásis de luxo em pleno coração de Portugal. O nosso hotel
-          5 estrelas é um refúgio de elegância e sofisticação, criado para satisfazer
-          os gostos mais exigentes. Com uma localização privilegiada, oferecemos aos
-          nossos hóspedes uma experiência única, combinando a beleza da arquitetura
-          clássica com as comodidades modernas mais requintadas.
+مرحبًا بكم في واحة الفخامة في قلب البرتغال. فندقنا ذو الخمس نجوم هو ملاذ للأناقة والرقي، تم إنشاؤه لإرضاء الأذواق الأكثر تطلبًا. مع موقع متميز، نقدم لضيوفنا تجربة فريدة من نوعها، تجمع بين جمال الهندسة المعمارية الكلاسيكية وأرقى وسائل الراحة الحديثة.
         </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
@@ -90,7 +86,7 @@
       </trans-unit>
       <trans-unit id="homeLocationTextHeader" datatype="html">
         <source>Our location</source>
-        <target>A Nossa Localização</target>
+        <target>موقعنا</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
           <context context-type="linenumber">45,46</context>
@@ -101,16 +97,7 @@
       <trans-unit id="homeLocationText" datatype="html">
         <source> Enjoy a truly privileged location. Our 5* hotel Stars is perfectly situated to provide you with quick and easy access easy access to the region&apos;s treasures. Imagine waking up to stunning views of the surrounding countryside, where the sea meets the land, or the green hills extend as far as the eye can see. Our guests have at their disposal A multitude of local activities to explore, from tours horseback riding in the mountains, wine tastings in renowned wineries, until Vibrant nights in the city. We want your stay to be an experience complete, making the most of everything our privileged location has has to offer. </source>
         <target>
-          Desfrute de uma localização verdadeiramente privilegiada. O nosso hotel 5
-          estrelas está perfeitamente situado para lhe proporcionar acesso rápido e
-          fácil aos tesouros da região. Imagine-se a acordar com vistas deslumbrantes
-          da paisagem circundante, onde o mar encontra a terra, ou as colinas verdes
-          se estendem até onde a vista alcança. Os nossos hóspedes têm à sua
-          disposição uma infinidade de atividades locais para explorar, desde passeios
-          a cavalo nas montanhas, degustações de vinhos em adegas de renome, até
-          noites vibrantes na cidade. Queremos que a sua estadia seja uma experiência
-          completa, aproveitando ao máximo tudo o que a nossa localização privilegiada
-          tem para oferecer.
+استمتع بموقع متميز حقًا. يتمتع فندق Stars ذو الـ 5 نجوم بموقع مثالي ليوفر لك وصولاً سريعًا وسهلاً إلى كنوز المنطقة. تخيل أنك تستيقظ على مناظر خلابة للريف المحيط، حيث يلتقي البحر باليابسة، أو تمتد التلال الخضراء على مد البصر. يتوفر لضيوفنا تحت تصرفهم العديد من الأنشطة المحلية التي يمكن استكشافها، بدءًا من جولات ركوب الخيل في الجبال وتذوق النبيذ في مصانع النبيذ الشهيرة، وحتى الليالي النابضة بالحياة في المدينة. نريد أن تكون إقامتك تجربة كاملة، وتحقيق أقصى استفادة من كل ما يقدمه موقعنا المتميز.
         </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
@@ -121,7 +108,7 @@
       </trans-unit>
       <trans-unit id="homeCommitmentTextHeader" datatype="html">
         <source>Our Commitment</source>
-        <target>O Nosso Compromisso</target>
+        <target>التزامنا</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
           <context context-type="linenumber">66,68</context>
@@ -132,13 +119,7 @@
       <trans-unit id="homeCommitmentText" datatype="html">
         <source> In our 5-star hotel, your comfort and satisfaction are our priority priority. We offer world-class facilities, gourmet restaurants, Relaxing spas and world-class service. This is where the dreams come true, and we are committed to providing every Guest an experience that transcends all expectations. Come enjoy our world-class hospitality and immerse yourself in luxury Unrivaled from our hotel in Portugal. </source>
         <target>
-          No nosso hotel de 5 estrelas, o seu conforto e satisfação são a nossa
-          prioridade. Oferecemos instalações de classe mundial, restaurantes gourmet,
-          spas relaxantes e um serviço de classe internacional. Este é o lugar onde os
-          sonhos se tornam realidade, e estamos empenhados em proporcionar a cada
-          hóspede uma experiência que transcende todas as expectativas. Venha
-          desfrutar da nossa hospitalidade de classe mundial e mergulhe no luxo
-          inigualável do nosso hotel em Portugal.
+في فندقنا ذو الـ 5 نجوم، تعتبر راحتك ورضاك من أولوياتنا. نحن نقدم مرافق عالمية المستوى ومطاعم ذواقة ومنتجعات صحية للاسترخاء وخدمة عالمية المستوى. هذا هو المكان الذي تتحقق فيه الأحلام، ونحن ملتزمون بتزويد كل ضيف بتجربة تتجاوز كل التوقعات. تعال واستمتع بضيافتنا ذات المستوى العالمي وانغمس في رفاهية لا مثيل لها من فندقنا في البرتغال.
         </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/home/home.component.html</context>
@@ -149,7 +130,7 @@
       </trans-unit>
         <trans-unit id="navbarProfileText" datatype="html">
           <source>Profile</source>
-          <target>Perfil</target>
+          <target>حساب تعريفي</target>
           <context-group purpose="location">
             <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
             <context context-type="linenumber">7,10</context>
@@ -159,7 +140,7 @@
         </trans-unit>
         <trans-unit id="navbarLogoutText" datatype="html">
           <source>Log Out</source>
-          <target>Sair</target>
+          <target>تسجيل خروج</target>
           <context-group purpose="location">
             <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
             <context context-type="linenumber">10,15</context>
@@ -169,7 +150,7 @@
         </trans-unit>
         <trans-unit id="navbarLoginText" datatype="html">
           <source>Log In</source>
-          <target>Entrar</target>
+          <target>تسجيل الدخول</target>
           <context-group purpose="location">
             <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
             <context context-type="linenumber">18,21</context>
@@ -179,7 +160,7 @@
         </trans-unit>
         <trans-unit id="navbarRegisterText" datatype="html">
           <source>Register</source>
-          <target>Registar</target>
+          <target>يسجل</target>
           <context-group purpose="location">
             <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
             <context context-type="linenumber">21,25</context>

@@ -4,10 +4,10 @@
 <ng-template #personalBlock>
   <ul class="navbar-nav me-auto">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/profile">Profile</a>
+      <a i18n="profile Text|profile Text@@navbarProfileText" class="nav-link" routerLink="/profile">Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="logout()">Log Out</a>
+      <a i18n="logout Text|logout Text@@navbarLogoutText" class="nav-link" (click)="logout()">Log Out</a>
     </li>
   </ul>
 </ng-template>
@@ -15,10 +15,10 @@
 <ng-template #anonymousBlock>
   <ul class="navbar-nav me-auto">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/login">Log In</a>
+      <a i18n="login Text|login Text@@navbarLoginText" class="nav-link" routerLink="/login">Log In</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/register">Register</a>
+      <a i18n="register Text|register Text@@navbarRegisterText" class="nav-link" routerLink="/register">Register</a>
     </li>
   </ul>
 </ng-template>
