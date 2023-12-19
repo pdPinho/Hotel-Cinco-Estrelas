@@ -1,20 +1,20 @@
 <section id="profile" style="margin-bottom: 100px;">
     <div id="banner">
-        <div *ngIf="true; then ifBlock else elseBlock"></div> <!-- isSuperUser -->
-        <ng-template #ifBlock>
-            <img src="frontend/src/assets/images/RedWhite.png" alt="banner" style="width: 100%; height: 16em;">
+        <div *ngIf="isSuperUser; then ifBlock1 else elseBlock1"></div> <!-- isSuperUser -->
+        <ng-template #ifBlock1>
+            <img src="assets/images/RedWhite.png" alt="banner" style="width: 100%; height: 16em;">
         </ng-template>
-        <ng-template #elseBlock>
-            <img src="frontend/src/assets/images/GreenWhite.png" alt="banner" style="width: 100%; height: 16em;">
+        <ng-template #elseBlock1>
+            <img src="assets/images/GreenWhite.png" alt="banner" style="width: 100%; height: 16em;">
         </ng-template>
     </div>
     <div style="position:relative; left: 60px; top: -80px;">
-        <div *ngIf="false; then ifBlock else elseBlock"></div> <!-- image -->
-        <ng-template #ifBlock>
-            <img src="frontend/src/assets/images/Untitled.png" alt="profile" style="height: 160px; aspect-ratio: 1;">
+        <div *ngIf="isSuperUser; then ifBlock2 else elseBlock2"></div> <!-- image -->
+        <ng-template #ifBlock2>
+            <img src="assets/images/Untitled.png" alt="profile" style="height: 160px; aspect-ratio: 1;">
         </ng-template>
-        <ng-template #elseBlock>
-            <img src="frontend/src/assets/images/Untitled.png" alt="profile picture"
+        <ng-template #elseBlock2>
+            <img src="assets/images/Untitled.png" alt="profile picture"
                 style="height: 160px; aspect-ratio: 1;">
         </ng-template>
     </div>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="float-child child2">
-        <h1></h1>
+        <h1>Static User Name</h1>
 
         <table>
             <tr>
