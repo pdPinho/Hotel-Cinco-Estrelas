@@ -12,21 +12,22 @@ export class AuthService {
   }
 
   async login(username: string, password: string): Promise<any> {
-    const url =  this.baseURL + 'login/';
+    const url = this.baseURL + 'login/';
     try {
-      return await this.httpClient.post(url, { username, password }).toPromise();
-    }
-    catch (error) {
+      return await this.httpClient.post(url, {
+        "username": username,
+        "password": password
+      }).toPromise();
+    } catch (error) {
       throw error;
     }
   }
 
   async logout(): Promise<any> {
-    const url =  this.baseURL + 'logout/';
+    const url = this.baseURL + 'logout/';
     try {
       return await this.httpClient.post(url, {}).toPromise();
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }

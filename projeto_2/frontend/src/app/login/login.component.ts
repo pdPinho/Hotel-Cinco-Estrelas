@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from '../services/authentication.service';
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   standalone: true,
@@ -18,7 +19,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
 
   }
 
@@ -26,6 +27,9 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).then(
       response => {
         console.log('Login successful:', response);
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        this.router.navigate(['/profile']).then(r => console.log('Navigate to profile successful:', r));
       },
       error => {
         console.error('Login failed:', error);
