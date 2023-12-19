@@ -1,14 +1,14 @@
 <div class="container body-content">
 
-    <img 
-        src="assets/images/HotelCincoEstrelas.png" 
-        class="object-fit-cover rounded-4 home-img" 
+    <img
+        src="assets/images/HotelCincoEstrelas.png"
+        class="object-fit-cover rounded-4 home-img"
         alt="Hotel Cinco Estrelas"
     >
 
     <div class="d-block awful">
-        <h1 class="text-left">%WELCOME_HEADER%</h1>
-        <p class="lead">%WELCOME_TEXT%, %CURRENT_TIME%</p>
+        <h1 i18n="welcome header|welcome header@@homeWelcomeHeader" class="text-left">Welcome to the Five Star Hotel</h1>
+        <p i18n="welcome text|welcome text@@homeWelcomeText" class="lead">Book your stay, {{ currentDate }}</p>
 
         <!-- Search-Form Component -->
 
@@ -17,45 +17,71 @@
     <section id="MainPageInfo">
         <div id="InfoAboutHotel" class="d-flex flex-row my-5">
             <div>
-                <h2 class="fw-semibold">%ABOUT_HOTEL_HEADER%</h2>
-                <p class="lead">%ABOUT_HOTEL_TEXT%</p>
+                <h2 i18n="about text header|about text header@@homeAboutTextHeader" class="fw-semibold">About us</h2>
+                <p i18n="about text|about text@@homeAboutText" class="lead">
+                  Welcome to our oasis of luxury in the heart of Portugal. Our hotel
+                  5 stars is a haven of elegance and sophistication, created to satisfy
+                  the most demanding tastes. With a privileged location, we offer
+                  our guests a unique experience, combining the beauty of architecture
+                  classic with the finest modern amenities.
+                </p>
             </div>
-            <img 
-                src="assets/images/entrance.jpg" 
-                class="about-img ms-5" 
+            <img
+                src="assets/images/entrance.jpg"
+                class="about-img ms-5"
                 alt="Hotel Entrance"
-            >
-        </div>
-    
-        <hr />
-    
-        <div id="InfoAboutLisbon" class="d-flex flex-row my-5">
-            <div>
-                <h2 class="fw-semibold">%ABOUT_LISBON_HEADER%</h2>
-                <p class="lead">%ABOUT_LISBON_TEXT%</p>
-            </div>
-            <img 
-                src="assets/images/lisbon.jpg" 
-                class="about-img ms-5" 
-                alt="Lisbon"
             >
         </div>
 
         <hr />
-    
+
+        <div id="InfoAboutLisbon" class="d-flex flex-row my-5">
+          <img
+            src="assets/images/lisbon.jpg"
+            class="about-img"
+            alt="Lisbon"
+          >
+            <div class="ms-5 ">
+                <h2 i18n="location text header|location text header@@homeLocationTextHeader" class="fw-semibold">Our location</h2>
+                <p i18n="location text|location text@@homeLocationText" class="lead">
+                  Enjoy a truly privileged location. Our 5* hotel
+                  Stars is perfectly situated to provide you with quick and easy access
+                  easy access to the region's treasures. Imagine waking up to stunning views
+                  of the surrounding countryside, where the sea meets the land, or the green hills
+                  extend as far as the eye can see. Our guests have at their disposal
+                  A multitude of local activities to explore, from tours
+                  horseback riding in the mountains, wine tastings in renowned wineries, until
+                  Vibrant nights in the city. We want your stay to be an experience
+                  complete, making the most of everything our privileged location has
+                  has to offer.
+                </p>
+            </div>
+
+        </div>
+
+        <hr />
+
         <div id="InfoAboutUs" class="d-flex flex-row mt-5">
             <div>
-                <h2 class="fw-semibold">%ABOUT_US_HEADER%</h2>
-                <p class="lead">%ABOUT_US_TEXT%</p>
+                <h2 i18n="commitment text header|commitment text header@@homeCommitmentTextHeader" class="fw-semibold">Our Commitment</h2>
+                <p i18n="commitment text|commitment text@@homeCommitmentText" class="lead">
+                  In our 5-star hotel, your comfort and satisfaction are our priority
+                  priority. We offer world-class facilities, gourmet restaurants,
+                  Relaxing spas and world-class service. This is where the
+                  dreams come true, and we are committed to providing every
+                  Guest an experience that transcends all expectations. Come
+                  enjoy our world-class hospitality and immerse yourself in luxury
+                  Unrivaled from our hotel in Portugal.
+                </p>
             </div>
-            <img 
-                src="assets/images/pool.jpg" 
-                class="about-img ms-5" 
+            <img
+                src="assets/images/pool.jpg"
+                class="about-img ms-5"
                 alt="Hotel Pool"
             >
         </div>
     </section>
 
-    
+
 
 </div>

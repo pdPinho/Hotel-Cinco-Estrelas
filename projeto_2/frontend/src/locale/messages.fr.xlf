@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="fr-FR" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="appBrandName" datatype="html">
+        <source>Hotel Cinco Estrelas</source>
+        <target>Hotel Cinco Estrelas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">4,8</context>
+        </context-group>
+        <note priority="1" from="description">brand Name</note>
+        <note priority="1" from="meaning">brand Name</note>
+      </trans-unit>
+      <trans-unit id="navbarContactText" datatype="html">
+        <source>Contact</source>
+        <target>Contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10,13</context>
+        </context-group>
+        <note priority="1" from="description">Contact Text</note>
+        <note priority="1" from="meaning">navbar contact</note>
+      </trans-unit>
+      <trans-unit id="navbarReviewText" datatype="html">
+          <source>Reviews</source>
+        <target>Commentaires</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13,18</context>
+        </context-group>
+        <note priority="1" from="description">Reviews Text</note>
+        <note priority="1" from="meaning">navbar reviews</note>
+      </trans-unit>
+      <trans-unit id="appFooterText" datatype="html">
+        <source>© 2023 Hotel Cinco Estrelas. All rights reserved.</source>
+        <target>© 2023 Hotel Cinco Estrelas. Tous droits réservés.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">33,36</context>
+        </context-group>
+        <note priority="1" from="description">footer Text</note>
+        <note priority="1" from="meaning">footer Text</note>
+      </trans-unit>
+      <trans-unit id="homeWelcomeHeader" datatype="html">
+        <source>Welcome to the Five Star Hotel</source>
+        <target>Bienvenue dans notre hôtel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <note priority="1" from="description">welcome header</note>
+        <note priority="1" from="meaning">welcome header</note>
+      </trans-unit>
+      <trans-unit id="homeWelcomeText" datatype="html">
+        <source>Book your stay, <x id="INTERPOLATION" equiv-text="{{ currentDate }}"/></source>
+        <target>Faire une réservation, <x id="INTERPOLATION" equiv-text="{{ currentDate }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">11,13</context>
+        </context-group>
+        <note priority="1" from="description">welcome text</note>
+        <note priority="1" from="meaning">welcome text</note>
+      </trans-unit>
+      <trans-unit id="homeAboutTextHeader" datatype="html">
+        <source>About us</source>
+        <target>À propos de nous</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+        <note priority="1" from="description">about text header</note>
+        <note priority="1" from="meaning">about text header</note>
+      </trans-unit>
+      <trans-unit id="homeAboutText" datatype="html">
+        <source> Welcome to our oasis of luxury in the heart of Portugal. Our hotel 5 stars is a haven of elegance and sophistication, created to satisfy the most demanding tastes. With a privileged location, we offer our guests a unique experience, combining the beauty of architecture classic with the finest modern amenities. </source>
+        <target>
+          Bienvenue dans notre oasis de luxe au cœur du Portugal. Notre hôtel
+          5 étoiles est un havre d'élégance et de sophistication, créé pour satisfaire
+          les goûts les plus exigeants. Avec un emplacement privilégié, nous vous proposons
+          à nos hôtes une expérience unique, alliant la beauté de l'architecture
+          classique avec les meilleurs équipements modernes.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">22,26</context>
+        </context-group>
+        <note priority="1" from="description">about text</note>
+        <note priority="1" from="meaning">about text</note>
+      </trans-unit>
+      <trans-unit id="homeLocationTextHeader" datatype="html">
+        <source>Our location</source>
+        <target>Notre emplacement</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+        <note priority="1" from="description">location text header</note>
+        <note priority="1" from="meaning">location text header</note>
+      </trans-unit>
+      <trans-unit id="homeLocationText" datatype="html">
+        <source> Enjoy a truly privileged location. Our 5* hotel Stars is perfectly situated to provide you with quick and easy access easy access to the region&apos;s treasures. Imagine waking up to stunning views of the surrounding countryside, where the sea meets the land, or the green hills extend as far as the eye can see. Our guests have at their disposal A multitude of local activities to explore, from tours horseback riding in the mountains, wine tastings in renowned wineries, until Vibrant nights in the city. We want your stay to be an experience complete, making the most of everything our privileged location has has to offer. </source>
+        <target>
+          Profitez d'un emplacement véritablement privilégié. Notre hôtel 5
+          Stars est parfaitement situé pour vous offrir un accès rapide et facile
+          Un accès facile aux trésors de la région. Imaginez vous réveiller avec une vue imprenable
+          de la campagne environnante, là où la mer rencontre la terre, ou les collines verdoyantes
+          s'étendent à perte de vue. Nos hôtes ont à leur disposition
+          Une multitude d'activités locales à découvrir, des visites guidées
+          équitation en montagne, dégustations de vins dans des domaines viticoles renommés, jusqu'à
+          Des nuits animées en ville. Nous voulons que votre séjour soit une expérience
+          complet, tirant le meilleur parti de tout ce que notre emplacement privilégié a
+          a à offrir.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">47,54</context>
+        </context-group>
+        <note priority="1" from="description">location text</note>
+        <note priority="1" from="meaning">location text</note>
+      </trans-unit>
+      <trans-unit id="homeCommitmentTextHeader" datatype="html">
+        <source>Our Commitment</source>
+        <target>Notre engagement</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">66,68</context>
+        </context-group>
+        <note priority="1" from="description">commitment text header</note>
+        <note priority="1" from="meaning">commitment text header</note>
+      </trans-unit>
+      <trans-unit id="homeCommitmentText" datatype="html">
+        <source> In our 5-star hotel, your comfort and satisfaction are our priority priority. We offer world-class facilities, gourmet restaurants, Relaxing spas and world-class service. This is where the dreams come true, and we are committed to providing every Guest an experience that transcends all expectations. Come enjoy our world-class hospitality and immerse yourself in luxury Unrivaled from our hotel in Portugal. </source>
+        <target>
+          Dans notre hôtel 5 étoiles, votre confort et votre satisfaction sont notre priorité
+          priorité. Nous proposons des installations de classe mondiale, des restaurants gastronomiques,
+          Des spas relaxants et un service de classe mondiale. C'est là que
+          Les rêves deviennent réalité et nous nous engageons à fournir chaque
+          Invitez une expérience qui transcende toutes les attentes. Venez
+          Profitez de notre hospitalité de classe mondiale et plongez-vous dans le luxe
+          Inégalé à notre hôtel au Portugal.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">68,73</context>
+        </context-group>
+        <note priority="1" from="description">commitment text</note>
+        <note priority="1" from="meaning">commitment text</note>
+      </trans-unit>
+      <trans-unit id="navbarProfileText" datatype="html">
+        <source>Profile</source>
+        <target>Profil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
+          <context context-type="linenumber">7,10</context>
+        </context-group>
+        <note priority="1" from="description">profile Text</note>
+        <note priority="1" from="meaning">profile Text</note>
+      </trans-unit>
+      <trans-unit id="navbarLogoutText" datatype="html">
+        <source>Log Out</source>
+        <target>Se déconnecter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
+          <context context-type="linenumber">10,15</context>
+        </context-group>
+        <note priority="1" from="description">logout Text</note>
+        <note priority="1" from="meaning">logout Text</note>
+      </trans-unit>
+      <trans-unit id="navbarLoginText" datatype="html">
+        <source>Log In</source>
+        <target>Se connecter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
+          <context context-type="linenumber">18,21</context>
+        </context-group>
+        <note priority="1" from="description">login Text</note>
+        <note priority="1" from="meaning">login Text</note>
+      </trans-unit>
+      <trans-unit id="navbarRegisterText" datatype="html">
+        <source>Register</source>
+        <target>Registre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login-partial/login-partial.component.html</context>
+          <context context-type="linenumber">21,25</context>
+        </context-group>
+        <note priority="1" from="description">register Text</note>
+        <note priority="1" from="meaning">register Text</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

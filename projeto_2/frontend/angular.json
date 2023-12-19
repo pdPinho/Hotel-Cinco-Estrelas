@@ -7,23 +7,31 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
+          "style": "scss"
         }
       },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pt": {
+            "translation": "src/locale/messages.pt.xlf"
+          },
+          "fr": {
+            "translation": "src/locale/messages.fr.xlf"
+          },
+          "ar": {
+            "translation": "src/locale/messages.ar.xlf"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": true,
             "outputPath": "dist/frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -46,6 +54,15 @@
             "scripts": []
           },
           "configurations": {
+            "fr": {
+              "localize": ["fr"]
+            },
+            "pt": {
+              "localize": ["pt"]
+            },
+            "ar": {
+              "localize": ["ar"]
+            },
             "production": {
               "budgets": [
                 {
@@ -72,6 +89,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "fr": {
+              "buildTarget": "frontend:build:development,fr"
+            },
+            "pt": {
+              "buildTarget": "frontend:build:development,pt"
+            },
+            "ar": {
+              "buildTarget": "frontend:build:development,ar"
+            },
             "production": {
               "buildTarget": "frontend:build:production"
             },

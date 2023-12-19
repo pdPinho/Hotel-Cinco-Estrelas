@@ -1,11 +1,19 @@
-import { Component, inject } from '@angular/core';
-import { Review } from "../review";
+import {Component, inject} from '@angular/core';
+import {Review} from "../review";
 import {ReviewService} from "../services/review.service";
+import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
+  standalone: true,
   selector: 'app-review',
   templateUrl: './review.component.html',
-  styleUrl: './review.component.scss'
+  styleUrl: './review.component.scss',
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
 })
 export class ReviewComponent {
   reviews: Review[] = [];

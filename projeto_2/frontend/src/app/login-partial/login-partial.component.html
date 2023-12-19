@@ -1,24 +1,24 @@
-<div *ngIf="false; then personalBlock else anonymousBlock"></div>
+<div *ngIf="user; then personalBlock else anonymousBlock"></div>
 <!-- If logged in (aka, has token) show first, else show second-->
 
 <ng-template #personalBlock>
-    <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/profile">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/logout">Log Out</a>
-        </li>
-    </ul>
+  <ul class="navbar-nav me-auto">
+    <li class="nav-item">
+      <a i18n="profile Text|profile Text@@navbarProfileText" class="nav-link" routerLink="/profile">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a i18n="logout Text|logout Text@@navbarLogoutText" class="nav-link" (click)="logout()">Log Out</a>
+    </li>
+  </ul>
 </ng-template>
 
 <ng-template #anonymousBlock>
-    <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Log In</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Register</a>
-        </li>
-    </ul>
+  <ul class="navbar-nav me-auto">
+    <li class="nav-item">
+      <a i18n="login Text|login Text@@navbarLoginText" class="nav-link" routerLink="/login">Log In</a>
+    </li>
+    <li class="nav-item">
+      <a i18n="register Text|register Text@@navbarRegisterText" class="nav-link" routerLink="/register">Register</a>
+    </li>
+  </ul>
 </ng-template>
