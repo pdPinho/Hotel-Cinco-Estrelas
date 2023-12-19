@@ -6,10 +6,10 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=20)
-    phone = models.CharField(max_length=9)
-    address = models.CharField(max_length=100)
-    birthdate = models.DateField()
-    rooms = models.ManyToManyField('Room', through='Booking')
+    phone = models.CharField(max_length=9, null=True, blank=True, default=None)
+    address = models.CharField(max_length=100, null=True, blank=True, default=None)
+    birthdate = models.DateField(null=True, blank=True, default=None)
+    rooms = models.ManyToManyField('Room', through='Booking', blank=True, default=None)
     image = models.ImageField(upload_to='images/', null=True, blank=True, default=None)
 
     def __str__(self):
