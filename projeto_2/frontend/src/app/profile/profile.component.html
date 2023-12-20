@@ -1,4 +1,4 @@
-<section id="profile" style="margin-bottom: 100px;">
+<section *ngIf="user; else noUser" id="profile" style="margin-bottom: 100px;">
     <div id="banner">
         <div *ngIf="isSuperUser; then ifBlock1 else elseBlock1"></div> <!-- isSuperUser -->
         <ng-template #ifBlock1>
@@ -24,26 +24,30 @@
     </div>
 
     <div class="float-child child2">
-        <h1>Static User Name</h1>
+        <h1>{{user.name}}</h1>
 
         <table>
             <tr>
                 <td class="contact">Address:</td>
-                <td>Av. Static Address</td>
+                <td>{{user.address}}</td>
             </tr>
             <tr>
                 <td class="contact">Phone:</td>
-                <td>999555111</td>
+                <td>{{user.phone}}</td>
             </tr>
             <tr>
                 <td class="contact">Email:</td>
-                <td>static&#64;email.com</td>
+                <td>{{user.email}}</td>
             </tr>
             <tr>
                 <td class="contact">Birthdate:</td>
-                <td>12/04/2020</td>
+                <td>{{user.birthdate}}</td>
             </tr>
         </table>
     </div>
 
 </section>
+
+<ng-template #noUser>
+    <h1>Error Occurred: Profile was not found!</h1>
+</ng-template>
