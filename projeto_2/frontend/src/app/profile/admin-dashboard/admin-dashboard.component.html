@@ -1,0 +1,25 @@
+<ul class="nav nav-tabs nav-fill" >
+    <li class="nav-item" *ngFor="let type of possibleLists">
+        <button
+            id="{{ type }}"
+            class="nav-link"
+            [ngClass]="{ 'active': active === type }"
+            aria-current="page"
+            (click)="setActive(type)" 
+            >
+            {{ type }}
+        </button>
+    </li>
+</ul>
+
+<div *ngIf="active">
+    <list-admin-objects [type]="active"></list-admin-objects>
+</div>
+
+
+<!-- <div *ngIf="active">
+    <ul *ngFor="let elem of list">
+        <li>{{ elem.id }} - {{ elem.name }}</li>
+    </ul>
+</div> -->
+  
