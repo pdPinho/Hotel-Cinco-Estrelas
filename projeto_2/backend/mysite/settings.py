@@ -117,7 +117,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -132,3 +131,5 @@ REST_FRAMEWORK = {
 
 # CORS (Cross-Origin Resource Sharing) config
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = 'app.User'

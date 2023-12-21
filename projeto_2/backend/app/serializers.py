@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ('id', 'name', 'price', 'max_guests')
+        fields = ('id', 'name', 'price', 'max_guests', 'type', 'image')
 
 
 class BookingSerializer(serializers.ModelSerializer):

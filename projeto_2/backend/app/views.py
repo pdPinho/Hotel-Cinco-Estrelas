@@ -24,6 +24,13 @@ def users_view(request, id=None):
             except User.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
             return Response(UserSerializer(user).data)
+        elif 'email' in request.GET:
+            email = request.GET['email']
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(UserSerializer(user).data)
         else:
             users = User.objects.all()
             if 'num' in request.GET:
@@ -78,14 +85,13 @@ class LogoutView(APIView):
 
 
 class RegisterView(APIView):
-    serializer_class = UserSerializer
-
-    def create(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED, headers=headers)
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RoomView(APIView):
