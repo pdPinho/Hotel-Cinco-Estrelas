@@ -12,10 +12,8 @@ export class RegisterService {
   async register(username: string, email: string, password: string): Promise<any> {
     const userExists = await this.checkIfUserExists(email);
 
-    if (userExists) {
-      console.log('User already exists');
-      return null;
-    }
+    if (userExists) 
+      throw new Error('User already exists');
 
     const url = this.baseURL + "register/";
     try {

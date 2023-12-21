@@ -8,7 +8,9 @@
             "password": "admin",
             "phone": "234039729",
             "address": "Street of admins",
-            "birthdate": "1993-02-15"
+            "birthdate": "1993-02-15",
+            "is_active": true,
+            "is_admin": true
         }
     },
     {
@@ -20,7 +22,9 @@
             "password": "password",
             "phone": "123123123",
             "address": "Rua de portugal",
-            "birthdate": "1992-02-15"
+            "birthdate": "1992-02-15",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -32,7 +36,9 @@
             "password": "password",
             "phone": "234937119",
             "address": "Rua dos figos",
-            "birthdate": "1999-07-11"
+            "birthdate": "1999-07-11",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -44,7 +50,9 @@
             "password": "password",
             "phone": "918378195",
             "address": "Beco das nações",
-            "birthdate": "1997-06-15"
+            "birthdate": "1997-06-15",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -56,7 +64,9 @@
             "password": "password",
             "phone": "234039729",
             "address": "Avenida dos Aliados",
-            "birthdate": "2001-09-09"
+            "birthdate": "2001-09-09",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -68,7 +78,9 @@
             "password": "password",
             "phone": "987654321",
             "address": "Sunset Boulevard",
-            "birthdate": "1995-03-25"
+            "birthdate": "1995-03-25",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -80,7 +92,9 @@
             "password": "password",
             "phone": "876543210",
             "address": "Oak Street",
-            "birthdate": "1988-11-18"
+            "birthdate": "1988-11-18",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -92,7 +106,9 @@
             "password": "password",
             "phone": "765432109",
             "address": "Pine Lane",
-            "birthdate": "1990-07-02"
+            "birthdate": "1990-07-02",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -104,7 +120,9 @@
             "password": "password",
             "phone": "654321098",
             "address": "Maple Avenue",
-            "birthdate": "1994-05-14"
+            "birthdate": "1994-05-14",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -116,7 +134,9 @@
             "password": "password",
             "phone": "543210987",
             "address": "Cedar Street",
-            "birthdate": "1986-09-30"
+            "birthdate": "1986-09-30",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -128,7 +148,9 @@
             "password": "password",
             "phone": "876543210",
             "address": "Birch Lane",
-            "birthdate": "1991-04-07"
+            "birthdate": "1991-04-07",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -140,7 +162,9 @@
             "password": "password",
             "phone": "765432109",
             "address": "Chestnut Street",
-            "birthdate": "1993-12-22"
+            "birthdate": "1993-12-22",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -152,7 +176,9 @@
             "password": "password",
             "phone": "654321098",
             "address": "Sycamore Lane",
-            "birthdate": "1989-08-14"
+            "birthdate": "1989-08-14",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -164,7 +190,9 @@
             "password": "password",
             "phone": "543210987",
             "address": "Willow Avenue",
-            "birthdate": "1995-01-29"
+            "birthdate": "1995-01-29",
+            "is_active": true,
+            "is_admin": false
         }
     },
     {
@@ -176,7 +204,9 @@
             "password": "password",
             "phone": "432109876",
             "address": "Magnolia Street",
-            "birthdate": "1987-06-10"
+            "birthdate": "1987-06-10",
+            "is_active": true,
+            "is_admin": false
         }
     }
 ]
