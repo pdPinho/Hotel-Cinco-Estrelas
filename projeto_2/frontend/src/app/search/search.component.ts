@@ -16,7 +16,6 @@ export class SearchComponent {
   constructor(private searchService: SearchService, private router: Router) {
     this.data_init = this.searchService.data_init;
     this.data_end = this.searchService.data_end;
-    this.rooms = this..rooms;
   }
 
 
