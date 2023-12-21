@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import { RouterLink } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../services/user.service';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @Component({
   standalone: true,
@@ -12,6 +14,8 @@ import { UserService } from '../services/user.service';
   imports: [
     CommonModule,
     RouterLink,
+    AdminDashboardComponent, 
+    UserDashboardComponent,
   ],
 })
 export class ProfileComponent  {
@@ -26,7 +30,7 @@ export class ProfileComponent  {
       let user_id = JSON.parse(temp_user).id;
       this.userService.getUser(user_id).then((user) => {
         this.user = user;
-        this.isSuperUser = (user.name == 'admin');
+        this.isSuperUser = (user.name == 'Admin');
       });
     }
   }
