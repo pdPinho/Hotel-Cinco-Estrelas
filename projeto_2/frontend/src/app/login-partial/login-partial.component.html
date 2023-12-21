@@ -1,4 +1,4 @@
-<div *ngIf="user; then personalBlock else anonymousBlock"></div>
+<div *ngIf="_user; then personalBlock else anonymousBlock"></div>
 <!-- If logged in (aka, has token) show first, else show second-->
 
 <ng-template #personalBlock>

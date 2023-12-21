@@ -13,13 +13,15 @@ import {Router, RouterLink} from "@angular/router";
   ],
 })
 export class LoginPartialComponent {
+  _user = null;
 
   constructor(private router: Router) {
   }
 
-  get user(): any {
+  getUser(): any {
     let user: any = localStorage.getItem('user');
     if (user !== null) {
+      this._user = user;
       return JSON.parse(user);
     }
   }
