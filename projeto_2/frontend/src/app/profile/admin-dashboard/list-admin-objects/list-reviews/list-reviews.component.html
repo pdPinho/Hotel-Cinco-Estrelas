@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row row-cols-3">
+        <div class="card" style="width: 16rem;" *ngFor="let review of reviews">
+            <img src="assets/images/Untitled.png" class="card-img-top mx-auto my-2" style="width: 80%;" alt="pfp">
+            <div class="card-body">
+              <h3 class="card-title">{{ review.id }} - {{ review.date | date:'medium' }}</h3>
+            </div>
+            <h4>Review Information:</h4>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{review.user.id}} - {{review.user.name}}</li>
+              <li class="list-group-item">{{review.review}}</li>
+              <div class="list-group-item">
+                <span *ngFor="let star of getStars()" class="fa fa-star" [ngClass]="{'checked': review.rating >= star}"></span>
+              </div>
+            </ul>
+          </div>
+    </div>
+</div>
