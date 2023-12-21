@@ -27,8 +27,8 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).then(
       response => {
         console.log('Login successful:', response);
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        this.authService.setItem('token', response['token']);
+        this.authService.setItem('user', JSON.stringify(response['user']));
         this.router.navigate(['/profile']).then(r => console.log('Navigate to profile successful:', r));
       },
       error => {

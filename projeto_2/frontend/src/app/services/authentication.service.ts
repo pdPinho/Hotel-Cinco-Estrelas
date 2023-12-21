@@ -1,14 +1,30 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private baseURL = "http://localhost:8000/api/"
+  private storageSub = new Subject<string>();
 
   constructor(private httpClient: HttpClient) {
 
+  }
+
+  watchStorage(): Observable<any> {
+    return this.storageSub.asObservable();
+  }
+
+  setItem(key: string, data: any): void {
+    localStorage.setItem(key, data);
+    this.storageSub.next('added');
+  }
+
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
+    this.storageSub.next('removed');
   }
 
   async login(username: string, password: string): Promise<any> {

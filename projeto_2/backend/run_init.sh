@@ -11,9 +11,6 @@ python3 manage.py migrate app
 python3 manage.py loaddata user_data.json
 python3 manage.py migrate
 
-python3 manage.py loaddata user_auth_data.json
-python3 manage.py migrate
-
 python3 manage.py loaddata review_data.json
 python3 manage.py migrate
 
