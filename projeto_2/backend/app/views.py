@@ -87,9 +87,10 @@ class LogoutView(APIView):
 class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        print(serializer)
+        print(request.data['password'])
         if serializer.is_valid():
-            serializer.save()
+            User.objects.create_user(serializer.data.get('email'), serializer.data.get('name'),
+                                     password=request.data['password'])
             return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
