@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {RegisterService} from '../services/register.service';
 import {CommonModule} from "@angular/common";
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   standalone: true,
@@ -12,38 +12,29 @@ import {CommonModule} from "@angular/common";
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class RegisterComponent {
-  registrationForm: FormGroup;
+  username: string = '';
+  email: string = '';
+  password: string = '';
+  registrationError: boolean = false;
 
-  constructor(private fb: FormBuilder, private registrationService: RegisterService) {
-    this.registrationForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+  constructor(private registerService: RegisterService, private router: Router) {
+
   }
 
   register(): void {
-    if (this.registrationForm.valid) {
-      const {
-        username,
-        email,
-        password
-      } = this.registrationForm.value;
-
-      this.registrationService.register(username, email, password).subscribe(
-        (response) => {
-          console.log('Registration successful:', response);
-          // Optionally, you can navigate to a different page after successful registration
-        },
-        (error) => {
-          console.error('Registration failed:', error);
-          // Handle registration error, e.g., display an error message to the user
-        }
-      );
-    }
+    this.registerService.register(this.username, this.email, this.password).then(
+      response => {
+        console.log('Register successful:', response);
+        this.router.navigate(['/login']).then(r => console.log('Navigate to login successful:', r));
+      },
+      error => {
+        this.registrationError = true;
+        console.error('Register failed:', error);
+      }
+    );
   }
 }
