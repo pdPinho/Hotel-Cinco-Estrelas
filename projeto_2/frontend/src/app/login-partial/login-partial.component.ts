@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
+import {AuthService} from "../services/authentication.service";
 
 @Component({
   standalone: true,
@@ -13,22 +14,30 @@ import {Router, RouterLink} from "@angular/router";
   ],
 })
 export class LoginPartialComponent {
-  _user = null;
+  _user: any;
+  private storageSub = this.authService.watchStorage().subscribe((data: string) => {
+    if (data === 'removed') {
+      this._user = null;
+    }
+    if (data === 'added') {
+      this._user = this.user;
+    }
+  });
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
+    this._user = this.user;
   }
 
-  getUser(): any {
+  get user(): any {
     let user: any = localStorage.getItem('user');
     if (user !== null) {
-      this._user = user;
       return JSON.parse(user);
     }
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    this.authService.removeItem('token');
+    this.authService.removeItem('user');
     this.router.navigate(['/']).then(r => console.log('Navigate to home successful:', r));
   }
 }
