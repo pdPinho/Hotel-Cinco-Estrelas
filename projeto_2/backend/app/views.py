@@ -87,7 +87,6 @@ class LogoutView(APIView):
 class RegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        print(request.data['password'])
         if serializer.is_valid():
             User.objects.create_user(serializer.data.get('email'), serializer.data.get('name'),
                                      password=request.data['password'])

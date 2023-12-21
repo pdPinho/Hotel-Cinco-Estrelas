@@ -5,7 +5,7 @@
         "fields": {
             "name": "Admin",
             "email": "admin@gmail.com",
-            "password": "admin",
+            "password": "pbkdf2_sha256$320000$93zgvYetCsEhmdwXHFoCEI$IWeGpxUTW2peLIpipUkG5TfAUrRe5B4ySi7qfwhd3yk=",
             "phone": "234039729",
             "address": "Street of admins",
             "birthdate": "1993-02-15",
@@ -19,7 +19,7 @@
         "fields": {
             "name": "Jennifer",
             "email": "jennifer@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "123123123",
             "address": "Rua de portugal",
             "birthdate": "1992-02-15",
@@ -33,7 +33,7 @@
         "fields": {
             "name": "Rock",
             "email": "rock@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "234937119",
             "address": "Rua dos figos",
             "birthdate": "1999-07-11",
@@ -47,7 +47,7 @@
         "fields": {
             "name": "Ana",
             "email": "ana@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "918378195",
             "address": "Beco das nações",
             "birthdate": "1997-06-15",
@@ -61,7 +61,7 @@
         "fields": {
             "name": "Joaquim",
             "email": "joaquim@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "234039729",
             "address": "Avenida dos Aliados",
             "birthdate": "2001-09-09",
@@ -75,7 +75,7 @@
         "fields": {
             "name": "Laura",
             "email": "laura@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "987654321",
             "address": "Sunset Boulevard",
             "birthdate": "1995-03-25",
@@ -89,7 +89,7 @@
         "fields": {
             "name": "Robert",
             "email": "robert@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "876543210",
             "address": "Oak Street",
             "birthdate": "1988-11-18",
@@ -103,7 +103,7 @@
         "fields": {
             "name": "Megan",
             "email": "megan@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "765432109",
             "address": "Pine Lane",
             "birthdate": "1990-07-02",
@@ -117,7 +117,7 @@
         "fields": {
             "name": "Carlos",
             "email": "carlos@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "654321098",
             "address": "Maple Avenue",
             "birthdate": "1994-05-14",
@@ -131,7 +131,7 @@
         "fields": {
             "name": "Sophie",
             "email": "sophie@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "543210987",
             "address": "Cedar Street",
             "birthdate": "1986-09-30",
@@ -145,7 +145,7 @@
         "fields": {
             "name": "Alex",
             "email": "alex@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "876543210",
             "address": "Birch Lane",
             "birthdate": "1991-04-07",
@@ -159,7 +159,7 @@
         "fields": {
             "name": "Olivia",
             "email": "olivia@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "765432109",
             "address": "Chestnut Street",
             "birthdate": "1993-12-22",
@@ -173,7 +173,7 @@
         "fields": {
             "name": "Luke",
             "email": "luke@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "654321098",
             "address": "Sycamore Lane",
             "birthdate": "1989-08-14",
@@ -187,7 +187,7 @@
         "fields": {
             "name": "Emily",
             "email": "emily@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "543210987",
             "address": "Willow Avenue",
             "birthdate": "1995-01-29",
@@ -201,7 +201,7 @@
         "fields": {
             "name": "David",
             "email": "david@gmail.com",
-            "password": "password",
+            "password": "ppbkdf2_sha256$320000$d831l7iG0GIEFy9trFKRqy$giQO6Bm3oTLxoU+mw2qG2x5ISJpS/JFwHu2kMQq1p7o=",
             "phone": "432109876",
             "address": "Magnolia Street",
             "birthdate": "1987-06-10",
