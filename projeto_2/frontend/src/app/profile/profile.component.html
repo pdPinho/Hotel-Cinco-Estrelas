@@ -1,71 +1,70 @@
 <div *ngIf="user; then profile else noUser"></div>
 
 <ng-template #profile>
-    <section  id="profile" style="margin-bottom: 100px;">
-        <div id="banner">
-            <div *ngIf="isSuperUser; then ifBlock1 else elseBlock1"></div> <!-- isSuperUser -->
-            <ng-template #ifBlock1>
-                <img src="assets/images/RedWhite.png" alt="banner" style="width: 100%; height: 16em;">
-            </ng-template>
-            <ng-template #elseBlock1>
-                <img src="assets/images/GreenWhite.png" alt="banner" style="width: 100%; height: 16em;">
-            </ng-template>
-        </div>
-        <div style="position:relative; left: 60px; top: -80px;">
-            <div *ngIf="isSuperUser; then ifBlock2 else elseBlock2"></div> <!-- image -->
-            <ng-template #ifBlock2>
-                <img src="assets/images/Untitled.png" alt="profile" style="height: 160px; aspect-ratio: 1;">
-            </ng-template>
-            <ng-template #elseBlock2>
-                <img src="assets/images/Untitled.png" alt="profile picture"
-                    style="height: 160px; aspect-ratio: 1;">
-            </ng-template>
-        </div>
-        <div class="float-child child1">
-            <button><a routerLink="./profile_edit" style="margin:auto;">Edit Profile</a></button>
-            <button><a routerLink="./upload_file" style="margin:auto;">Upload Profile Picture</a></button>
-        </div>
+  <section id="profile" style="margin-bottom: 100px;">
+    <div id="banner">
+      <div *ngIf="isSuperUser; then ifBlock1 else elseBlock1"></div> <!-- isSuperUser -->
+      <ng-template #ifBlock1>
+        <img src="assets/images/RedWhite.png" alt="banner" style="width: 100%; height: 16em;">
+      </ng-template>
+      <ng-template #elseBlock1>
+        <img src="assets/images/GreenWhite.png" alt="banner" style="width: 100%; height: 16em;">
+      </ng-template>
+    </div>
+    <div style="position:relative; left: 60px; top: -80px;">
+      <div *ngIf="isSuperUser; then ifBlock2 else elseBlock2"></div> <!-- image -->
+      <ng-template #ifBlock2>
+        <img src="assets/images/Untitled.png" alt="profile" style="height: 160px; aspect-ratio: 1;">
+      </ng-template>
+      <ng-template #elseBlock2>
+        <img src="assets/images/Untitled.png" alt="profile picture"
+             style="height: 160px; aspect-ratio: 1;">
+      </ng-template>
+    </div>
+    <div class="float-child child1">
+      <button><a routerLink="./profile_edit" style="margin:auto;">Edit Profile</a></button>
+      <button><a routerLink="./upload_file" style="margin:auto;">Upload Profile Picture</a></button>
+    </div>
 
-        <div class="float-child child2">
-            <h1>{{user?.name}}</h1> <!-- Using safe navigation operator as angular cannot remember that user is null -->
+    <div class="float-child child2">
+      <h1>{{ user?.name }}</h1> <!-- Using safe navigation operator as angular cannot remember that user is null -->
 
-            <table>
-                <tr>
-                    <td class="contact">Address:</td>
-                    <td>{{user?.address}}</td>
-                </tr>
-                <tr>
-                    <td class="contact">Phone:</td>
-                    <td>{{user?.phone}}</td>
-                </tr>
-                <tr>
-                    <td class="contact">Email:</td>
-                    <td>{{user?.email}}</td>
-                </tr>
-                <tr>
-                    <td class="contact">Birthdate:</td>
-                    <td>{{user?.birthdate}}</td>
-                </tr>
-            </table>
-        </div>
+      <table>
+        <tr>
+          <td class="contact">Address:</td>
+          <td>{{ user?.address }}</td>
+        </tr>
+        <tr>
+          <td class="contact">Phone:</td>
+          <td>{{ user?.phone }}</td>
+        </tr>
+        <tr>
+          <td class="contact">Email:</td>
+          <td>{{ user?.email }}</td>
+        </tr>
+        <tr>
+          <td class="contact">Birthdate:</td>
+          <td>{{ user?.birthdate }}</td>
+        </tr>
+      </table>
+    </div>
 
-    </section>
+  </section>
 
-    <!--<section id="dashboard">
-        <div *ngIf="isSuperUser; else userDashboard">
-            <admin-dashboard></admin-dashboard>
-        </div>
-        <ng-template #userDashboard>
-            <div>
-<!--                <user-dashboard></user-dashboard>-->
-            </div>
-        </ng-template>
-    </section>-->
+  <!--<section id="dashboard">
+      <div *ngIf="isSuperUser; else userDashboard">
+          <admin-dashboard></admin-dashboard>
+      </div>
+      <ng-template #userDashboard>
+          <div>
+<user-dashboard></user-dashboard>
+          </div>
+      </ng-template>
+  </section>-->
 
 </ng-template>
 
 
-
 <ng-template #noUser>
-    <h1>Error Occurred: Profile was not found!</h1>
+  <h1>Error Occurred: Profile was not found!</h1>
 </ng-template>

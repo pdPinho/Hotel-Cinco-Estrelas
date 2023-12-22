@@ -23,8 +23,7 @@ urlpatterns = [
     path('booking/', BookingView.as_view(), {'id': None}, name='bookings'),
     path('booking/<int:id>/', BookingView.as_view(), name='booking'),
 
-    path('review/', ReviewView.as_view(), {'id': None}, name='reviews'),
-    path('review/create', ReviewView.as_view(), name='create review'),
+    path('review/', ReviewView.as_view(), name='reviews'),
 
     path('receipt/<int:b_id>', receipt, name='receipt')
 ]

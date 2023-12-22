@@ -228,10 +228,10 @@ class ReviewView(APIView):
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
             Review.objects.create(
-                rating = serializer.validated_data.get("rating"),
-                review = serializer.validated_data.get("review"),
-                user = serializer.validated_data.get("user"),
-                date = serializer.validated_data.get("date")
+                rating=serializer.validated_data.get("rating"),
+                review=serializer.validated_data.get("review"),
+                user=serializer.validated_data.get("user"),
+                date=serializer.validated_data.get("date")
             )
             return Response({'message': 'Review submitted successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
