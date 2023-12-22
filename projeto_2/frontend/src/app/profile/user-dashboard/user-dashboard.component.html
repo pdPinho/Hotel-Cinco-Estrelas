@@ -1,0 +1,19 @@
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="max-width: 600px; margin: auto;">
+    <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let booking of bookings; let i = index" [ngClass]="{ 'active': i === 0 }">
+            <img src="assets{{booking.room_id.image}}" class="d-block w-100 h-100 img-fluid" style="max-height: 400px; object-fit: cover;" alt="picture for room type {{booking.room_id.name}}">
+            <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.5); padding: 10px;">
+                <h1 style="color: green;">{{booking.total_price}} €</h1>
+                <h3 style="color: black;">{{booking.check_in | date:'MM-dd-yyyy'}} to {{booking.check_out | date:'MM-dd-yyyy'}}</h3>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
