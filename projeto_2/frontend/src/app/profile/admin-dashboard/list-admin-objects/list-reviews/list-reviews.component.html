@@ -1,18 +1,31 @@
 <div class="container">
     <div class="row row-cols-3">
         <div class="card" style="width: 16rem;" *ngFor="let review of reviews">
-            <img src="assets/images/Untitled.png" class="card-img-top mx-auto my-2" style="width: 80%;" alt="pfp">
+            <ng-container *ngIf="review.user.image; else noUserImage">
+                <img src="assets{{ review.user.image }}" class="card-img-top mx-auto" style="width: 40%;" alt="user">
+            </ng-container>
+            <ng-template #noUserImage>
+                <img src="assets/images/user.jpeg" class="card-img-top mx-auto" style="width: 40%;" alt="default user">
+            </ng-template>        
             <div class="card-body">
-              <h3 class="card-title">{{ review.id }} - {{ review.date | date:'medium' }}</h3>
+              <h3 class="card-title">{{ review.id }} - {{ review.date | date:'short' }}</h3>
             </div>
             <h4>Review Information:</h4>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{review.user.id}} - {{review.user.name}}</li>
+              <li class="list-group-item">
+                  <div class="d-flex">
+                      <p class="m-0">{{review.user.id}} - {{review.user.name}}</p>
+                      <button class="btn btn-info flex">User Info</button>
+                  </div>
+                </li>
               <li class="list-group-item">{{review.review}}</li>
               <div class="list-group-item">
                 <span *ngFor="let star of getStars()" class="fa fa-star" [ngClass]="{'checked': review.rating >= star}"></span>
               </div>
             </ul>
-          </div>
+            <div class="card-body mx-auto">
+              <button class="btn btn-danger mx-1" href="#">Delete Review</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -8,8 +8,11 @@ export default function get_lists<T>(type: string, service: any): Promise<T[]> {
         call = service.getUsers();
         break;
       case 'Rooms':
-        call = service.GetRooms();
+        call = service.getRooms();
         break;
+      case 'Bookings':
+          call = service.getBookings();
+          break;
       case 'Reviews':
         call = service.getReviews();
         break;

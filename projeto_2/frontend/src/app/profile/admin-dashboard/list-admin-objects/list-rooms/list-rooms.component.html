@@ -1,19 +1,19 @@
 <div class="container">
-    <div class="row row-cols-3">
-        <div class="card" style="width: 16rem;" *ngFor="let room of rooms">
-            <img src="assets/images/Untitled.png" class="card-img-top mx-auto my-2" style="width: 80%;" alt="pfp">
-            <div class="card-body">
+  <div class="row row-cols-3">
+      <div class="card" style="width: 16rem;" *ngFor="let room of rooms">
+          <img src="assets{{room.image}}" class="card-img-top mx-auto my-2" style="width: 80%; height: 40%; aspect-ratio: 1; object-fit: cover;" alt="pfp">
+          <div class="card-body">
               <h3 class="card-title">{{ room.id }} - {{ room.name }}</h3>
-            </div>
-            <h4>Room Information:</h4>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{room.type}}</li>
-              <li class="list-group-item">{{room.price}}</li>
-              <li class="list-group-item">{{room.max_guests}}</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">{{room.bookings}}</a>
-            </div>
           </div>
-    </div>
+          <h4>Room Information:</h4>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{room.price}}€ a night</li>
+              <li class="list-group-item">Max_guests allowed: {{room.max_guests}}</li>
+          </ul>
+          <div class="card-body mx-auto">
+              <button class="btn btn-danger mx-1" href="#">Delete Room</button>
+              <button class="btn btn-warning mx-1" href="#">Update Room</button>
+          </div>
+      </div>
+  </div>
 </div>

@@ -19,5 +19,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './list-admin-objects.component.scss'
 })
 export class ListAdminObjectsComponent {
-  @Input() type: string = "";
+  @Input() type: string = ""; 
 }
