@@ -38,4 +38,15 @@ export class RoomsService {
       });
     }
   }
+
+  getBookings(): Promise<any> {
+    try {
+      return this.httpClient.get(`${this.BASE_URL}/booking/`).toPromise();
+    } catch (error) {
+      console.error(error)
+      return new Promise((resolve, reject) => {
+        reject(error);
+      });
+    }
+  }
 }
