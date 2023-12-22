@@ -1,0 +1,7 @@
+<div [ngSwitch]="type">
+  <div *ngSwitchCase="'Users'" >    <list-users></list-users>  </div>
+  <div *ngSwitchCase="'Rooms'" >    <list-rooms></list-rooms>  </div>
+  <div *ngSwitchCase="'Bookings'" >    <list-bookings></list-bookings>  </div>
+  <div *ngSwitchCase="'Reviews'" >    <list-reviews></list-reviews>  </div>
+  <div *ngSwitchDefault class="text-warning">An Error Has Occurred.</div>
+</div>
