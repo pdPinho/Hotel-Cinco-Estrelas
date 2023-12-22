@@ -17,14 +17,14 @@ export class ReviewService{
     return await data.json() ?? [];
   }
 
-  async createReview(rating: number, review: string, user: string): Promise<any> {
+  async createReview(rating: number, review: string, user: any): Promise<any> {
     const url = this.baseURL + "review/create";
     try {
       return await this.httpClient.post(url, {
         "rating": rating,
         "review": review,
         "user": user,
-        "date": Date.now(),
+        "date": new Date().toISOString(),
       }).toPromise();
     } catch (error) {
       throw new Error('Submission failed');

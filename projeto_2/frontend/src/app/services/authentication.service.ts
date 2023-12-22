@@ -22,6 +22,11 @@ export class AuthService {
     this.storageSub.next('added');
   }
 
+  getItem(key: string): any {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+  }
+
   removeItem(key: string): void {
     localStorage.removeItem(key);
     this.storageSub.next('removed');

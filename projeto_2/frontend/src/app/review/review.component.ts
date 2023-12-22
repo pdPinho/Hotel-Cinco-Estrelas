@@ -29,7 +29,7 @@ export class ReviewComponent {
   review: string = '';
   rating: number = 0;
   submitError: boolean = false;
-  user: string = "";
+  user: any = null;
 
   constructor(private authService: AuthService, private router: Router) {
     this.reviewService.getReviews().then((revs: Review[]) => {
@@ -38,6 +38,7 @@ export class ReviewComponent {
           this.user = data;
           this.itemsPerPage = 3;
           this.logged = true;
+          this.user = authService.getItem("user");
         }
       });
 
