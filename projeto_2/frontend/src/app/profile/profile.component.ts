@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../services/user.service';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-//import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';  <--- HAD TO COMMENT THIS SINCE IT WASN'T ALLOWING ME TO RUN THE APP
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';  
 
 @Component({
   standalone: true,
@@ -15,7 +15,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     CommonModule,
     RouterLink,
     AdminDashboardComponent,
-    //UserDashboardComponent, <-----HAD TO COMMENT THIS SINCE IT WASN'T ALLOWING ME TO RUN THE APP
+    UserDashboardComponent, 
   ],
 })
 export class ProfileComponent  {
