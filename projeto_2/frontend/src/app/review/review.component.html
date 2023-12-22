@@ -16,7 +16,7 @@
             <div>
               <i *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'checked': review.rating >= star}"></i>
             </div>
-            <p class="text-muted">{{ review.user.name }} - {{ review.date}}</p>
+            <p class="text-muted">{{ review.user.name }} - {{ review.date | date:'short'}}</p>
           </div>
           <h5>{{ review.review }}</h5>
         </div>
