@@ -14,12 +14,12 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
   imports: [
     CommonModule,
     RouterLink,
-    AdminDashboardComponent, 
+    AdminDashboardComponent,
     //UserDashboardComponent, <-----HAD TO COMMENT THIS SINCE IT WASN'T ALLOWING ME TO RUN THE APP
   ],
 })
 export class ProfileComponent  {
-  
+
   isSuperUser: boolean = false;
   user: User | null = null;
   userService: UserService = inject(UserService);

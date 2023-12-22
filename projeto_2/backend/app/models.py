@@ -1,6 +1,19 @@
+import enum
+
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+
+
+class RoomsType(enum.Enum):
+    double = 'd'
+    triple = 't'
+    quad = 'q'
+    suite = 's'
+
+    @classmethod
+    def choices(cls):
+        return [(key.value, key.name) for key in cls]
 
 
 class UserManager(BaseUserManager):

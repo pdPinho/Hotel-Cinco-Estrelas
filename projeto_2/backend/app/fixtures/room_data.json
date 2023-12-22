@@ -6,7 +6,8 @@
       "name": "Double Room",
       "price": 69.99,
       "max_guests": 2,
-      "type": "d"
+      "type": "d",
+      "image": "double.jpg"
     }
   },
   {
@@ -16,7 +17,8 @@
       "name": "Triple Room",
       "price": 79.99,
       "max_guests": 3,
-      "type": "t"
+      "type": "t",
+      "image": "triple.jpg"
     }
   },
   {
@@ -26,7 +28,8 @@
       "name": "Quadruple Room",
       "price": 89.99,
       "max_guests": 4,
-      "type": "q"
+      "type": "q",
+      "image": "quadruple.jpg"
     }
   },
   {
@@ -36,7 +39,8 @@
       "name": "Suite",
       "price": 129.99,
       "max_guests": 2,
-      "type": "s"
+      "type": "s",
+      "image": "suite.jpg"
     }
   }
 ]

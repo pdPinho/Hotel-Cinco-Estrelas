@@ -1,0 +1,25 @@
+<div class="w-auto mx-auto">
+  <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+    <img src="{{ room?.image }}" alt="double room"
+         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+    <div class="ms-3">
+      <h3 class="">{{ room?.name }}</h3>
+      <h5 class="">Total price {{ booking?.total_price }}€</h5>
+      <p class="">Nº máximo de ocupantes: {{ room?.max_guests }}</p>
+      <p>Breakfast: {{ booking?.breakfast }}</p>
+      <p>Lunch: {{ booking?.lunch }}</p>
+      <p>Extra Bed: {{ booking?.extra_bed }}</p>
+    </div>
+  </div>
+  <div class="d-flex mx-auto gap-4">
+    <a id="payment" (click)="payment()" class="btn btn-primary">Confirm and Pay</a>
+    <div id="waiting" class="visually-hidden" role="status">
+      <span>Awaiting payment...</span><span class="spinner-border text-primary"></span>
+    </div>
+    <div id="complete" class="visually-hidden" role="status">
+      <p>Transaction Completed!</p>
+      <a (click)="receipt()" class="btn btn-primary">Print Receipt</a>
+      <a href="/" class="btn btn-primary ms-2">Return to Main Page</a>
+    </div>
+  </div>
+</div>

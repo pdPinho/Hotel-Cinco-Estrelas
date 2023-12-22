@@ -1,1 +1,37 @@
-<p>reservation works!</p>
+<form (ngSubmit)="confirmReservation()">
+  <h4 class="mt-4">A sua reserva de {{ data_init }} até {{ data_end }}</h4>
+  <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+    <img ngSrc="{{ room?.image}}" alt="double room"
+         width="300" height="200"
+         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
+    <div class="ms-3">
+      <h3 class="">{{ room?.name }}</h3>
+      <h5 class="">{{ room?.price }}€</h5>
+      <p class="">Nº máximo de ocupantes: {{ room?.max_guests }}</p>
+    </div>
+  </div>
+  <div class="form-group mb-2 mt-4">
+    <label for="breakfast">Breakfast (10€/day)</label>
+    <select class="form-control" id="breakfast" name="breakfast" [(ngModel)]="breakfast">
+      <option [value]="false">No</option>
+      <option [value]="true">Yes</option>
+    </select>
+  </div>
+  <div class="form-group mb-2">
+    <label for="lunch">Lunch (20€/day)</label>
+    <select class="form-control" id="lunch" name="lunch" [(ngModel)]="lunch">
+      <option [value]="false">No</option>
+      <option [value]="true">Yes</option>
+    </select>
+  </div>
+  <div class="form-group mb-4">
+    <label for="extra_bed">Extra Bed (15€/day)</label>
+    <select class="form-control" id="extra_bed" name="extra_bed" [(ngModel)]="extra_bed">
+      <option [value]="false">No</option>
+      <option [value]="true">Yes</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Continue</button>
+  <button type="button" class="btn btn-danger ms-2" (click)="cancelReservation()">Cancel</button>
+</form>

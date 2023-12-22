@@ -16,6 +16,9 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 class BookingSerializer(serializers.ModelSerializer):
+    user_id = UserSerializer()
+    room_id = RoomSerializer()
+
     class Meta:
         model = Booking
         fields = '__all__'

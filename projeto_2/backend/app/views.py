@@ -1,13 +1,20 @@
+import io
+
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from rest_framework import generics, permissions
+from rest_framework import permissions
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
-from .models import User, Room, Booking, Review
+from django.db.models import Q
+from django.http import HttpResponse, FileResponse
+
+from reportlab.pdfgen import canvas
+
+from .models import *
 from .serializers import *
 
 
@@ -103,7 +110,30 @@ class RoomView(APIView):
             except Room.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
         else:
-            rooms = Room.objects.all()
+            data_init = self.request.query_params.get('data_init', None)
+            data_end = self.request.query_params.get('data_end', None)
+            if data_init and data_end:
+                rooms = Room.objects.none()
+
+                conflicting_bookings = Booking.objects.filter(
+                    # Could probably be simplified, but it works
+                    Q(check_in__gte=data_init, check_out__lte=data_init) |
+                    Q(check_in__gte=data_end, check_out__lte=data_end) |
+                    Q(check_in__gte=data_init, check_in__lte=data_end) |
+                    Q(check_out__gte=data_init, check_out__lte=data_end) |
+                    Q(check_in__lte=data_init, check_out__gte=data_end)
+                )
+                conflicting_room_ids = conflicting_bookings.values_list('room_id', flat=True)
+                for t in RoomsType:
+                    if Room.objects.filter(type__exact=t.value).exists():
+                        r = Room.objects.filter(type__exact=t.value).exclude(id__in=conflicting_room_ids)
+                        if r.exists():
+                            if len(r) > 1:
+                                rooms |= r.first()
+                            else:
+                                rooms |= r
+            else:
+                rooms = Room.objects.all()
             if 'num' in request.GET:
                 num = int(request.GET['num'])
                 rooms = rooms[:num]
@@ -149,12 +179,22 @@ class BookingView(APIView):
             bookings = Booking.objects.all()
         return Response(BookingSerializer(bookings, many=True).data)
 
-    def put(self, request):
-        serializer = BookingSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(BookingSerializer(serializer.data).data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, id, *args, **kwargs):
+        try:
+            print(request.data)
+            booking = Booking.objects.create(
+                user_id=User.objects.get(id=request.data['user_id']['id']),
+                room_id=Room.objects.get(id=request.data['room_id']['id']),
+                check_in=request.data['check_in'],
+                check_out=request.data['check_out'],
+                breakfast=request.data['breakfast'],
+                lunch=request.data['lunch'],
+                extra_bed=request.data['extra_bed'],
+                total_price=request.data['total_price']
+            )
+            return Response(BookingSerializer(booking).data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
     def patch(self, request, id):
         try:
@@ -195,5 +235,49 @@ class ReviewView(APIView):
             )
             return Response({'message': 'Review submitted successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
+
+def receipt(request):
+    if not permissions.IsAuthenticated:
+        return HttpResponse('Not Autorized', status=403)
+
+    b, r = None, None
+    if request.method == 'GET':
+        if b_id := request.GET.get('b_id', None):
+            b = Booking.objects.get(id=b_id)
+            r = Room.objects.get(id=b.room_id.id)
+
+            if request.user.id != b.user_id.id:
+                return HttpResponse('Not Autorized', status=403)
+    else:
+        return HttpResponse(content='No such booking', status=404)
+
+    if b is None or r is None:
+        return HttpResponse("Error", status=500)
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    p.drawString(90, 790, "HOTEL CINCO ESTRELAS")
+    p.drawString(90, 760, b.user_id.name)
+    p.drawString(90, 745, b.user_id.address)
+    p.drawString(90, 730, b.user_id.phone)
+    p.drawString(170, 730, b.user_id.email)
+
+    p.drawString(90, 700, "DETALHES DA RESERVA")
+    p.drawString(90, 675, "De " + b.check_in.__str__() + " até " + b.check_out.__str__())
+    p.drawString(90, 660, r.name)
+    p.drawString(90, 645, "Preço total: " + b.total_price.__str__())
+    p.drawString(90, 630, "Máximo de ocupantes (mais um em caso de cama extra): " + r.max_guests.__str__())
+    p.drawString(90, 615, "Pequeno Almoço: " + b.breakfast.__str__())
+    p.drawString(90, 600, "Almoço: " + b.lunch.__str__())
+    p.drawString(90, 585, "Cama Extra: " + b.extra_bed.__str__())
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    # FileResponse sets the Content-Disposition header so that browsers
+    # present the option to save the file.
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename=f"Reservation_{b.user_id.name}_{b.id}.pdf")

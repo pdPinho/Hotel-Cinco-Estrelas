@@ -1,1 +1,13 @@
-<p>room works!</p>
+<div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
+  <img ngSrc="{{room?.image}}" alt="{{room?.name}}"
+       style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"
+       width="300" height="200"
+       priority=""/>
+  <div class="ms-3">
+    <h3 class="">{{ room?.name }}</h3>
+    <h5 class="">{{ room?.price }} € / por noite</h5>
+    <p class="">Nº máximo de ocupantes: {{ room?.max_guests }}</p>
+    <a class="btn btn-primary" type="button"
+       (click)="bookRoom()">Reservar</a>
+  </div>
+</div>

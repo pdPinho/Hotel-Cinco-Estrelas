@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Room} from "../room";
+import {Booking} from "../booking";
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +8,20 @@ import {Injectable} from '@angular/core';
 export class SearchService {
   private _data_init: any;
   private _data_end: any;
+  private _room: Room | null = null;
+  private _booking: Booking | null = null;
+
+  constructor() {
+  }
+
+  get room(): Room | null {
+    return this._room;
+  }
+
+  set room(value: Room | null) {
+    this._room = value;
+  }
+
   get data_end(): any {
     return this._data_end;
   }
@@ -22,6 +38,11 @@ export class SearchService {
     this._data_init = value;
   }
 
-  constructor() {
+  get booking(): Booking | null {
+    return this._booking;
+  }
+
+  set booking(value: Booking | null) {
+    this._booking = value;
   }
 }

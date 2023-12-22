@@ -1,50 +1,5 @@
 <div class="mb-5">
   <h4 class="mt-4">Escolha um tipo de quarto para a sua reserva de {{ this.data_init }} até {{ this.data_end }}</h4>
-  <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-    <img src="" alt="double room"
-         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-    <div class="ms-3">
-      <h3 class=""></h3>
-      <h5 class="">€ / por noite</h5>
-      <p class="">Nº máximo de ocupantes: </p>
-      <a class="btn btn-primary" type="button"
-         href="">Reservar</a>
-    </div>
-  </div>
   <hr/>
-  <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-    <img src="" alt="triple room"
-         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-    <div class="ms-3">
-      <h3 class=""></h3>
-      <h5 class="">€ / por noite</h5>
-      <p class="">Nº máximo de ocupantes: </p>
-      <a class="btn btn-primary" type="button"
-         href="">Reservar</a>
-    </div>
-  </div>
-  <hr/>
-  <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-    <img src="" alt="double room"
-         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-    <div class="ms-3">
-      <h3 class=""></h3>
-      <h5 class="">€ / por noite</h5>
-      <p class="">Nº máximo de ocupantes: </p>
-      <a class="btn btn-primary" type="button"
-         href="">Reservar</a>
-    </div>
-  </div>
-  <hr/>
-  <div class="mt-4" style="display: flex; border: black 1px; border-radius: 1rem">
-    <img src="" alt="suite room"
-         style="height: 200px; width: 300px; object-fit: cover; border-radius: 1rem; box-shadow: 2px 2px 2px 2px rgb(0,0,0,0.5)"/>
-    <div class="ms-3">
-      <h3 class=""></h3>
-      <h5 class="">€ / por noite</h5>
-      <p class="">Nº máximo de ocupantes: </p>
-      <a class="btn btn-primary" type="button"
-         href="">Reservar</a>
-    </div>
-  </div>
+  <app-room *ngFor="let room of rooms" [room]="room"></app-room>
 </div>

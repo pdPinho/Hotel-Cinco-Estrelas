@@ -133,3 +133,6 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = 'app.User'
+
+MEDIA_URL = 'images/'
+MEDIA_ROOT = BASE_DIR / 'images'
