@@ -49,7 +49,7 @@ export class ReviewComponent {
   }
 
   submit(): void{
-    this.reviewService.createReview(this.rating, this.review, this.user).then(
+    this.reviewService.createReview(this.rating, this.review, this.user["id"]).then(
       response => {
         return response;
       },

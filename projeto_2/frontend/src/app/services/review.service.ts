@@ -18,7 +18,7 @@ export class ReviewService{
   }
 
   async createReview(rating: number, review: string, user: any): Promise<any> {
-    const url = this.baseURL + "review/create";
+    const url = this.baseURL + "review/";
     try {
       return await this.httpClient.post(url, {
         "rating": rating,

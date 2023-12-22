@@ -177,18 +177,11 @@ class BookingView(APIView):
 
 
 class ReviewView(APIView):
-    def get(self, request, id):
-        if id:
-            try:
-                reviews = Review.objects.get(id=id)
-                return Response(ReviewSerializer(reviews).data)
-            except Review.DoesNotExist:
-                return Response(status=status.HTTP_404_NOT_FOUND)
-        else:
-            reviews = Review.objects.all()
-            if 'num' in request.GET:
-                num = int(request.GET['num'])
-                reviews = reviews[:num]
+    def get(self, request):
+        reviews = Review.objects.all()
+        if 'num' in request.GET:
+            num = int(request.GET['num'])
+            reviews = reviews[:num]
         return Response(ReviewSerializer(reviews, many=True).data)
 
     def post(self, request):
@@ -197,7 +190,7 @@ class ReviewView(APIView):
             Review.objects.create(
                 rating = serializer.validated_data.get("rating"),
                 review = serializer.validated_data.get("review"),
-                user = User.objects.get(email=serializer.validated_data.get("user")),
+                user = serializer.validated_data.get("user"),
                 date = serializer.validated_data.get("date")
             )
             return Response({'message': 'Review submitted successfully'}, status=status.HTTP_201_CREATED)
