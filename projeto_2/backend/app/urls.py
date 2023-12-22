@@ -22,5 +22,5 @@ urlpatterns = [
     path('booking/<int:id>/', BookingView.as_view(), name='booking'),
 
     path('review/', ReviewView.as_view(), {'id': None}, name='reviews'),
-    path('review/<int:id>/', ReviewView.as_view(), name='review'),
+    path('review/create', ReviewView.as_view(), name='create review')
 ]
