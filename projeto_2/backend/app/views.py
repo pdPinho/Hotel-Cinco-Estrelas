@@ -194,7 +194,12 @@ class ReviewView(APIView):
     def post(self, request):
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
-            Review.objects.create_review(serializer.data.get('rating'), serializer.data.get('review'));
+            Review.objects.create(
+                rating = serializer.validated_data.get("rating"),
+                review = serializer.validated_data.get("review"),
+                user = User.objects.get(email=serializer.validated_data.get("user")),
+                date = serializer.validated_data.get("date")
+            )
             return Response({'message': 'Review submitted successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
