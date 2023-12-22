@@ -3,6 +3,8 @@ import {Review} from "../review";
 import {ReviewService} from "../services/review.service";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AuthService} from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -23,14 +25,42 @@ export class ReviewComponent {
   currentPage: number = 1;
   itemsPerPage: number = 4;
   stars: number[] = [1, 2, 3, 4, 5];
+  logged: boolean = false;
+  review: string = '';
+  rating: number = 0;
+  submitError: boolean = false;
+  user: string = "";
 
-
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
     this.reviewService.getReviews().then((revs: Review[]) => {
+      this.authService.watchStorage().subscribe((data: string) => {
+        if (data === "added"){
+          this.user = data;
+          this.itemsPerPage = 3;
+          this.logged = true;
+        }
+      });
+
       this.reviews = revs.reverse();
       this.averageRating = this.getAverage();
       this.updatePaginatedReviews();
     })
+  }
+
+  submit(): void{
+    this.reviewService.createReview(this.rating, this.review, this.user).then(
+      response => {
+        return response;
+      },
+      error => {
+        this.submitError = true;
+        return error;
+      }
+    );
+  }
+
+  changeRating(value: number): void {
+    this.rating = value;
   }
 
   private getAverage(): number {

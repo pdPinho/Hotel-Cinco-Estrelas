@@ -4,7 +4,7 @@
       <div class="text-center">
         <h3>Average Rating</h3>
         <div>
-          <span *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'checked': averageRating >= star}"></span>
+          <i *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'checked': averageRating >= star}"></i>
         </div>
       </div>
     </div>
@@ -14,12 +14,28 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <div>
-              <span *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'checked': review.rating >= star}"></span>
+              <i *ngFor="let star of stars" class="fa fa-star" [ngClass]="{'checked': review.rating >= star}"></i>
             </div>
             <p class="text-muted">{{ review.user.name }} - {{ review.date}}</p>
           </div>
           <h5>{{ review.review }}</h5>
         </div>
+      </div>
+
+      <div *ngIf="logged" class="mb-3">
+        <h4>Add a Review</h4>
+        <form (ngSubmit)="submit()">
+          <div class="mb-3">
+            <i *ngFor="let star of stars" class="fa fa-star" (click)="changeRating(star)" [ngClass]="{'checked': rating >= star}"></i>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" rows="3" [(ngModel)]="review" name="review" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div *ngIf="submitError" class="alert alert-danger col-md-8 center" role="alert">
+        There was an error submitting your review.
       </div>
 
       <nav aria-label="Page navigation">

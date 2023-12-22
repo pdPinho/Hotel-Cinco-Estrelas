@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private baseURL = "http://localhost:8000/api/"
-  private storageSub = new Subject<string>();
+  private storageSub = new BehaviorSubject<string>("");
 
   constructor(private httpClient: HttpClient) {
 

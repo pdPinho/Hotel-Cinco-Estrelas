@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {Review} from "../review";
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable({
@@ -7,12 +8,8 @@ import {Review} from "../review";
 })
 export class ReviewService{
   private baseURL = "http://localhost:8000/api/"
-
-  async getReview(id: number): Promise<Review> {
-    const url = this.baseURL + "review/" + id;
-    const data = await fetch(url);
-    return await data.json() ?? undefined;
-  }
+    
+  constructor(private httpClient: HttpClient) {}
 
   async getReviews(): Promise<Review[]> {
     const url = this.baseURL + "review";
@@ -20,17 +17,18 @@ export class ReviewService{
     return await data.json() ?? [];
   }
 
-  async getReviewsN(num: number): Promise<Review[]> {
-    const url = this.baseURL + "reviews?=num" + num;
-    const data = await fetch(url);
-    return await data.json() ?? [];
-  }
-
-  async createReview(au: Review): Promise<any> {
-    const url = this.baseURL + 'reviewcre';
-    const data = await fetch(url, {
-      method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(au) });
-    return data.json();
+  async createReview(rating: number, review: string, user: string): Promise<any> {
+    const url = this.baseURL + "review/create";
+    try {
+      return await this.httpClient.post(url, {
+        "rating": rating,
+        "review": review,
+        "user": user,
+        "date": Date.now(),
+      }).toPromise();
+    } catch (error) {
+      throw new Error('Submission failed');
+    }
   }
 
 }

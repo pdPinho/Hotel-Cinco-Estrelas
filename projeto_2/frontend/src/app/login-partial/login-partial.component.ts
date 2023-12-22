@@ -15,14 +15,7 @@ import {AuthService} from "../services/authentication.service";
 })
 export class LoginPartialComponent {
   _user: any;
-  private storageSub = this.authService.watchStorage().subscribe((data: string) => {
-    if (data === 'removed') {
-      this._user = null;
-    }
-    if (data === 'added') {
-      this._user = this.user;
-    }
-  });
+  _storageSub = this.authService.watchStorage().subscribe((data: string) => { data === "removed" ? this._user = null : this._user = this.user });
 
   constructor(private router: Router, private authService: AuthService) {
     this._user = this.user;
