@@ -6,7 +6,6 @@ import {RoomsService} from "../services/rooms.service";
 import {FormsModule} from "@angular/forms";
 import {NgOptimizedImage} from "@angular/common";
 import {User} from "../user";
-import {Booking} from "../booking";
 
 @Component({
   selector: 'app-reservation',
@@ -43,7 +42,7 @@ export class ReservationComponent {
     this.router.navigate(['/']).then(r => console.log(r));
   }
 
-  confirmReservation(): void {
+  async confirmReservation(): Promise<void> {
     if (this.room !== null) {
       let days = Math.floor((Date.parse(this.data_end) - Date.parse(this.data_init)) / 86400000);
       let price = this.room.price * days;
@@ -66,11 +65,12 @@ export class ReservationComponent {
         extra_bed: this.extra_bed,
         total_price: price
       };
-      this.roomService.reserveRoom(this.searchService.booking).then(r => {
-        this.searchService.booking = r as Booking
-        console.log(r)
-      });
-      this.router.navigate(['/confirm']).then(r => console.log(r));
+      this.roomService.reserveRoom(this.searchService.booking).then(
+        response => {
+          this.searchService.booking = response;
+        },
+      );
+      this.router.navigate(['/confirm']).then(r => console.log(r))
     }
   }
 }

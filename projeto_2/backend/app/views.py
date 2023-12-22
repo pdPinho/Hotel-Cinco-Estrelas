@@ -238,17 +238,11 @@ class ReviewView(APIView):
 
 
 def receipt(request):
-    if not permissions.IsAuthenticated:
-        return HttpResponse('Not Autorized', status=403)
-
     b, r = None, None
     if request.method == 'GET':
         if b_id := request.GET.get('b_id', None):
             b = Booking.objects.get(id=b_id)
             r = Room.objects.get(id=b.room_id.id)
-
-            if request.user.id != b.user_id.id:
-                return HttpResponse('Not Autorized', status=403)
     else:
         return HttpResponse(content='No such booking', status=404)
 

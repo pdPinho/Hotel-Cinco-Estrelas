@@ -25,5 +25,5 @@ urlpatterns = [
 
     path('review/', ReviewView.as_view(), name='reviews'),
 
-    path('receipt/<int:b_id>', receipt, name='receipt')
+    path('receipt/', receipt, name='receipt')
 ]

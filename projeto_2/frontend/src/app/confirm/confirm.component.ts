@@ -18,12 +18,12 @@ export class ConfirmComponent {
 
   constructor(private router: Router, private searchService: SearchService, private roomsService: RoomsService) {
     this.room = this.searchService.room;
-    this.booking = this.searchService.booking;
   }
 
   receipt(): void {
-    if (this.booking !== null) {
-      window.location.href = `http://localhost:8000/api/receipt?b_id=${this.booking.id}`
+    let booking = this.searchService.booking;
+    if (booking !== null) {
+      window.location.href = `http://localhost:8000/api/receipt?b_id=${booking.id}`
     }
   }
 
