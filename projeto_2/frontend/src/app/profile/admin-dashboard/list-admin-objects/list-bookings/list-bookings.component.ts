@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Booking } from '../../../../booking';
 import get_lists from '../get-lists';
 import { CommonModule } from '@angular/common';
+import { RoomsService } from '../../../../services/rooms.service';
 
 @Component({
   selector: 'list-bookings',
@@ -16,12 +17,12 @@ export class ListBookingsComponent {
   bookings: Booking[] = [];
 
   constructor() {
-    // let bookingService: BookingService = inject(BookingService);
-    // get_lists<Booking[]>("Bookings", bookingService).then((bookingsArray: Booking[][]) => {
-    //   // Flatten the array if necessary
-    //   const bookings: Booking[] = bookingsArray.reduce((acc, curr) => acc.concat(curr), []);
-    //   this.bookings = bookings;
-    //   console.log(this.bookings);
-    // });
+    let bookingService: RoomsService = inject(RoomsService);
+    get_lists<Booking[]>("Bookings", bookingService).then((bookingsArray: Booking[][]) => {
+      // Flatten the array if necessary
+      const bookings: Booking[] = bookingsArray.reduce((acc, curr) => acc.concat(curr), []);
+      this.bookings = bookings;
+      console.log(this.bookings);
+    });
   }
 }
