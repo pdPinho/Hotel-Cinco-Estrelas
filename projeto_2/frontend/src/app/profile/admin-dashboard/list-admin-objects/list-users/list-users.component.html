@@ -17,7 +17,7 @@
               <li class="list-group-item">{{user.address}}</li>
             </ul>
             <div class="card-body mx-auto">
-              <button *ngIf="user.name !== 'Admin'" class="btn btn-danger mx-1" href="#">Delete User</button>
+              <button *ngIf="user.name !== 'Admin'" class="btn btn-danger mx-1" (click)="deleteUser(user)">Delete User</button>
               <button class="btn btn-warning mx-1" href="#">Update User</button>
             </div>
           </div>
