@@ -41,7 +41,7 @@ export class UserService{
   }
 
   async deleteUser(au: User): Promise<any> {
-    const url = this.baseURL + 'userdel/' + au.id;
+    const url = this.baseURL + 'user/' + au.id;
     const data = await fetch(url, {
       method: "DELETE", headers: {"Content-Type": "application/json"}, body: JSON.stringify(au) });
     return data.text();

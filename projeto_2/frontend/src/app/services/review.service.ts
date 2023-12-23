@@ -31,4 +31,12 @@ export class ReviewService{
     }
   }
 
+  deleteReview(id: number): Promise<any> {
+    return this.httpClient.delete(`${this.baseURL}review/${id}/`).toPromise()
+      .catch(error => {
+        console.error(error);
+        return Promise.reject(error);
+      });
+  }
+
 }
