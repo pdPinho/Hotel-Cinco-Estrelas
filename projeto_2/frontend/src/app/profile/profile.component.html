@@ -20,9 +20,53 @@
         </ng-template>        
         </div>
         <div class="float-child child1">
-        <button><a routerLink="./profile_edit" style="margin:auto;">Edit Profile</a></button>
-        <button><a routerLink="./upload_file" style="margin:auto;">Upload Profile Picture</a></button>
+            <div class="card-body mx-auto">
+                <button type="button" class="btn  btn-warning mx-1" data-bs-toggle="modal" [attr.data-bs-target]="'#ProfileModal'" style="margin:auto;">
+                    Edit Profile
+                </button>
+            </div>        
         </div>
+
+        
+
+          <!-- Modal -->
+          <div *ngIf="user" class="modal fade" [id]="'ProfileModal'" tabindex="-1" aria-labelledby="ProfileModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ProfileModalLabel">{{user!.name}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <label>Name:
+                    <input type="text" class="form-control" [(ngModel)]="user!.name">
+                  </label>
+                  <label>Email:
+                    <input type="email" class="form-control" [(ngModel)]="user!.email">
+                  </label>
+                  <label>Phone:
+                    <input type="tel" class="form-control" [(ngModel)]="user!.phone">
+                  </label>
+                  <label>Password:
+                    <input type="tel" class="form-control" [(ngModel)]="user!.phone">
+                  </label>
+                  <label>Address:
+                    <input type="text" class="form-control" [(ngModel)]="user!.address">
+                  </label>
+                  <label>Birthdate:
+                    <input type="date" class="form-control" [(ngModel)]="user!.birthdate">
+                  </label>
+                  <label>Image:
+                    <input type="text" class="form-control" [(ngModel)]="user!.image">
+                  </label>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="updateUser(user!)" data-bs-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         <div class="float-child child2">
         <h1>{{ user?.name }}</h1> <!-- Using safe navigation operator as angular cannot remember that user is null -->

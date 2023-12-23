@@ -5,6 +5,7 @@ import { User } from '../user';
 import { UserService } from '../services/user.service';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';  
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -16,6 +17,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     RouterLink,
     AdminDashboardComponent,
     UserDashboardComponent, 
+    FormsModule
   ],
 })
 export class ProfileComponent  {
@@ -33,6 +35,12 @@ export class ProfileComponent  {
         this.isSuperUser = (user.name == 'Admin');
       });
     }
+  }
+
+  updateUser(user: User) {
+    this.userService.updateUser(user).then(() => {
+      console.log("User updated");
+    });
   }
 
 }
