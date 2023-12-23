@@ -170,6 +170,12 @@ class RoomView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class UserBookingView(APIView):
+    def get(self, request, id):
+        bookings = Booking.objects.all()
+        user_bookings = [booking for booking in bookings if booking.user_id.id == id]
+        return Response(BookingSerializer(user_bookings, many=True).data)
+
 class BookingView(APIView):
     def get(self, request, id):
         if id:

@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { Booking } from '../../booking';
 import { RoomsService } from '../../services/rooms.service';
 import { CommonModule } from '@angular/common';
@@ -12,17 +12,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.scss'
 })
-export class UserDashboardComponent {
-    @Input() user_id: number = 0;
-    bookings: Booking[] | any = [];
-    bookingService: RoomsService = inject(RoomsService);
 
-    constructor() {
-        this.bookingService.getBookings().then((list: any) => {
-            this.bookings = list;
-            console.log(this.bookings);
-        }).catch((error: any) => {
-            console.error(error);
-        });
-    }
+export class UserDashboardComponent implements OnChanges {
+  @Input() user_id: number = 0;
+  bookings: Booking[] | any = [];
+  bookingService: RoomsService = inject(RoomsService);
+
+  ngOnChanges(changes: SimpleChanges): void {
+      if ('user_id' in changes) {
+          const newUserId = changes['user_id'].currentValue;
+
+          this.bookingService.getBookingsFromUser(newUserId).then((list: any) => {
+              this.bookings = list;
+              console.log("BOOKINGS", this.bookings);
+          }).catch((error: any) => {
+              console.error(error);
+          });
+      }
+  }
 }

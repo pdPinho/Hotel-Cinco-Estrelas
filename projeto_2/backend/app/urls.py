@@ -22,6 +22,7 @@ urlpatterns = [
 
     path('booking/', BookingView.as_view(), {'id': None}, name='bookings'),
     path('booking/<int:id>/', BookingView.as_view(), name='booking'),
+    path('booking/user/<int:id>/', UserBookingView.as_view(), name='user_bookings'),
 
     path('review/', ReviewView.as_view(), name='reviews'),
     path('review/<int:id>/', ReviewView.as_view(), name='reviews'),

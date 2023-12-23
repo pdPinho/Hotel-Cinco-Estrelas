@@ -82,6 +82,22 @@ export class RoomsService {
     }
   }
 
+  getBookingsFromUser(user_id: number): Promise<any> {
+    try {
+      let something = this.httpClient.get(`${this.BASE_URL}/booking/user/${user_id}/`).toPromise();
+      console.log("PATH: "+ `${this.BASE_URL}/booking/user/${user_id}/`)
+      console.log("something", something);
+      return something;
+    } catch (error) {
+      console.error(error)
+      return new Promise((resolve, reject) => {
+        reject(error);
+      });
+    }
+  }
+
+  
+
   deleteBooking(booking_id: number): Promise<any> {
     return this.httpClient.delete(`${this.BASE_URL}/booking/${booking_id}/`).toPromise()
       .catch(error => {
