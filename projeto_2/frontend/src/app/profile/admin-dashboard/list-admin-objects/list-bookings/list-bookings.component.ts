@@ -15,14 +15,20 @@ import { RoomsService } from '../../../../services/rooms.service';
 })
 export class ListBookingsComponent {
   bookings: Booking[] = [];
+  bookingService: RoomsService = inject(RoomsService);
 
   constructor() {
-    let bookingService: RoomsService = inject(RoomsService);
-    get_lists<Booking[]>("Bookings", bookingService).then((bookingsArray: Booking[][]) => {
+    get_lists<Booking[]>("Bookings", this.bookingService).then((bookingsArray: Booking[][]) => {
       // Flatten the array if necessary
       const bookings: Booking[] = bookingsArray.reduce((acc, curr) => acc.concat(curr), []);
       this.bookings = bookings;
       console.log(this.bookings);
     });
   }
+
+  deleteBooking(booking: Booking) {
+    this.bookingService.deleteBooking(booking.id!).then(() => {
+        this.bookings = this.bookings.filter(u => u !== booking);
+    });
+}
 }
