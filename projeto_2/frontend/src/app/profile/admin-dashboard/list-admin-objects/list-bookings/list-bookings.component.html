@@ -12,14 +12,14 @@
                 <img src="assets{{ booking.room_id.image }}" class="card-img-top mx-auto" style="width: 40%;" alt="room">
             </div>
             <div class="card-body">
-                <h3 class="card-title">{{ booking.id }} - {{booking.room_id.name}} for {{ booking.user_id.name }}</h3>
+                <h3 class="card-title">{{ booking.id }} - {{booking.room_id.name}}({{booking.room_id.id}}) for {{ booking.user_id.name }}({{booking.user_id.id}})</h3>
             </div>
             <h4>Contacts:</h4>
             <ul class="list-group list-group-flush">
-                <div class="card-body mx-auto">
+                <!-- <div class="card-body mx-auto">
                     <button class="btn btn-info mx-1" href="#">User Info</button>
                     <button class="btn btn-info mx-1" href="#">Room Info</button>
-                </div>
+                </div> -->
                 <li class="list-group-item">Total: {{booking.total_price}}</li>
                 <li class="list-group-item">{{booking.check_in | date:'MM-dd-yyyy'}} to {{booking.check_out | date:'MM-dd-yyyy'}}</li>
                 <li class="list-group-item">Extras:
