@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Booking} from "../booking";
+import { Room } from '../room';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,15 @@ export class RoomsService {
     }
   }
 
+  deleteRoom(room_id: number): Promise<any> {
+    return this.httpClient.delete(`${this.BASE_URL}/room/${room_id}/`).toPromise()
+      .catch(error => {
+        console.error(error);
+        return Promise.reject(error);
+      });
+  }
+  
+
   reserveRoom(booking: Booking): Promise<any> {
     try {
       return this.httpClient.put(`${this.BASE_URL}/booking/`,
@@ -37,5 +47,24 @@ export class RoomsService {
         reject(error);
       });
     }
+  }
+
+  getBookings(): Promise<any> {
+    try {
+      return this.httpClient.get(`${this.BASE_URL}/booking/`).toPromise();
+    } catch (error) {
+      console.error(error)
+      return new Promise((resolve, reject) => {
+        reject(error);
+      });
+    }
+  }
+
+  deleteBooking(booking_id: number): Promise<any> {
+    return this.httpClient.delete(`${this.BASE_URL}/booking/${booking_id}/`).toPromise()
+      .catch(error => {
+        console.error(error);
+        return Promise.reject(error);
+      });
   }
 }

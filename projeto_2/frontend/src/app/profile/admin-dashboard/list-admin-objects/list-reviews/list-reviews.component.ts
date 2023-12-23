@@ -15,11 +15,11 @@ import { CommonModule } from '@angular/common';
 })
 export class ListReviewsComponent {
     reviews: Review[] = [];
+    reviewService: ReviewService = inject(ReviewService);
 
     constructor() {
-        let reviewService: ReviewService = inject(ReviewService);
 
-        get_lists<Review[]>("Reviews", reviewService).then((reviewsArray: Review[][]) => {
+        get_lists<Review[]>("Reviews", this.reviewService).then((reviewsArray: Review[][]) => {
           // Flatten the array if necessary
           const reviews: Review[] = reviewsArray.reduce((acc, curr) => acc.concat(curr), []);
           this.reviews = reviews;
@@ -29,5 +29,11 @@ export class ListReviewsComponent {
 
     getStars(): number[] {
         return Array.from({ length: 5 }, (_, index) => index + 1);
+    }
+
+    deleteReview(review: Review) {
+        this.reviewService.deleteReview(review.id).then(() => {
+            this.reviews = this.reviews.filter(u => u !== review);
+        });
     }
 }

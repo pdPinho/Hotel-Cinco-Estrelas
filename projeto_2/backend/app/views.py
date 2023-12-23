@@ -235,7 +235,14 @@ class ReviewView(APIView):
             )
             return Response({'message': 'Review submitted successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    def delete(self, request, id):
+        try:
+            review = Review.objects.get(id=id)
+        except Review.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        review.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 def receipt(request):
     b, r = None, None

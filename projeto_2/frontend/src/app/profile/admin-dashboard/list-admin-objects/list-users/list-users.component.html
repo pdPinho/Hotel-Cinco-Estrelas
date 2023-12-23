@@ -1,7 +1,12 @@
 <div class="container">
     <div class="row row-cols-3">
         <div class="card" style="width: 16rem;" *ngFor="let user of users">
-            <img src="assets/images/Untitled.png" class="card-img-top mx-auto my-2" style="width: 80%;" alt="pfp">
+            <ng-container *ngIf="user.image; else noUserImage">
+                <img src="assets{{ user.image }}" class="card-img-top mx-auto" style="width: 40%;" alt="user">
+            </ng-container>
+            <ng-template #noUserImage>
+                <img src="assets/images/user.jpeg" class="card-img-top mx-auto" style="width: 40%;" alt="default user">
+            </ng-template>            
             <div class="card-body">
               <h3 class="card-title">{{ user.id }} - {{ user.name }}</h3>
             </div>
@@ -11,8 +16,9 @@
               <li class="list-group-item">{{user.phone}}</li>
               <li class="list-group-item">{{user.address}}</li>
             </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">{{user.rooms}}</a>
+            <div class="card-body mx-auto">
+              <button *ngIf="user.name !== 'Admin'" class="btn btn-danger mx-1" (click)="deleteUser(user)">Delete User</button>
+              <button class="btn btn-warning mx-1" href="#">Update User</button>
             </div>
           </div>
     </div>
