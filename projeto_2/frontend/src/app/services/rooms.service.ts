@@ -35,6 +35,17 @@ export class RoomsService {
       return Promise.reject(error);
     }
   }
+
+  createRoom(room: Room): Promise<any> {
+    try {
+      return this.httpClient.put(`${this.BASE_URL}/room/`, 
+      room)
+      .toPromise();
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(error);
+    }
+  }
   
   
 

@@ -1,6 +1,6 @@
 import {User} from "./user";
 
-enum RoomType {
+export enum RoomType {
   'd' = 'Double',
   't' = 'Triple',
   'q' = 'Quad',
