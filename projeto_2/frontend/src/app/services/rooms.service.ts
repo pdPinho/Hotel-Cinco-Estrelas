@@ -27,6 +27,17 @@ export class RoomsService {
     }
   }
 
+  updateRoom(room: Room): Promise<any> {
+    try {
+      return this.httpClient.put(`${this.BASE_URL}/room/`, room).toPromise();
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(error);
+    }
+  }
+  
+  
+
   deleteRoom(room_id: number): Promise<any> {
     return this.httpClient.delete(`${this.BASE_URL}/room/${room_id}/`).toPromise()
       .catch(error => {

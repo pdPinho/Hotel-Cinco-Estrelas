@@ -12,7 +12,43 @@
           </ul>
           <div class="card-body mx-auto">
               <button class="btn btn-danger mx-1" (click)="deleteRoom(room)">Delete Room</button>
-              <button class="btn btn-warning mx-1" href="#">Update Room</button>
+              <button (click)="openRoomModal(room)" type="button" class="btn  btn-warning mx-1" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + room.id">
+                    Update room
+              </button>
+          </div> 
+
+          <!-- Modal -->
+          <div *ngIf="selectedRoom" class="modal fade" [id]="'exampleModal' + room.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{selectedRoom!.name}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Name:
+                      <input type="text" class="form-control" [(ngModel)]="selectedRoom!.name">
+                    </label>
+                    <label>Price:
+                      <input type="number" class="form-control" [(ngModel)]="selectedRoom!.price">
+                    </label>
+                    <label>Max Guests:
+                      <input type="number" class="form-control" [(ngModel)]="selectedRoom!.max_guests">
+                    </label>
+                    <label>Image:
+                      <input type="text" class="form-control" [(ngModel)]="selectedRoom!.image">
+                    </label>
+                    <label>Type:
+                      <input type="text" class="form-control" [(ngModel)]="selectedRoom!.type">
+                    </label>
+                  </div>
+                  
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="updateRoom(selectedRoom!)">Save changes</button>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
   </div>
