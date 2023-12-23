@@ -6,13 +6,13 @@
                     <img src="assets/images/user/{{ booking.user_id.image }}" class="card-img-top mx-auto" style="width: 40%;" alt="user">
                 </ng-container>
                 <ng-template #noUserImage>
-                    <img src="assets/images/Untitled.png" class="card-img-top mx-auto" style="width: 40%;" alt="default user">
+                    <img src="assets/images/user.jpeg" class="card-img-top mx-auto" style="width: 40%;" alt="default user">
                 </ng-template>
             
                 <img src="assets{{ booking.room_id.image }}" class="card-img-top mx-auto" style="width: 40%;" alt="room">
             </div>
             <div class="card-body">
-                <h3 class="card-title">{{ booking.id }} - {{booking.room_id.name}} from {{ booking.user_id.name }}</h3>
+                <h3 class="card-title">{{ booking.id }} - {{booking.room_id.name}} for {{ booking.user_id.name }}</h3>
             </div>
             <h4>Contacts:</h4>
             <ul class="list-group list-group-flush">
@@ -30,10 +30,60 @@
                     </ul>
                 </li>
             </ul>
+
             <div class="card-body mx-auto">
-                <button class="btn btn-danger mx-1" (click)="deleteBooking(booking)">Delete booking</button>
-                <button class="btn btn-warning mx-1" href="#">Update booking</button>
+                <button class="btn btn-danger mx-1" (click)="deleteBooking(booking)">Delete Booking</button>
+                <button (click)="openBookingModal(booking)" type="button" class="btn  btn-warning mx-1" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + booking.id">
+                        Update booking
+                </button>
+            </div> 
+
+            <!-- Modal -->
+            <div *ngIf="selectedBooking" class="modal fade" [id]="'exampleModal' + booking.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{selectedBooking!.id}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label>Total Price:
+                                <input type="number" class="form-control" [(ngModel)]="selectedBooking!.total_price">
+                            </label>
+                            <label>Check In:
+                                <input type="date" class="form-control" [(ngModel)]="selectedBooking!.check_in">
+                            </label>
+                            <label>Check Out:
+                                <input type="date" class="form-control" [(ngModel)]="selectedBooking!.check_out">
+                            </label>
+                            <ul class="flex mx-auto">
+                                <li>
+                                    <label>Breakfast:
+                                        <input type="checkbox" class="form-check-input" [(ngModel)]="selectedBooking!.breakfast">
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>Lunch:
+                                        <input type="checkbox" class="form-check-input" [(ngModel)]="selectedBooking!.lunch">
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>Extra Bed:
+                                        <input type="checkbox" class="form-check-input" [(ngModel)]="selectedBooking!.extra_bed">
+                                    </label>
+                                </li>
+                            </ul>
+                              
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="updateBooking(selectedBooking!)" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
