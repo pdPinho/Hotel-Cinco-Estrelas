@@ -34,9 +34,9 @@ export class UserService{
   }
 
   async updateUser(au: User): Promise<any> {
-    const url = this.baseURL + 'userupd';
+    const url = this.baseURL + 'user/?id=' + au.id;
     const data = await fetch(url, {
-      method: "PUT", headers: {"Content-Type": "application/json"}, body: JSON.stringify(au) });
+      method: "PATCH", headers: {"Content-Type": "application/json"}, body: JSON.stringify(au) });
     return data.json();
   }
 

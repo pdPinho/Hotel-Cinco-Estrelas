@@ -1,55 +1,49 @@
 <div class="container">
-  <div class="row row-cols-3">
-      <div class="card" style="width: 16rem;" *ngFor="let room of rooms">
-          <img src="assets{{room.image}}" class="card-img-top mx-auto my-2" style="width: 80%; height: 40%; aspect-ratio: 1; object-fit: cover;" alt="pfp">
-          <div class="card-body">
-              <h3 class="card-title">{{ room.id }} - {{ room.name }}</h3>
-          </div>
-          <h4>Room Information:</h4>
-          <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{room.price}}€ a night</li>
-              <li class="list-group-item">Max_guests allowed: {{room.max_guests}}</li>
-          </ul>
-          <div class="card-body mx-auto">
-              <button class="btn btn-danger mx-1" (click)="deleteRoom(room)">Delete Room</button>
-              <button (click)="openRoomModal(room)" type="button" class="btn  btn-warning mx-1" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + room.id">
-                    Update room
-              </button>
-          </div> 
-
-          <!-- Modal -->
-          <div *ngIf="selectedRoom" class="modal fade" [id]="'exampleModal' + room.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">{{selectedRoom!.name}}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label>Name:
-                      <input type="text" class="form-control" [(ngModel)]="selectedRoom!.name">
-                    </label>
-                    <label>Price:
-                      <input type="number" class="form-control" [(ngModel)]="selectedRoom!.price">
-                    </label>
-                    <label>Max Guests:
-                      <input type="number" class="form-control" [(ngModel)]="selectedRoom!.max_guests">
-                    </label>
-                    <label>Image:
-                      <input type="text" class="form-control" [(ngModel)]="selectedRoom!.image">
-                    </label>
-                    <label>Type:
-                      <input type="text" class="form-control" [(ngModel)]="selectedRoom!.type">
-                    </label>
-                  </div>
-                  
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" (click)="updateRoom(selectedRoom!)">Save changes</button>
-                </div>
-              </div>
+    <div class="row row-cols-3">
+        <div class="card" style="width: 16rem;" *ngFor="let room of rooms">
+            <img src="assets{{room.image}}" class="card-img-top mx-auto my-2" style="width: 80%; height: 40%; aspect-ratio: 1; object-fit: cover;" alt="pfp">
+            <div class="card-body">
+                <h3 class="card-title">{{ room.id }} - {{ room.name }}</h3>
             </div>
-          </div>
-      </div>
-  </div>
+            <h4>Room Information:</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{room.price}}€ a night</li>
+                <li class="list-group-item">Max_guests allowed: {{room.max_guests}}</li>
+            </ul>
+            <div class="card-body mx-auto">
+                <button class="btn btn-danger mx-1" (click)="deleteRoom(room)">Delete Room</button>
+                <button (click)="openRoomModal(room)" type="button" class="btn  btn-warning mx-1" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + room.id">
+                        Update room
+                </button>
+            </div> 
+
+            <!-- Modal -->
+            <div *ngIf="selectedRoom" class="modal fade" [id]="'exampleModal' + room.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{selectedRoom!.name}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label>Name:
+                            <input type="text" class="form-control" [(ngModel)]="selectedRoom!.name">
+                            </label>
+                            <label>Price:
+                            <input type="number" class="form-control" [(ngModel)]="selectedRoom!.price">
+                            </label>
+                            <label>Max Guests:
+                            <input type="number" class="form-control" [(ngModel)]="selectedRoom!.max_guests">
+                            </label>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="updateRoom(selectedRoom!)" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

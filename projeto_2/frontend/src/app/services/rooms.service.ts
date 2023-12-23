@@ -29,7 +29,7 @@ export class RoomsService {
 
   updateRoom(room: Room): Promise<any> {
     try {
-      return this.httpClient.put(`${this.BASE_URL}/room/`, room).toPromise();
+      return this.httpClient.patch(`${this.BASE_URL}/room/${room.id}/`, room).toPromise();
     } catch (error) {
       console.error(error);
       return Promise.reject(error);
@@ -77,5 +77,14 @@ export class RoomsService {
         console.error(error);
         return Promise.reject(error);
       });
+  }
+
+  updateBooking(booking: Booking): Promise<any> {
+    try {
+      return this.httpClient.patch(`${this.BASE_URL}/booking/${booking.id}/`, booking).toPromise();
+    } catch (error) {
+      console.error(error);
+      return Promise.reject(error);
+    }
   }
 }
