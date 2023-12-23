@@ -1,4 +1,43 @@
 <div class="container">
+
+    <button type="button" class="btn  btn-success mx-1" data-bs-toggle="modal" [attr.data-bs-target]="'#roomsModal'" >
+        Create a new Room
+    </button>
+    
+
+    <!-- Modal -->
+    <div class="modal fade" [id]="'roomsModal'" tabindex="-1" aria-labelledby="roomsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="roomsModalLabel">{{ new_room!.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <label>Name:
+                <input type="text" class="form-control" [(ngModel)]="new_room!.name">
+            </label>
+            <label>Price:
+                <input type="number" class="form-control" [(ngModel)]="new_room!.price">
+            </label>
+            <label>Max Guests:
+                <input type="number" class="form-control" [(ngModel)]="new_room!.max_guests">
+            </label>
+            <label>Room Type:
+                <select class="form-select" [(ngModel)]="new_room!.type">
+                <option *ngFor="let type of roomTypes" [value]="type.key">{{ type.value }}</option>
+                </select>
+            </label>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="createRoom(new_room)" data-bs-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+  
+
     <div class="row row-cols-3">
         <div class="card" style="width: 16rem;" *ngFor="let room of rooms">
             <img src="assets{{room.image}}" class="card-img-top mx-auto my-2" style="width: 80%; height: 40%; aspect-ratio: 1; object-fit: cover;" alt="pfp">

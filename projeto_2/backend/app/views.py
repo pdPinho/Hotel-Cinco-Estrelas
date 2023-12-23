@@ -140,7 +140,8 @@ class RoomView(APIView):
                 rooms = rooms[:num]
         return Response(RoomSerializer(rooms, many=True).data)
 
-    def put(self, request):
+    def put(self, request, id, *args, **kwargs):
+        request.data['image'] = None
         serializer = RoomSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
