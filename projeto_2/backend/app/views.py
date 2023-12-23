@@ -53,8 +53,9 @@ def users_view(request, id=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'PATCH':
+        uid = int(request.GET['id'])
         try:
-            user = User.objects.get(id=id)
+            user = User.objects.get(id=uid)
         except User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
         serializer = UserSerializer(user, data=request.data)
@@ -151,8 +152,9 @@ class RoomView(APIView):
             room = Room.objects.get(id=id)
         except Room.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = RoomSerializer(room, data=request.data)
-
+        temp_data = request.data.copy()
+        temp_data['image'] = room.image
+        serializer = RoomSerializer(room, data=temp_data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -201,11 +203,20 @@ class BookingView(APIView):
             booking = Booking.objects.get(id=id)
         except Booking.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = BookingSerializer(booking, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        booking.user_id = User.objects.get(id=request.data['user_id']['id'])
+        booking.room_id = Room.objects.get(id=request.data['room_id']['id'])
+        booking.check_in = request.data['check_in']
+        booking.check_out = request.data['check_out']
+        booking.breakfast = request.data['breakfast']
+        booking.lunch = request.data['lunch']
+        booking.extra_bed = request.data['extra_bed']
+        booking.total_price = request.data['total_price']
+        serializer = BookingSerializer(booking)
+        try:
+            booking.save()
+            return Response(serializer.data)        
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
         try:
